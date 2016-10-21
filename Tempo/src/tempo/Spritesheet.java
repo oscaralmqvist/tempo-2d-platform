@@ -5,6 +5,7 @@
  */
 package tempo;
 
+import java.awt.*;
 import java.awt.image.*;
 import java.io.File;
 import javax.imageio.ImageIO;
@@ -22,6 +23,9 @@ public class Spritesheet {
         }catch(Exception e){
 
         }
+    }
+    public BufferedImage getSprite(Dimension dim1, Dimension dim2){
+        return sheet.getSubimage(dim1.width, dim1.height, dim2.width, dim2.height);
     }
 
     
