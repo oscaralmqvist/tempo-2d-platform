@@ -5,6 +5,7 @@
  */
 package tempo;
 
+import java.awt.Graphics;
 import javax.swing.*;
 
 /**
@@ -12,5 +13,10 @@ import javax.swing.*;
  * @author Elev
  */
 public class GamePanel extends JPanel{
-    
+    public GamePanel(){
+        
+    }
+    public void paintComponent(Graphics g){
+        
+    }   
 }
