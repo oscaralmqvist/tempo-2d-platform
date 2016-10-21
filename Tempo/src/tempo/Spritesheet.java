@@ -8,6 +8,7 @@ package tempo;
 import java.awt.*;
 import java.awt.image.*;
 import java.io.File;
+import java.io.InputStream;
 import javax.imageio.ImageIO;
 
 /**
@@ -19,7 +20,7 @@ public class Spritesheet {
     
     public Spritesheet(){
         try{
-            BufferedImage sheet = ImageIO.read(new File("src/resources/temp.png"));
+             sheet = ImageIO.read(new File("src/resources/temp.png"));
         }catch(Exception e){
 
         }
