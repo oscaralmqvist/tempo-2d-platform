@@ -4,7 +4,7 @@ package tempo;
 /**
  *
  * @author Oscar Almqvist
- * Pierre testar push!
+ * Pierre testar pusha!
  */
 public class Tempo {
 
