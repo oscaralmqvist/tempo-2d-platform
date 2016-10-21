@@ -15,7 +15,10 @@ public class Player extends Sprites {
     }
 
     @Override
-    public void paint(Graphics g) {}
+    public void paint(Graphics g) {
+        g.drawRect(super.x, super.y, super.width, super.height);
+    
+    }
     
     
     
