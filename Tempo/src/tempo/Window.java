@@ -10,5 +10,7 @@ package tempo;
  * @author Elev
  */
 public class Window {
-    
+    public Window(){
+        
+    }
 }
