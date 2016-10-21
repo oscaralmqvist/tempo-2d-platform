@@ -5,7 +5,7 @@
  */
 package tempo;
 
-import java.awt.Graphics;
+import java.awt.*;
 import javax.swing.*;
 import tempo.sprites.*;
 
@@ -14,13 +14,14 @@ import tempo.sprites.*;
  * @author Elev
  */
 public class GamePanel extends JPanel{
-    
-    Player player = new Player(100, 100, 200, 200);
+    Spritesheet ss = new Spritesheet();
+    Player player = new Player(100, 100, 200, 200, ss.getSprite(0, 0, 32, 64));
     
     public GamePanel(){
         
     }
     public void paintComponent(Graphics g){
+        super.paintComponent(g);
         player.paint(g);
     }   
 }
