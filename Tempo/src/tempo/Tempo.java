@@ -2,7 +2,7 @@
 package tempo;
 
 /**
- * Hejsan
+ *
  * @author Oscar Almqvist
  */
 public class Tempo {
