@@ -13,6 +13,7 @@ import javax.swing.*;
  */
 public class Window extends JFrame{
     public GamePanel panel = new GamePanel();
+    public GameEngine ge = new GameEngine(panel);
     
     public Window(){
         add(panel);
