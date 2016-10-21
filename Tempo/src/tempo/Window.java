@@ -11,10 +11,11 @@ import javax.swing.*;
  *
  * @author Elev
  */
-public class Window {
-    final public JFrame frame = new JFrame("Tempo");
+public class Window extends JFrame{
+    public GamePanel panel = new GamePanel();
     
     public Window(){
+        add(panel);
         
     }
 }
