@@ -21,5 +21,6 @@ public class Window extends JFrame{
         setSize(1200,740);
         setResizable(false);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        addKeyListener(new Keyboard());
     }
 }
