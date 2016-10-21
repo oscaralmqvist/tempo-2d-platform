@@ -16,6 +16,10 @@ public class Window extends JFrame{
     
     public Window(){
         add(panel);
-        
+        setTitle("Tempo");
+        setVisible(true);
+        setSize(1200,740);
+        setResizable(false);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
 }
