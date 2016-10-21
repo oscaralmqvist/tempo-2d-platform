@@ -5,11 +5,15 @@
  */
 package tempo;
 
+import javax.swing.*;
+
 /**
  *
  * @author Elev
  */
 public class Window {
+    final public JFrame frame = new JFrame("Tempo");
+    
     public Window(){
         
     }
