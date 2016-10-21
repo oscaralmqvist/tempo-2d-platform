@@ -9,10 +9,10 @@ import java.awt.Graphics;
  */
 public abstract class Sprites {
     
-    private int x;
-    private int y;
-    private int width;
-    private int height;
+    public int x;
+    public int y;
+    public int width;
+    public int height;
     
     public Sprites(int x, int y, int width, int height) {
         this.x = x;
