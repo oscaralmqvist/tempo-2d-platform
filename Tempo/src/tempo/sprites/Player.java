@@ -5,10 +5,18 @@
  */
 package tempo.sprites;
 
-/**
- *
- * @author Elev
- */
-public class Player {
+import java.awt.Graphics;
+
+
+public class Player extends Sprites {
+
+    public Player(int x, int y, int width, int height) {
+        super(x, y, width, height);
+    }
+
+    @Override
+    public void paint(Graphics g) {}
+    
+    
     
 }
