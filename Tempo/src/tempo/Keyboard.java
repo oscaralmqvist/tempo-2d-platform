@@ -13,12 +13,32 @@ import java.awt.event.KeyListener;
  * @author Elev
  */
 public class Keyboard implements KeyListener {
+    GamePanel gp;
+    public Keyboard(GamePanel gp){
+        this.gp = gp;
+        
+    }
 
     @Override
     public void keyTyped(KeyEvent e) {}
 
     @Override
-    public void keyPressed(KeyEvent e) {}
+    public void keyPressed(KeyEvent e) {
+        switch(e.getKeyCode()){
+                case KeyEvent.VK_DOWN:
+                    gp.player.y += 10;
+                    break;
+                case KeyEvent.VK_UP:
+                    gp.player.y -= 10;
+                    break;
+                case KeyEvent.VK_LEFT:
+                    gp.player.x -= 10;
+                    break;
+                case KeyEvent.VK_RIGHT:
+                    gp.player.x += 10;
+                    break;
+            }
+    }
 
     @Override
     public void keyReleased(KeyEvent e) {}
