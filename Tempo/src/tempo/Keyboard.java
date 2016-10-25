@@ -35,7 +35,7 @@ public class Keyboard implements KeyListener {
                 case KeyEvent.VK_SPACE:
                 case KeyEvent.VK_W:
                     //KOLLISIONDOWN
-                 //   if(gp.enemy.y > 220)
+                    if(gp.enemy.y == 420)
                         gp.enemy.ySpeed -= 10.0;
                     break;
                 case KeyEvent.VK_A:
