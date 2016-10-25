@@ -70,12 +70,12 @@ public class GameEngine implements Runnable {
         public void tick() {
             gp.enemy.x += gp.enemy.xSpeed;
             gp.enemy.y += gp.enemy.ySpeed;   
-            if(gp.enemy.y > 220){
+            if(gp.enemy.y > 420){
                 gravity = 0;
                 gp.enemy.ySpeed = 0;
             }
             else{ 
-                gravity = 0.7;
+                gravity = 0.5;
             }
             gp.enemy.ySpeed += gravity;
             

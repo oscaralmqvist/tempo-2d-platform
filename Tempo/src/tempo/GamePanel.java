@@ -16,7 +16,7 @@ import tempo.sprites.*;
 public class GamePanel extends JPanel{
     Spritesheet ss = new Spritesheet();
     Player player = new Player(100, 100, 100, 200, ss.getSprite(0, 0, 32, 64));
-    Player enemy = new Player(100, 220, 100, 200, ss.getSprite(32, 0, 32, 64));
+    Player enemy = new Player(100, 420, 100, 200, ss.getSprite(32, 0, 32, 64));
     
     public GamePanel(){
         

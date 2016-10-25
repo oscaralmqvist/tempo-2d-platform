@@ -33,8 +33,9 @@ public class Keyboard implements KeyListener {
                         movingDown = true;            
                     break;
                 case KeyEvent.VK_SPACE:
+                case KeyEvent.VK_W:
                     //KOLLISIONDOWN
-                    if(gp.enemy.y >= 220)
+                 //   if(gp.enemy.y > 220)
                         gp.enemy.ySpeed -= 10.0;
                     break;
                 case KeyEvent.VK_A:
