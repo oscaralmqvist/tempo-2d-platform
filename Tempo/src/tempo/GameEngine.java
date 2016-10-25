@@ -69,6 +69,7 @@ public class GameEngine implements Runnable {
     
         public void tick() {
             gp.player.x += 10;
+            gp.player.y += 2;
         }
         
         public void render() {
