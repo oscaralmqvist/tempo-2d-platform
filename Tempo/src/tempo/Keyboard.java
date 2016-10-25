@@ -26,16 +26,16 @@ public class Keyboard implements KeyListener {
     public void keyPressed(KeyEvent e) {
         switch(e.getKeyCode()){
                 case KeyEvent.VK_DOWN:
-                    gp.player.y += 10;
+                    gp.enemy.y += 10;
                     break;
                 case KeyEvent.VK_UP:
-                    gp.player.y -= 10;
+                    gp.enemy.y -= 10;
                     break;
                 case KeyEvent.VK_LEFT:
-                    gp.player.x -= 10;
+                    gp.enemy.x -= 10;
                     break;
                 case KeyEvent.VK_RIGHT:
-                    gp.player.x += 10;
+                    gp.enemy.x += 10;
                     break;
             }
     }
