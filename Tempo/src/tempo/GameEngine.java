@@ -7,7 +7,7 @@ import javax.swing.*;
  */
 public class GameEngine implements Runnable {
     GamePanel gp;
-    public int gravity;
+    public double gravity;
     
     public boolean running = false;
     
@@ -75,7 +75,7 @@ public class GameEngine implements Runnable {
                 gp.enemy.ySpeed = 0;
             }
             else{ 
-                gravity = 1;
+                gravity = 0.7;
             }
             gp.enemy.ySpeed += gravity;
             

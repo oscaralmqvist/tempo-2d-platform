@@ -11,8 +11,8 @@ import java.awt.image.*;
 
 public class Player extends Sprites {
     
-    public int xSpeed = 0; 
-    public int ySpeed = 0;
+    public double xSpeed = 0.0; 
+    public double ySpeed = 0.0;
     public Player(int x, int y, int width, int height, BufferedImage image) {
         super(x, y, width, height, image);
     }

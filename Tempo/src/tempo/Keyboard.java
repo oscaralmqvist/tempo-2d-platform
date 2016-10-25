@@ -29,22 +29,22 @@ public class Keyboard implements KeyListener {
         switch(e.getKeyCode()){
                 case KeyEvent.VK_S:
                     if(!movingDown)
-                        gp.enemy.ySpeed += 10;
+                        gp.enemy.ySpeed += 10.0;
                         movingDown = true;            
                     break;
                 case KeyEvent.VK_SPACE:
                     //KOLLISIONDOWN
                     if(gp.enemy.y >= 220)
-                        gp.enemy.ySpeed -= 10;
+                        gp.enemy.ySpeed -= 10.0;
                     break;
                 case KeyEvent.VK_A:
                     if(!movingLeft)
-                        gp.enemy.xSpeed -= 10;
+                        gp.enemy.xSpeed -= 10.0;
                         movingLeft = true;
                     break;
                 case KeyEvent.VK_D:
                     if(!movingRight)
-                        gp.enemy.xSpeed += 10;
+                        gp.enemy.xSpeed += 10.0;
                         movingRight = true;
                     break;
             }
@@ -52,11 +52,21 @@ public class Keyboard implements KeyListener {
 
     @Override
     public void keyReleased(KeyEvent e) {
-        if(e.getKeyCode() != KeyEvent.VK_SPACE){
-            gp.enemy.xSpeed = 0;
+        if(e.getKeyCode() == KeyEvent.VK_D){
             movingRight = false;
-            movingLeft = false;
+            gp.enemy.xSpeed = 0;
+            if(movingLeft){
+                gp.enemy.xSpeed -= 10.0;
+                movingLeft = true;
+            }
         }
+        if(e.getKeyCode() == KeyEvent.VK_A){
+            movingLeft = false;
+            gp.enemy.xSpeed = 0;
+            if(movingRight){
+                gp.enemy.xSpeed += 10.0;
+                movingRight = true;
+            }
+        }        
     }
-    
 }
