@@ -1,12 +1,13 @@
 
 package tempo;
-
+import javax.swing.*;
 /**
  *
  * @author Oscar Almqvist
  */
 public class GameEngine implements Runnable {
     GamePanel gp;
+    private  boolean MOVE_UP = false;
     
     public boolean running = false;
     
@@ -69,7 +70,7 @@ public class GameEngine implements Runnable {
     
         public void tick() {
             gp.player.x += 10;
-            gp.player.y += 2;
+            gp.player.y += 2;      
         }
         
         public void render() {
