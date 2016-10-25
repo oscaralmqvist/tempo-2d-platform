@@ -7,7 +7,7 @@ import javax.swing.*;
  */
 public class GameEngine implements Runnable {
     GamePanel gp;
-    private  boolean MOVE_UP = false;
+    public int gravity;
     
     public boolean running = false;
     
@@ -31,7 +31,6 @@ public class GameEngine implements Runnable {
         
         long lastTimer = System.currentTimeMillis();
         double delta = 0;
-        
         
         while(running) {
             long now = System.nanoTime();
@@ -69,8 +68,17 @@ public class GameEngine implements Runnable {
     }
     
         public void tick() {
-            gp.player.x += 10;
-            gp.player.y += 2;      
+            gp.enemy.x += gp.enemy.xSpeed;
+            gp.enemy.y += gp.enemy.ySpeed;   
+            if(gp.enemy.y > 220){
+                gravity = 0;
+                gp.enemy.ySpeed = 0;
+            }
+            else{ 
+                gravity = 1;
+            }
+            gp.enemy.ySpeed += gravity;
+            
         }
         
         public void render() {
