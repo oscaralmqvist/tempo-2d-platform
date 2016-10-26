@@ -14,6 +14,8 @@ import tempo.sprites.*;
  * @author Elev
  */
 public class GamePanel extends JPanel{
+    public boolean isPaused;
+    
     Spritesheet ss = new Spritesheet();
     Player player = new Player(100, 100, 100, 200, ss.getSprite(0, 0, 32, 64));
     Player enemy = new Player(100, 420, 100, 200, ss.getSprite(32, 0, 32, 64));
@@ -25,5 +27,10 @@ public class GamePanel extends JPanel{
         super.paintComponent(g);
         enemy.paint(g);
         player.paint(g);
+        
+        if(isPaused){
+            g.setFont(new Font("TimesRoman", Font.PLAIN, 78));
+            g.drawString("PAUSED", 400, 350);
+        }
     }   
 }

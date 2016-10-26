@@ -68,6 +68,8 @@ public class GameEngine implements Runnable {
     }
     
         public void tick() {
+            
+            if(!gp.isPaused){
             gp.enemy.x += gp.enemy.xSpeed;
             gp.enemy.y += gp.enemy.ySpeed;   
             if(gp.enemy.y >= 420){
@@ -80,8 +82,8 @@ public class GameEngine implements Runnable {
             }
             gp.enemy.ySpeed += gravity;
             
+            }
         }
-        
         public void render() {
             gp.repaint();
         }

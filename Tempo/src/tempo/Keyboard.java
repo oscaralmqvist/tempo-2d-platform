@@ -14,7 +14,7 @@ import java.awt.event.KeyListener;
  */
 public class Keyboard implements KeyListener {
     GamePanel gp;
-    public boolean movingRight, movingLeft, movingUp, movingDown;
+    public boolean movingRight, movingLeft, movingUp, movingDown, isPaused;
     
     public Keyboard(GamePanel gp){
         this.gp = gp;
@@ -48,7 +48,9 @@ public class Keyboard implements KeyListener {
                         gp.enemy.xSpeed += 10.0;
                         movingRight = true;
                     break;
-            }
+                case KeyEvent.VK_ESCAPE:
+                    gp.isPaused = !gp.isPaused;
+                }
     }
 
     @Override
