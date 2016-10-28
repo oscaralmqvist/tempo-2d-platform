@@ -16,6 +16,8 @@ import tempo.Collision;
 public class Block extends Sprites{
     
     public boolean collision;
+    public int SpeedX = 0;
+    public int SpeedY = 0;
     
     
     public Block(int x, int y, int width, int height, BufferedImage image, boolean collision){

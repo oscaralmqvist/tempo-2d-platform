@@ -30,30 +30,25 @@ public class GamePanel extends JPanel{
     public GamePanel(){
         int row = 0;
         int collumn = 0;
-        for(int i = 0;i<90;i++){
-            sky.add(new Block(100 * collumn++, 100 * row, 100, 100, ss.getSprite(64, 32, 32, 32), false));
-            if(collumn > 11){
-                collumn = 0;
-                row++;
-            }
-        }
-        blocks.add(new Block(blockSize * 5, blockSize * 7, blockSize, blockSize*2, ss.getSprite(192, 0, 32, 64), false));
+        sky.add(new Block(0, 0, 1200, 740, ss.getSprite(64, 32, 32, 32), false));
+        
+        blocks.add(new Block(blockSize * 4, blockSize * 7, blockSize, blockSize*2, ss.getSprite(192, 0, 32, 64), false));
         blocks.add(new Block(blockSize * 2, blockSize * 7, blockSize, blockSize*2, ss.getSprite(192, 0, 32, 64), false));
-        blocks.add(new Block(blockSize * 7, blockSize * 7, blockSize, blockSize*2, ss.getSprite(192, 0, 32, 64), false));
         blocks.add(new Block(blockSize * 13, blockSize * 7, blockSize, blockSize*2, ss.getSprite(192, 0, 32, 64), false));
-        blocks.add(new Block(blockSize * 4, blockSize * 3, blockSize, blockSize*2, ss.getSprite(192, 0, 32, 64), false));
         blocks.add(new Block(blockSize * 10, blockSize * 1, 300, 600, ss.getSprite(192, 0, 32, 64), false));
         collumn = 0;
         for(int i = 0;i<18;i++){
             blocks.add(new Block(blockSize * collumn, blockSize * 8, blockSize, blockSize, ss.getSprite(256, collumn % 2 == 1?0:32, 32, 32), false));
-            blocks.add(new Block(blockSize * collumn, blockSize * 9, blockSize, blockSize, ss.getSprite(64, 0, 32, 32), true));
-            blocks.add(new Block(blockSize * collumn++, blockSize * 0, blockSize, blockSize, ss.getSprite(64, 0, 32, 32), true));
+            blocks.add(new Block(blockSize * collumn++, blockSize * 9, blockSize, blockSize, ss.getSprite(64, 0, 32, 32), true));
+            //blocks.add(new Block(blockSize * collumn++, blockSize * 0, blockSize, blockSize, ss.getSprite(64, 0, 32, 32), true));
         }
-        blocks.add(new Block(blockSize * 4, blockSize * 5, blockSize, blockSize, ss.getSprite(64, 0, 32, 32), true));
-        blocks.add(new Block(blockSize * 6, blockSize * 2, blockSize, blockSize, ss.getSprite(64, 0, 32, 32), true));
-        blocks.add(new Block(blockSize * 8, blockSize * 1, blockSize, blockSize, ss.getSprite(64, 0, 32, 32), true));
-        blocks.add(new Block(blockSize * 8, blockSize * 7, blockSize, blockSize, ss.getSprite(64, 0, 32, 32), true));
         
+        addBlock(3,6);
+        addBlock(5,5);
+        addBlock(7,4);
+        addBlock(9,6);
+        addBlock(10,3);
+        addBlock(11,5);
         
         
         
@@ -77,5 +72,18 @@ public class GamePanel extends JPanel{
             g.setFont(new Font("TimesRoman", Font.PLAIN, 78));
             g.drawString("PAUSED", 400, 350);
         }
-    }   
+    }  
+    public void addBlock(int x, int y){
+        for(int i = 0;i<9-y;i++){
+            //blocks.add(new Block(blockSize * x, blockSize * (y + i), blockSize, blockSize, ss.getSprite(32, 64, 32, 32), false));
+        }
+        
+        blocks.add(new Block(blockSize * x, blockSize * (y-1), blockSize, blockSize, ss.getSprite(256, 0, 32, 32), false));
+        blocks.add(new Block(blockSize * x, blockSize * y, blockSize, blockSize, ss.getSprite(64, 0, 32, 32), true));
+        blocks.add(new Block(blockSize * x, blockSize * (y+1), blockSize, blockSize, ss.getSprite(0, 64, 32, 32), false));
+        if(Math.random() > 0.5){
+            blocks.add(new Block(blockSize * x, blockSize * (y-2), blockSize, blockSize*2, ss.getSprite(192, 0, 32, 64), false));
+        }
+        
+    }
 }

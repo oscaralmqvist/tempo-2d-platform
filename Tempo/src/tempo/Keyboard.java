@@ -36,7 +36,7 @@ public class Keyboard implements KeyListener {
                 case KeyEvent.VK_W:
                     //KOLLISIONDOWN
                     for(int i = 0;i<gp.blocks.size();i++){
-                        gp.enemy.ySpeed -= 10.0;
+                        gp.enemy.ySpeed -= 15.0;
                         break;
                     }
                     break;
