@@ -119,7 +119,6 @@ public class GameEngine implements Runnable {
             }
             
             
-            }
         if(gp.movingLeft){
              if(gp.enemy.x <= 600){
                             for(int i = 0;i<gp.blocks.size();i++){
@@ -151,8 +150,9 @@ public class GameEngine implements Runnable {
                             }
                         gp.enemy.x += 10.0;
                         }
+                }
         }
-        
+
         gp.repaint();
         }
         /*
