@@ -26,9 +26,12 @@ public class Mouse implements MouseListener {
     @Override
     public void mouseClicked(MouseEvent e) {
         if(!gp.isPaused){
+            if(gp.enemy.nuts >0){
         float angle = (float) Math.toDegrees(Math.atan2(e.getY() - gp.enemy.y, e.getX() - gp.enemy.x));
         gp.bullets.add(new Bullet(gp.enemy.x, gp.enemy.y, 5, 5, angle, null));
+        gp.enemy.nuts--;
         System.out.println("SKJUTTTTT!");
+            }
         }   
     }
 

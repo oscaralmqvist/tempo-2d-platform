@@ -16,7 +16,7 @@ import tempo.sprites.*;
  */
 public class GamePanel extends JPanel{
     public boolean isPaused, movingLeft, movingRight, movingUp;
-    
+
     int blockSize = 75;
     
     Spritesheet ss = new Spritesheet();
@@ -66,6 +66,9 @@ public class GamePanel extends JPanel{
         player.paint(g);
         for(Bullet bullet : bullets) {
             bullet.paint(g);
+        }
+        for(int i = 0; i < enemy.nuts ; i++){
+            g.drawImage(ss.getSprite(0, 0, 32, 32), 100+38*i, 680, this);
         }
         
         if(isPaused){

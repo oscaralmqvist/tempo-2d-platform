@@ -44,6 +44,7 @@ public class Keyboard implements KeyListener {
                     break;
                 case KeyEvent.VK_ESCAPE:
                     gp.isPaused = !gp.isPaused;
+                    break;
                 }
     }
 
