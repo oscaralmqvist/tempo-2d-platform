@@ -21,7 +21,7 @@ public class GamePanel extends JPanel{
     
     Spritesheet ss = new Spritesheet();
     Player player = new Player(blockSize, blockSize * 7, blockSize, blockSize*2, ss.getSprite(160, 0, 32, 64));
-    Player enemy = new Player(100, 420, blockSize, blockSize*2, ss.getSprite(224, 0, 32, 64));
+    Player enemy = new Player(600, 420, blockSize, blockSize*2, ss.getSprite(224, 0, 32, 64));
     ArrayList<Block> blocks = new ArrayList<Block>();
     ArrayList<Block> sky = new ArrayList<Block>();
     ArrayList<Bullet> bullets = new ArrayList<Bullet>();
