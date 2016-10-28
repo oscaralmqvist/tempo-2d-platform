@@ -16,6 +16,7 @@ public class Player extends Sprites {
     public double gravity = 0;
     public int nuts = 5;
     public int maxNuts = 5;
+    public boolean reloading = false;
     public Player(int x, int y, int width, int height, BufferedImage image) {
         super(x, y, width, height, image);
     }

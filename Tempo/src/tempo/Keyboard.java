@@ -15,7 +15,7 @@ import java.awt.event.KeyListener;
 public class Keyboard implements KeyListener {
     GamePanel gp;
    // public boolean movingRight, movingLeft, movingUp, movingDown, isPaused;
-    
+    public boolean canReload = true;
     public Keyboard(GamePanel gp){
         this.gp = gp;
         
@@ -60,7 +60,19 @@ public class Keyboard implements KeyListener {
                 //        movingRight = true;
                     break;
                 case KeyEvent.VK_R:
-                    gp.enemy.nuts = gp.enemy.maxNuts;
+                    if(!gp.enemy.reloading){
+                        gp.enemy.reloading = true;
+        new java.util.Timer().schedule( 
+                new java.util.TimerTask() {
+                    @Override
+                    public void run() {
+                        gp.enemy.nuts = gp.enemy.maxNuts;
+                        gp.enemy.reloading = false;
+                    }
+                }, 
+                1000 
+        );
+                    }
                     break;
                 }
         /*
