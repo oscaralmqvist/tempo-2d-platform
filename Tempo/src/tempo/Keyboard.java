@@ -35,8 +35,10 @@ public class Keyboard implements KeyListener {
                 case KeyEvent.VK_SPACE:
                 case KeyEvent.VK_W:
                     //KOLLISIONDOWN
-                    if(gp.enemy.y == 420)
+                    for(int i = 0;i<gp.blocks.size();i++){
                         gp.enemy.ySpeed -= 10.0;
+                        break;
+                    }
                     break;
                 case KeyEvent.VK_A:
                     if(!movingLeft)

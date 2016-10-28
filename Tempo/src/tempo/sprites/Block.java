@@ -6,25 +6,27 @@
 package tempo.sprites;
 
 import java.awt.Graphics;
-import java.awt.image.*;
+import java.awt.image.BufferedImage;
+import tempo.Collision;
 
-
-public class Player extends Sprites {
+/**
+ *
+ * @author Elev
+ */
+public class Block extends Sprites{
     
-    public double xSpeed = 0.0; 
-    public double ySpeed = 0.0;
-    public double gravity = 0;
-    public Player(int x, int y, int width, int height, BufferedImage image) {
+    boolean collision;
+    
+    
+    public Block(int x, int y, int width, int height, BufferedImage image, boolean collision){
         super(x, y, width, height, image);
+        this.collision = collision;
     }
 
     @Override
     public void paint(Graphics g) {
-       // g.drawRect(super.x, super.y, super.width, super.height);
+        
         g.drawImage(super.image, super.x, super.y,super.width, super.height, null);
-    
     }
-    
-    
     
 }

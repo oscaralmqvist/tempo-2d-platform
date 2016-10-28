@@ -1,5 +1,6 @@
 
 package tempo;
+import java.awt.Rectangle;
 import javax.swing.*;
 /**
  *
@@ -59,7 +60,7 @@ public class GameEngine implements Runnable {
             
             if(System.currentTimeMillis() - lastTimer >= 1000) {
                 lastTimer += 1000;
-                System.out.println(ticks + "ticks, " + frames + " frames");
+                //System.out.println(ticks + "ticks, " + frames + " frames");
                 frames = 0;
                 ticks = 0;
             }
@@ -69,18 +70,29 @@ public class GameEngine implements Runnable {
     
         public void tick() {
             
-            if(!gp.isPaused){
+        if(!gp.isPaused){
             gp.enemy.x += gp.enemy.xSpeed;
             gp.enemy.y += gp.enemy.ySpeed;   
-            if(gp.enemy.y >= 420){
-                gravity = 0;
-                gp.enemy.ySpeed = 0;
-                gp.enemy.y = 420;
+            gp.enemy.ySpeed += gp.enemy.gravity;
+            
+            for(int i = 0;i<gp.blocks.size();i++){
+                if(gp.coll.getTopCollision(new Rectangle(gp.enemy.x,gp.enemy.y,gp.enemy.width,gp.enemy.height),new Rectangle(gp.blocks.get(i).x,gp.blocks.get(i).y,gp.blocks.get(i).width,gp.blocks.get(i).height)) && gp.enemy.ySpeed > 0 
+                        || gp.coll.getBottomCollision(new Rectangle(gp.enemy.x,gp.enemy.y,gp.enemy.width,gp.enemy.height),new Rectangle(gp.blocks.get(i).x,gp.blocks.get(i).y,gp.blocks.get(i).width,gp.blocks.get(i).height)) && gp.enemy.ySpeed < 0 ){
+                    gp.enemy.gravity = 0;
+                    gp.enemy.ySpeed = 0;
+                    break;
+                }
+                else{ 
+                    
+                    gp.enemy.gravity = 0.5;
+                }
             }
-            else{ 
-                gravity = 0.5;
+            for(int i = 0;i<gp.blocks.size();i++){
+                Rectangle temp = gp.coll.getCollision(new Rectangle(gp.enemy.x,gp.enemy.y,gp.enemy.width,gp.enemy.height), new Rectangle(gp.blocks.get(i).x,gp.blocks.get(i).y,gp.blocks.get(i).width,gp.blocks.get(i).height));
+                gp.enemy.x = temp.x;
+                gp.enemy.y = temp.y;
             }
-            gp.enemy.ySpeed += gravity;
+            
             
             }
         }
