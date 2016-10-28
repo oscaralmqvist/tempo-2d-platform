@@ -69,7 +69,7 @@ public class GameEngine implements Runnable {
         }
     }
     
-        public void tick() {
+        public synchronized void tick() {
             
         if(!gp.isPaused){
             gp.enemy.x += gp.enemy.xSpeed;
