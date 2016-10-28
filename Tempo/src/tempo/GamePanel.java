@@ -68,7 +68,7 @@ public class GamePanel extends JPanel{
             bullet.paint(g);
         }
         for(int i = 0; i < enemy.nuts ; i++){
-            g.drawImage(ss.getSprite(0, 0, 32, 32), 100+38*i, 680, this);
+            g.drawImage(ss.getSprite(32*2, 32*2, 32, 32), 100+38*i, 680, this);
         }
         
         if(isPaused){
