@@ -59,6 +59,9 @@ public class Keyboard implements KeyListener {
                   //  if(!movingRight)
                 //        movingRight = true;
                     break;
+                case KeyEvent.VK_R:
+                    gp.enemy.nuts = gp.enemy.maxNuts;
+                    break;
                 }
         /*
         if(e.getKeyCode() == KeyEvent.VK_D){
