@@ -55,7 +55,7 @@ public class GameEngine implements Runnable {
             
             if(shouldRender) {
                 frames++;
-                render();
+               // render();
             }
             
             if(System.currentTimeMillis() - lastTimer >= 1000) {
@@ -95,9 +95,11 @@ public class GameEngine implements Runnable {
             
             
             }
+        gp.repaint();
         }
+        /*
         public void render() {
             gp.repaint();
         }
-    
+    */
 }
