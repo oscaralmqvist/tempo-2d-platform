@@ -28,7 +28,8 @@ public class Mouse implements MouseListener {
         if(!gp.isPaused){
             if(gp.enemy.nuts >0){
         float angle = (float) Math.toDegrees(Math.atan2(e.getY() - gp.enemy.y, e.getX() - gp.enemy.x));
-        gp.bullets.add(new Bullet(gp.enemy.x, gp.enemy.y, 5, 5, angle, null));
+        int i = (int)(Math.random() * 8 + 24);
+        gp.bullets.add(new Bullet(gp.enemy.x, gp.enemy.y, i, i, angle, gp.ss.getSprite(64, 64, 32, 32)));
         gp.enemy.nuts--;
         System.out.println("SKJUTTTTT!");
             }
