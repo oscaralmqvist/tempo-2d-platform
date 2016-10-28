@@ -31,6 +31,9 @@ public class Mouse implements MouseListener {
         int i = (int)(Math.random() * 8 + 24);
         gp.bullets.add(new Bullet(gp.enemy.x, gp.enemy.y, i, i, angle, gp.ss.getSprite(64, 64, 32, 32)));
         gp.enemy.nuts--;
+        if(gp.enemy.nuts == 0){
+            gp.enemy.reload();
+        }
         System.out.println("SKJUTTTTT!");
             }
         }   

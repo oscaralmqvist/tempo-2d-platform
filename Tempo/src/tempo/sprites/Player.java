@@ -27,7 +27,22 @@ public class Player extends Sprites {
         g.drawImage(super.image, super.x, super.y,super.width, super.height, null);
     
     }
-    
+
+        public void reload(){
+            if(!reloading){
+                reloading = true;
+                    new java.util.Timer().schedule( 
+                new java.util.TimerTask() {
+                    @Override
+                    public void run() {
+                        nuts = maxNuts;
+                        reloading = false;
+                    }
+                }, 
+                1000 
+        );
+                    }
+    }
     
     
 }
