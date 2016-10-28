@@ -20,7 +20,7 @@ public class GamePanel extends JPanel{
     int blockSize = 75;
     
     Spritesheet ss = new Spritesheet();
-    Player player = new Player(blockSize, blockSize * 7, blockSize, blockSize*2, ss.getSprite(128, 0, 32, 64));
+    Player player = new Player(blockSize, blockSize * 7, blockSize, blockSize*2, ss.getSprite(160, 0, 32, 64));
     Player enemy = new Player(100, 420, blockSize, blockSize*2, ss.getSprite(224, 0, 32, 64));
     ArrayList<Block> blocks = new ArrayList<Block>();
     ArrayList<Block> sky = new ArrayList<Block>();
@@ -37,8 +37,15 @@ public class GamePanel extends JPanel{
                 row++;
             }
         }
+        blocks.add(new Block(blockSize * 5, blockSize * 7, blockSize, blockSize*2, ss.getSprite(192, 0, 32, 64), false));
+        blocks.add(new Block(blockSize * 2, blockSize * 7, blockSize, blockSize*2, ss.getSprite(192, 0, 32, 64), false));
+        blocks.add(new Block(blockSize * 7, blockSize * 7, blockSize, blockSize*2, ss.getSprite(192, 0, 32, 64), false));
+        blocks.add(new Block(blockSize * 13, blockSize * 7, blockSize, blockSize*2, ss.getSprite(192, 0, 32, 64), false));
+        blocks.add(new Block(blockSize * 4, blockSize * 3, blockSize, blockSize*2, ss.getSprite(192, 0, 32, 64), false));
+        blocks.add(new Block(blockSize * 10, blockSize * 1, 300, 600, ss.getSprite(192, 0, 32, 64), false));
         collumn = 0;
         for(int i = 0;i<18;i++){
+            blocks.add(new Block(blockSize * collumn, blockSize * 8, blockSize, blockSize, ss.getSprite(256, collumn % 2 == 1?0:32, 32, 32), false));
             blocks.add(new Block(blockSize * collumn, blockSize * 9, blockSize, blockSize, ss.getSprite(64, 0, 32, 32), true));
             blocks.add(new Block(blockSize * collumn++, blockSize * 0, blockSize, blockSize, ss.getSprite(64, 0, 32, 32), true));
         }
@@ -47,12 +54,7 @@ public class GamePanel extends JPanel{
         blocks.add(new Block(blockSize * 8, blockSize * 1, blockSize, blockSize, ss.getSprite(64, 0, 32, 32), true));
         blocks.add(new Block(blockSize * 8, blockSize * 7, blockSize, blockSize, ss.getSprite(64, 0, 32, 32), true));
         
-        blocks.add(new Block(blockSize * 5, blockSize * 7, blockSize, blockSize*2, ss.getSprite(192, 0, 32, 64), false));
-        blocks.add(new Block(blockSize * 2, blockSize * 7, blockSize, blockSize*2, ss.getSprite(192, 0, 32, 64), false));
-        blocks.add(new Block(blockSize * 7, blockSize * 7, blockSize, blockSize*2, ss.getSprite(192, 0, 32, 64), false));
-        blocks.add(new Block(blockSize * 13, blockSize * 7, blockSize, blockSize*2, ss.getSprite(192, 0, 32, 64), false));
-        blocks.add(new Block(blockSize * 4, blockSize * 3, blockSize, blockSize*2, ss.getSprite(192, 0, 32, 64), false));
-        blocks.add(new Block(blockSize * 10, blockSize * 1, 300, 600, ss.getSprite(192, 0, 32, 64), false));
+        
         
         
         
