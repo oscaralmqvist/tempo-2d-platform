@@ -15,7 +15,7 @@ import tempo.sprites.*;
  * @author Elev
  */
 public class GamePanel extends JPanel{
-    public boolean isPaused;
+    public boolean isPaused, movingLeft, movingRight, movingUp;
     
     int blockSize = 75;
     

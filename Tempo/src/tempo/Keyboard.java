@@ -14,7 +14,7 @@ import java.awt.event.KeyListener;
  */
 public class Keyboard implements KeyListener {
     GamePanel gp;
-    public boolean movingRight, movingLeft, movingUp, movingDown, isPaused;
+   // public boolean movingRight, movingLeft, movingUp, movingDown, isPaused;
     
     public Keyboard(GamePanel gp){
         this.gp = gp;
@@ -27,46 +27,20 @@ public class Keyboard implements KeyListener {
     @Override
     public void keyPressed(KeyEvent e) {
         switch(e.getKeyCode()){
-                case KeyEvent.VK_S:
-                    if(!movingDown)
-                        gp.enemy.ySpeed += 10.0;
-                        movingDown = true;            
-                    break;
                 case KeyEvent.VK_SPACE:
                 case KeyEvent.VK_W:
-                    //KOLLISIONDOWN
                     for(int i = 0;i<gp.blocks.size();i++){
                         gp.enemy.ySpeed -= 15.0;
                         break;
                     }
                     break;
                 case KeyEvent.VK_A:
-                    if(!movingLeft)
-                        if(gp.enemy.x < 400){
-                            for(int i = 0;i<gp.blocks.size();i++){
-                                gp.blocks.get(i).SpeedX = 10;
-                            }
-                        }else{
-                            for(int i = 0;i<gp.blocks.size();i++){
-                                gp.blocks.get(i).SpeedX = 0;
-                            }
-                            gp.enemy.xSpeed -= 10.0;
-                        }
-                        movingLeft = true;
+                     gp.movingLeft = true;
                     break;
                 case KeyEvent.VK_D:
-                    if(!movingRight)
-                        if(gp.enemy.x > 800){
-                            for(int i = 0;i<gp.blocks.size();i++){
-                                gp.blocks.get(i).SpeedX = -10;
-                            }
-                        }else{
-                            for(int i = 0;i<gp.blocks.size();i++){
-                                gp.blocks.get(i).SpeedX = 0;
-                            }
-                        gp.enemy.xSpeed += 10.0;
-                        }
-                        movingRight = true;
+                    gp.movingRight = true;
+                  //  if(!movingRight)
+                //        movingRight = true;
                     break;
                 case KeyEvent.VK_ESCAPE:
                     gp.isPaused = !gp.isPaused;
@@ -75,6 +49,17 @@ public class Keyboard implements KeyListener {
 
     @Override
     public void keyReleased(KeyEvent e) {
+        switch(e.getKeyCode()){
+                case KeyEvent.VK_A:
+                     gp.movingLeft = false;
+                    break;
+                case KeyEvent.VK_D:
+                    gp.movingRight = false;
+                  //  if(!movingRight)
+                //        movingRight = true;
+                    break;
+                }
+        /*
         if(e.getKeyCode() == KeyEvent.VK_D){
             movingRight = false;
             gp.enemy.xSpeed = 0;
@@ -115,5 +100,6 @@ public class Keyboard implements KeyListener {
                 movingRight = true;
             }
         }        
+        */
     }
 }

@@ -120,6 +120,39 @@ public class GameEngine implements Runnable {
             
             
             }
+        if(gp.movingLeft){
+             if(gp.enemy.x <= 600){
+                            for(int i = 0;i<gp.blocks.size();i++){
+                                gp.blocks.get(i).x += 10;
+                            }
+                            for(int i = 0;i<gp.bullets.size();i++){
+                                gp.bullets.get(i).x += 10;
+                            }
+                        }else{
+                            for(int i = 0;i<gp.blocks.size();i++){
+                                gp.blocks.get(i).SpeedX = 0;
+                            }
+                            gp.enemy.x -= 10.0;
+                        }  
+             
+             
+        }
+        if(gp.movingRight){
+                if(gp.enemy.x >= 600){
+                            for(int i = 0;i<gp.blocks.size();i++){
+                                gp.blocks.get(i).x += -10;
+                            }
+                            for(int i = 0;i<gp.bullets.size();i++){
+                                gp.bullets.get(i).x += -10;
+                            }
+                        }else{
+                            for(int i = 0;i<gp.blocks.size();i++){
+                                gp.blocks.get(i).SpeedX = 0;
+                            }
+                        gp.enemy.x += 10.0;
+                        }
+        }
+        
         gp.repaint();
         }
         /*
