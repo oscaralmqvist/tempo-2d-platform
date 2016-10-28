@@ -76,6 +76,7 @@ public class GameEngine implements Runnable {
             gp.enemy.y += gp.enemy.ySpeed;   
             gp.enemy.ySpeed += gp.enemy.gravity;
             
+            
             for(int i = 0;i<gp.blocks.size();i++){
                 if(gp.blocks.get(i).collision){
                     if(gp.coll.getTopCollision(new Rectangle(gp.enemy.x,gp.enemy.y,gp.enemy.width,gp.enemy.height),new Rectangle(gp.blocks.get(i).x,gp.blocks.get(i).y,gp.blocks.get(i).width,gp.blocks.get(i).height)) && gp.enemy.ySpeed > 0 
@@ -91,6 +92,8 @@ public class GameEngine implements Runnable {
                 }
             }
             for(int i = 0;i<gp.blocks.size();i++){
+                gp.blocks.get(i).x += gp.blocks.get(i).SpeedX;
+                gp.blocks.get(i).y += gp.blocks.get(i).SpeedY;
                 if(gp.blocks.get(i).collision){
                     Rectangle temp = gp.coll.getCollision(new Rectangle(gp.enemy.x,gp.enemy.y,gp.enemy.width,gp.enemy.height), new Rectangle(gp.blocks.get(i).x,gp.blocks.get(i).y,gp.blocks.get(i).width,gp.blocks.get(i).height));
                     gp.enemy.x = temp.x;

@@ -42,12 +42,30 @@ public class Keyboard implements KeyListener {
                     break;
                 case KeyEvent.VK_A:
                     if(!movingLeft)
-                        gp.enemy.xSpeed -= 10.0;
+                        if(gp.enemy.x < 400){
+                            for(int i = 0;i<gp.blocks.size();i++){
+                                gp.blocks.get(i).SpeedX = 10;
+                            }
+                        }else{
+                            for(int i = 0;i<gp.blocks.size();i++){
+                                gp.blocks.get(i).SpeedX = 0;
+                            }
+                            gp.enemy.xSpeed -= 10.0;
+                        }
                         movingLeft = true;
                     break;
                 case KeyEvent.VK_D:
                     if(!movingRight)
+                        if(gp.enemy.x > 800){
+                            for(int i = 0;i<gp.blocks.size();i++){
+                                gp.blocks.get(i).SpeedX = -10;
+                            }
+                        }else{
+                            for(int i = 0;i<gp.blocks.size();i++){
+                                gp.blocks.get(i).SpeedX = 0;
+                            }
                         gp.enemy.xSpeed += 10.0;
+                        }
                         movingRight = true;
                     break;
                 case KeyEvent.VK_ESCAPE:
@@ -60,16 +78,40 @@ public class Keyboard implements KeyListener {
         if(e.getKeyCode() == KeyEvent.VK_D){
             movingRight = false;
             gp.enemy.xSpeed = 0;
+            for(int i = 0;i<gp.blocks.size();i++){
+                gp.blocks.get(i).SpeedX = 0;
+            }
             if(movingLeft){
+                if(gp.enemy.x < 400){
+                    for(int i = 0;i<gp.blocks.size();i++){
+                        gp.blocks.get(i).SpeedX = +10;
+                    }
+                }else{
+                    for(int i = 0;i<gp.blocks.size();i++){
+                        gp.blocks.get(i).SpeedX = 0;
+                    }
                 gp.enemy.xSpeed -= 10.0;
+                }
                 movingLeft = true;
             }
         }
         if(e.getKeyCode() == KeyEvent.VK_A){
             movingLeft = false;
             gp.enemy.xSpeed = 0;
+            for(int i = 0;i<gp.blocks.size();i++){
+                gp.blocks.get(i).SpeedX = 0;
+            }
             if(movingRight){
+                if(gp.enemy.x > 800){
+                    for(int i = 0;i<gp.blocks.size();i++){
+                        gp.blocks.get(i).SpeedX = -10;
+                    }
+                }else{
+                    for(int i = 0;i<gp.blocks.size();i++){
+                        gp.blocks.get(i).SpeedX = 0;
+                    }
                 gp.enemy.xSpeed += 10.0;
+                }
                 movingRight = true;
             }
         }        
