@@ -105,11 +105,13 @@ public class GameEngine implements Runnable {
                     }
                 }
             }
-            for(Bullet bullet : gp.bullets) {
-                bullet.shoot();
-                System.out.println("bullet moving!");
+            for(int i = 0; i < gp.bullets.size(); i++) {
+                gp.bullets.get(i).shoot();
+                if(gp.bullets.get(i).killBullet) {
+                    gp.bullets.remove(i);
+                    System.out.println("bullet removed");
+                }
             }
-            
             
             
             }
