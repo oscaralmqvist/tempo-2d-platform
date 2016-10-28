@@ -29,8 +29,10 @@ public class GamePanel extends JPanel{
     ArrayList<Bullet> bullets = new ArrayList<Bullet>();
     
     public Collision coll = new Collision();
-    
+    final Font font = new Font("TimesRoman", Font.PLAIN, 78);
+
     public GamePanel(){
+        setFont(font);
         int row = 0;
         int collumn = 0;
         sky.add(new Block(0, 0, 1200, 740, ss.getSprite(64, 32, 32, 32), false));
@@ -73,9 +75,11 @@ public class GamePanel extends JPanel{
         for(int i = 0; i < enemy.nuts ; i++){
             g.drawImage(ss.getSprite(32*2, 32*2, 32, 32), 100+38*i, 680, this);
         }
+        if( enemy.nuts > 0){
+           g.drawImage(ss.getSprite(32*2, 32*2, 32, 32),enemy.x + enemy.width-15,enemy.y + enemy.height/2,this);
+        }
         
         if(isPaused){
-            g.setFont(new Font("TimesRoman", Font.PLAIN, 78));
             g.drawString("PAUSED", 400, 350);
         }
     }  
