@@ -86,7 +86,7 @@ public class GameEngine implements Runnable {
                         break;
                     }
                     else{ 
-
+                        
                         gp.enemy.gravity = 0.5;
                     }
                 }
@@ -110,6 +110,8 @@ public class GameEngine implements Runnable {
             }
             for(int i = 0; i < gp.bullets.size(); i++) {
                 gp.bullets.get(i).shoot();
+                gp.bullets.get(i).y += gp.bullets.get(i).ySpeed;
+                gp.bullets.get(i).ySpeed += gp.bullets.get(i).gravity;
                 if(gp.bullets.get(i).killBullet) {
                     gp.bullets.remove(i);
                     System.out.println("bullet removed");
