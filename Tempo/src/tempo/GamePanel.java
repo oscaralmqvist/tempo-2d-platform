@@ -45,6 +45,12 @@ public class GamePanel extends JPanel{
         blocks.add(new Block(50 * 8, 520, 50, 50, ss.getSprite(64, 0, 32, 32), true));
         blocks.add(new Block(50 * 8, 420, 50, 50, ss.getSprite(64, 0, 32, 32), true));
         
+        blocks.add(new Block(50 * 20, 570, 50, 100, ss.getSprite(192, 0, 32, 64), false));
+        blocks.add(new Block(50 * 9, 570, 50, 100, ss.getSprite(192, 0, 32, 64), false));
+        blocks.add(new Block(50 * 11, 570, 50, 100, ss.getSprite(192, 0, 32, 64), false));
+        blocks.add(new Block(50 * 13, 570, 50, 100, ss.getSprite(192, 0, 32, 64), false));
+        blocks.add(new Block(50 * 15, 270, 200, 400, ss.getSprite(192, 0, 32, 64), false));
+        
         
         
     }

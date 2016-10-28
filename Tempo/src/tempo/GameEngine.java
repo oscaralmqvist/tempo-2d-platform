@@ -77,27 +77,31 @@ public class GameEngine implements Runnable {
             gp.enemy.ySpeed += gp.enemy.gravity;
             
             for(int i = 0;i<gp.blocks.size();i++){
-                if(gp.coll.getTopCollision(new Rectangle(gp.enemy.x,gp.enemy.y,gp.enemy.width,gp.enemy.height),new Rectangle(gp.blocks.get(i).x,gp.blocks.get(i).y,gp.blocks.get(i).width,gp.blocks.get(i).height)) && gp.enemy.ySpeed > 0 
-                        || gp.coll.getBottomCollision(new Rectangle(gp.enemy.x,gp.enemy.y,gp.enemy.width,gp.enemy.height),new Rectangle(gp.blocks.get(i).x,gp.blocks.get(i).y,gp.blocks.get(i).width,gp.blocks.get(i).height)) && gp.enemy.ySpeed < 0 ){
-                    gp.enemy.gravity = 0;
-                    gp.enemy.ySpeed = 0;
-                    break;
-                }
-                else{ 
-                    
-                    gp.enemy.gravity = 0.5;
+                if(gp.blocks.get(i).collision){
+                    if(gp.coll.getTopCollision(new Rectangle(gp.enemy.x,gp.enemy.y,gp.enemy.width,gp.enemy.height),new Rectangle(gp.blocks.get(i).x,gp.blocks.get(i).y,gp.blocks.get(i).width,gp.blocks.get(i).height)) && gp.enemy.ySpeed > 0 
+                            || gp.coll.getBottomCollision(new Rectangle(gp.enemy.x,gp.enemy.y,gp.enemy.width,gp.enemy.height),new Rectangle(gp.blocks.get(i).x,gp.blocks.get(i).y,gp.blocks.get(i).width,gp.blocks.get(i).height)) && gp.enemy.ySpeed < 0 ){
+                        gp.enemy.gravity = 0;
+                        gp.enemy.ySpeed = 0;
+                        break;
+                    }
+                    else{ 
+
+                        gp.enemy.gravity = 0.5;
+                    }
                 }
             }
             for(int i = 0;i<gp.blocks.size();i++){
-                Rectangle temp = gp.coll.getCollision(new Rectangle(gp.enemy.x,gp.enemy.y,gp.enemy.width,gp.enemy.height), new Rectangle(gp.blocks.get(i).x,gp.blocks.get(i).y,gp.blocks.get(i).width,gp.blocks.get(i).height));
-                gp.enemy.x = temp.x;
-                gp.enemy.y = temp.y;
-                
-                for(int j = 0;j<gp.bullets.size();j++){
-                    if(gp.coll.isIntersect(new Rectangle(gp.bullets.get(j).x,gp.bullets.get(j).y,gp.bullets.get(j).width,gp.bullets.get(j).height), new Rectangle(gp.blocks.get(i).x,gp.blocks.get(i).y,gp.blocks.get(i).width,gp.blocks.get(i).height)))
-                    {
-                           gp.bullets.remove(j);
+                if(gp.blocks.get(i).collision){
+                    Rectangle temp = gp.coll.getCollision(new Rectangle(gp.enemy.x,gp.enemy.y,gp.enemy.width,gp.enemy.height), new Rectangle(gp.blocks.get(i).x,gp.blocks.get(i).y,gp.blocks.get(i).width,gp.blocks.get(i).height));
+                    gp.enemy.x = temp.x;
+                    gp.enemy.y = temp.y;
 
+                    for(int j = 0;j<gp.bullets.size();j++){
+                        if(gp.coll.isIntersect(new Rectangle(gp.bullets.get(j).x,gp.bullets.get(j).y,gp.bullets.get(j).width,gp.bullets.get(j).height), new Rectangle(gp.blocks.get(i).x,gp.blocks.get(i).y,gp.blocks.get(i).width,gp.blocks.get(i).height)))
+                        {
+                               gp.bullets.remove(j);
+
+                        }
                     }
                 }
             }
