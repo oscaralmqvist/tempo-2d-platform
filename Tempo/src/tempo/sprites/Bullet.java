@@ -7,7 +7,7 @@ import java.awt.image.BufferedImage;
 public class Bullet extends Sprites {
     
     public float angle;
-    public float speed = 30;
+    public float speed = 10;
     
     
     public Bullet(int x, int y, int width, int height, float angle, BufferedImage image) {

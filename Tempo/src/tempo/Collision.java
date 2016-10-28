@@ -36,7 +36,7 @@ public class Collision {
             {
                 tempRect = a_rect;
                 tempRect.x = o_rect.x + o_rect.width;
-                System.out.println("RIGHT HIT");
+                //System.out.println("RIGHT HIT");
                 return tempRect;
             }
 
@@ -46,7 +46,7 @@ public class Collision {
             {
                 tempRect = a_rect;
                 tempRect.x = o_rect.x - a_rect.width;
-                System.out.println("LEFT HIT");
+                //System.out.println("LEFT HIT");
                 return tempRect;
             }
 
@@ -56,7 +56,7 @@ public class Collision {
             {
                 tempRect = a_rect;
                 tempRect.y = o_rect.y - a_rect.height;
-                System.out.println("TOP HIT");
+                //System.out.println("TOP HIT");
                 return tempRect;
             }
 
@@ -65,7 +65,7 @@ public class Collision {
             {
                 tempRect = a_rect;
                 tempRect.y = o_rect.y + o_rect.height;
-                System.out.println("BOT HIT");
+                //System.out.println("BOT HIT");
                 return tempRect;
             }
         }
@@ -85,7 +85,7 @@ public class Collision {
             {
                 tempRect = a_rect;
                 tempRect.y = o_rect.y - a_rect.height;
-                System.out.println("TOP HIT SINGLE");
+                //System.out.println("TOP HIT SINGLE");
                 return true;
             }
         }
@@ -99,7 +99,7 @@ public class Collision {
             {
                 tempRect = a_rect;
                 tempRect.y = o_rect.y + o_rect.height;
-                System.out.println("BOT HIT SINGLE");
+                //System.out.println("BOT HIT SINGLE");
                 return true;
             }
         }

@@ -18,8 +18,8 @@ public class GamePanel extends JPanel{
     public boolean isPaused;
     
     Spritesheet ss = new Spritesheet();
-    Player player = new Player(100, 100, 100, 200, ss.getSprite(0, 0, 32, 64));
-    Player enemy = new Player(100, 420, 100, 200, ss.getSprite(32, 0, 32, 64));
+    Player player = new Player(100, 100, 50, 100, ss.getSprite(0, 0, 32, 64));
+    Player enemy = new Player(100, 420, 50, 100, ss.getSprite(32, 0, 32, 64));
     ArrayList<Block> blocks = new ArrayList<Block>();
     ArrayList<Block> sky = new ArrayList<Block>();
     ArrayList<Bullet> bullets = new ArrayList<Bullet>();
@@ -36,14 +36,14 @@ public class GamePanel extends JPanel{
             }
         }
         collumn = 0;
-        for(int i = 0;i<12;i++){
-            blocks.add(new Block(100 * collumn, 620, 100, 100, ss.getSprite(64, 0, 32, 32), true));
-            blocks.add(new Block(100 * collumn++, 0, 100, 100, ss.getSprite(64, 0, 32, 32), true));
+        for(int i = 0;i<24;i++){
+            blocks.add(new Block(50 * collumn, 670, 50, 50, ss.getSprite(64, 0, 32, 32), true));
+            blocks.add(new Block(50 * collumn++, 0, 50, 50, ss.getSprite(64, 0, 32, 32), true));
         }
-        blocks.add(new Block(100 * 4, 520, 100, 100, ss.getSprite(64, 0, 32, 32), true));
-        blocks.add(new Block(100 * 6, 320, 100, 100, ss.getSprite(64, 0, 32, 32), true));
-        blocks.add(new Block(100 * 8, 520, 100, 100, ss.getSprite(64, 0, 32, 32), true));
-        blocks.add(new Block(100 * 8, 420, 100, 100, ss.getSprite(64, 0, 32, 32), true));
+        blocks.add(new Block(50 * 4, 520, 50, 50, ss.getSprite(64, 0, 32, 32), true));
+        blocks.add(new Block(50 * 6, 320, 50, 50, ss.getSprite(64, 0, 32, 32), true));
+        blocks.add(new Block(50 * 8, 520, 50, 50, ss.getSprite(64, 0, 32, 32), true));
+        blocks.add(new Block(50 * 8, 420, 50, 50, ss.getSprite(64, 0, 32, 32), true));
         
         
         

@@ -92,11 +92,21 @@ public class GameEngine implements Runnable {
                 Rectangle temp = gp.coll.getCollision(new Rectangle(gp.enemy.x,gp.enemy.y,gp.enemy.width,gp.enemy.height), new Rectangle(gp.blocks.get(i).x,gp.blocks.get(i).y,gp.blocks.get(i).width,gp.blocks.get(i).height));
                 gp.enemy.x = temp.x;
                 gp.enemy.y = temp.y;
+                
+                for(int j = 0;j<gp.bullets.size();j++){
+                    if(gp.coll.isIntersect(new Rectangle(gp.bullets.get(j).x,gp.bullets.get(j).y,gp.bullets.get(j).width,gp.bullets.get(j).height), new Rectangle(gp.blocks.get(i).x,gp.blocks.get(i).y,gp.blocks.get(i).width,gp.blocks.get(i).height)))
+                    {
+                           gp.bullets.remove(j);
+
+                    }
+                }
             }
             for(Bullet bullet : gp.bullets) {
                 bullet.shoot();
                 System.out.println("bullet moving!");
             }
+            
+            
             
             }
         gp.repaint();
