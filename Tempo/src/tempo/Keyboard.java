@@ -15,7 +15,6 @@ import java.awt.event.KeyListener;
 public class Keyboard implements KeyListener {
     GamePanel gp;
    // public boolean movingRight, movingLeft, movingUp, movingDown, isPaused;
-    public boolean canReload = true;
     public Keyboard(GamePanel gp){
         this.gp = gp;
         
