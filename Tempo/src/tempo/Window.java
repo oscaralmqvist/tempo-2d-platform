@@ -25,5 +25,6 @@ public class Window extends JFrame{
         setResizable(false);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         addKeyListener(new Keyboard(panel));
+        addMouseListener(new Mouse(panel));
     }
 }

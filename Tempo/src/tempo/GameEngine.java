@@ -2,6 +2,7 @@
 package tempo;
 import java.awt.Rectangle;
 import javax.swing.*;
+import tempo.sprites.Bullet;
 /**
  *
  * @author Oscar Almqvist
@@ -92,7 +93,10 @@ public class GameEngine implements Runnable {
                 gp.enemy.x = temp.x;
                 gp.enemy.y = temp.y;
             }
-            
+            for(Bullet bullet : gp.bullets) {
+                bullet.shoot();
+                System.out.println("bullet moving!");
+            }
             
             }
         gp.repaint();

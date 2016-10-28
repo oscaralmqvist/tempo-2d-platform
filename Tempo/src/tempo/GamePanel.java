@@ -22,6 +22,7 @@ public class GamePanel extends JPanel{
     Player enemy = new Player(100, 420, 100, 200, ss.getSprite(32, 0, 32, 64));
     ArrayList<Block> blocks = new ArrayList<Block>();
     ArrayList<Block> sky = new ArrayList<Block>();
+    ArrayList<Bullet> bullets = new ArrayList<Bullet>();
     public Collision coll = new Collision();
     
     public GamePanel(){
@@ -43,6 +44,9 @@ public class GamePanel extends JPanel{
         blocks.add(new Block(100 * 6, 320, 100, 100, ss.getSprite(64, 0, 32, 32), true));
         blocks.add(new Block(100 * 8, 520, 100, 100, ss.getSprite(64, 0, 32, 32), true));
         blocks.add(new Block(100 * 8, 420, 100, 100, ss.getSprite(64, 0, 32, 32), true));
+        
+        
+        
     }
     public void paintComponent(Graphics g){
         super.paintComponent(g);
@@ -54,6 +58,9 @@ public class GamePanel extends JPanel{
         }
         enemy.paint(g);
         player.paint(g);
+        for(Bullet bullet : bullets) {
+            bullet.paint(g);
+        }
         
         if(isPaused){
             g.setFont(new Font("TimesRoman", Font.PLAIN, 78));
