@@ -25,22 +25,25 @@ public class Mouse implements MouseListener {
 
     @Override
     public void mouseClicked(MouseEvent e) {
-        if(!gp.isPaused){
-            if(gp.enemy.nuts >0 && !gp.enemy.reloading){
-        float angle = (float) Math.toDegrees(Math.atan2(e.getY() - gp.enemy.y, e.getX() - gp.enemy.x));
-        int i = (int)(Math.random() * 4 + 30);
-        gp.bullets.add(new Bullet(gp.enemy.x + gp.enemy.width-15, gp.enemy.y + gp.enemy.height/2, i, i, angle, gp.ss.getSprite(2, 2, 1, 1)));
-        gp.enemy.nuts--;
-        if(gp.enemy.nuts == 0){
-            gp.enemy.reload();
-        }
-        System.out.println("SKJUTTTTT!");
-            }
-        }   
+
     }
 
     @Override
-    public void mousePressed(MouseEvent e) {}
+    public void mousePressed(MouseEvent e) {
+        if(!gp.isPaused){
+            if(gp.enemy.nuts >0 && !gp.enemy.reloading){
+                float angle = (float) Math.toDegrees(Math.atan2(e.getY() - gp.enemy.y, e.getX() - gp.enemy.x));
+                int i = (int)(Math.random() * 4 + 30);
+                gp.bullets.add(new Bullet(gp.enemy.x + gp.enemy.width-15, gp.enemy.y + gp.enemy.height/2, i, i, angle, gp.ss.getSprite(2, 2, 1, 1)));
+                gp.enemy.nuts--;
+                if(gp.enemy.nuts == 0){
+                    gp.enemy.reload();
+                }
+                System.out.println("SKJUTTTTT!");
+            }
+        }   
+    
+    }
 
     @Override
     public void mouseReleased(MouseEvent e) {}
