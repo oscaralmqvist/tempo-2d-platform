@@ -1,5 +1,6 @@
 
 package tempo;
+import java.awt.MouseInfo;
 import java.awt.Rectangle;
 import javax.swing.*;
 import tempo.sprites.Bullet;
@@ -152,6 +153,12 @@ public class GameEngine implements Runnable {
                         gp.enemy.x += 10.0;
                         }
                 }
+        }
+        if(MouseInfo.getPointerInfo().getLocation().x  > 600){
+            gp.enemy.currentHand = gp.enemy.width - 15;
+        }
+        else{
+            gp.enemy.currentHand = gp.enemy.width - 85;
         }
 
         gp.repaint();

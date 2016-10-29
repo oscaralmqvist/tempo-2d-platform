@@ -78,7 +78,7 @@ public class GamePanel extends JPanel{
             g.drawImage(ss.getSprite(2, 2, 1, 1), 100+38*i, 680, this);
         }
         if( enemy.nuts > 0){
-           g.drawImage(ss.getSprite(2, 2, 1, 1),enemy.x + enemy.width-15,enemy.y + enemy.height/2,this);
+           g.drawImage(ss.getSprite(2, 2, 1, 1),enemy.x + enemy.currentHand,enemy.y + enemy.height/2,this);
         }
         
         if(isPaused){
