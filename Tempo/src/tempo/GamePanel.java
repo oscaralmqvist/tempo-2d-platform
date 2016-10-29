@@ -28,6 +28,7 @@ public class GamePanel extends JPanel{
     
     ArrayList<Block> blocks = new ArrayList<Block>();
     ArrayList<Block> sky = new ArrayList<Block>();
+    ArrayList<Block> clouds = new ArrayList<Block>();
     ArrayList<Bullet> bullets = new ArrayList<Bullet>();
     
     public Collision coll = new Collision();
@@ -38,6 +39,12 @@ public class GamePanel extends JPanel{
         int row = 0;
         int collumn = 0;
         sky.add(new Block(0, 0, 1200, 740, ss.getSprite(2, 1, 1, 1), false));
+        
+        clouds.add(new Block(blockSize*3, blockSize*2, blockSize*2, blockSize, ss.getSprite(3, 2, 2, 1), false));
+        clouds.add(new Block(blockSize*7, blockSize*1, blockSize*2, blockSize, ss.getSprite(5, 2, 2, 1), false));
+        clouds.get(0).SpeedX = 1;
+        clouds.get(1).SpeedX = 2;
+        
         
         blocks.add(new Block(blockSize * 4, blockSize * 7, blockSize, blockSize*2, ss.getSprite(6, 0, 1, 2), false));
         blocks.add(new Block(blockSize * 2, blockSize * 7, blockSize, blockSize*2, ss.getSprite(6, 0, 1, 2), false));
@@ -66,6 +73,9 @@ public class GamePanel extends JPanel{
         for(int i = 0;i<sky.size();i++){
             sky.get(i).paint(g);
         }
+        for(int i = 0;i<clouds.size();i++){
+            clouds.get(i).paint(g);
+        }   
         for(int i = 0;i<blocks.size();i++){
             blocks.get(i).paint(g);
         }

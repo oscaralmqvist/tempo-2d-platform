@@ -75,6 +75,11 @@ public class GameEngine implements Runnable {
         if(!gp.isPaused){
             gp.enemy.x += gp.enemy.xSpeed;
             gp.enemy.y += gp.enemy.ySpeed;   
+            
+            gp.clouds.get(0).x += gp.clouds.get(0).SpeedX;
+            gp.clouds.get(1).x += gp.clouds.get(1).SpeedX;
+            
+            
             gp.enemy.ySpeed += gp.enemy.gravity;
             
             
@@ -126,6 +131,9 @@ public class GameEngine implements Runnable {
                             for(int i = 0;i<gp.blocks.size();i++){
                                 gp.blocks.get(i).x += 10;
                             }
+                            for(int i = 0;i<gp.clouds.size();i++){
+                                gp.clouds.get(i).x += 10;
+                            }
                             for(int i = 0;i<gp.bullets.size();i++){
                                 gp.bullets.get(i).x += 10;
                             }
@@ -142,6 +150,9 @@ public class GameEngine implements Runnable {
                 if(gp.enemy.x >= 600){
                             for(int i = 0;i<gp.blocks.size();i++){
                                 gp.blocks.get(i).x += -10;
+                            }
+                            for(int i = 0;i<gp.clouds.size();i++){
+                                gp.clouds.get(i).x += -10;
                             }
                             for(int i = 0;i<gp.bullets.size();i++){
                                 gp.bullets.get(i).x += -10;
