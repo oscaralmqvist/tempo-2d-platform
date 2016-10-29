@@ -18,6 +18,7 @@ public class Block extends Sprites{
     public boolean collision;
     public double SpeedX;
     public double SpeedY;
+    public boolean killBlock = false;
     
     
     public Block(int x, int y, int width, int height, BufferedImage image, boolean collision){

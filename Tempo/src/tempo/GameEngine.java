@@ -3,6 +3,7 @@ package tempo;
 import java.awt.MouseInfo;
 import java.awt.Rectangle;
 import javax.swing.*;
+import tempo.sprites.Block;
 import tempo.sprites.Bullet;
 /**
  *
@@ -76,11 +77,24 @@ public class GameEngine implements Runnable {
             gp.enemy.x += gp.enemy.xSpeed;
             gp.enemy.y += gp.enemy.ySpeed;   
             
-            gp.clouds.get(0).x += gp.clouds.get(0).SpeedX;
-            gp.clouds.get(1).x += gp.clouds.get(1).SpeedX;
-            
-            
             gp.enemy.ySpeed += gp.enemy.gravity;
+            
+            for(int i = 0; i < gp.clouds.size(); i++){
+                gp.clouds.get(i).x += gp.clouds.get(i).SpeedX;
+                if(gp.clouds.get(i).x > 1400){
+                    gp.clouds.remove(i);
+                    gp.clouds.add(new Block(-100, gp.blockSize+(int)(Math.random()*5*(gp.clouds.size()-i)*21), gp.blockSize*2, gp.blockSize, gp.ss.getSprite(3, 2, 2, 1), false)); 
+                    gp.clouds.get(gp.clouds.size()-1).SpeedX = 1;
+                }
+                if(gp.clouds.get(i).x < -100){
+                    gp.clouds.remove(i);
+                    gp.clouds.add(new Block(1300, gp.blockSize+(int)(Math.random()*5*(gp.clouds.size()-i)*21), gp.blockSize*2, gp.blockSize, gp.ss.getSprite(3, 2, 2, 1), false));
+                    gp.clouds.get(gp.clouds.size()-1).SpeedX = 1;
+                }
+            }
+            
+            
+            
             
             
             for(int i = 0;i<gp.blocks.size();i++){
