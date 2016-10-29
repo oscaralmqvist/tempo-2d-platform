@@ -11,7 +11,7 @@ import tempo.sprites.Bullet;
 public class GameEngine implements Runnable {
     GamePanel gp;
     public double gravity;
-    
+   
     public boolean running = false;
     
     public GameEngine(GamePanel gp){
