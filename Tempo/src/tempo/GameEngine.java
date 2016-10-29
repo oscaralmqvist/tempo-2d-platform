@@ -83,11 +83,12 @@ public class GameEngine implements Runnable {
                             || gp.coll.getBottomCollision(new Rectangle(gp.enemy.x,gp.enemy.y,gp.enemy.width,gp.enemy.height),new Rectangle(gp.blocks.get(i).x,gp.blocks.get(i).y,gp.blocks.get(i).width,gp.blocks.get(i).height)) && gp.enemy.ySpeed < 0 ){
                         gp.enemy.gravity = 0;
                         gp.enemy.ySpeed = 0;
+                        gp.enemy.jumps = 0;
                         break;
                     }
                     else{ 
                         
-                        gp.enemy.gravity = 0.5;
+                        gp.enemy.gravity = 1.5;
                     }
                 }
             }

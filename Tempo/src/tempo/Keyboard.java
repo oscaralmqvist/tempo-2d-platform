@@ -28,9 +28,12 @@ public class Keyboard implements KeyListener {
         switch(e.getKeyCode()){
                 case KeyEvent.VK_SPACE:
                 case KeyEvent.VK_W:
-                    for(int i = 0;i<gp.blocks.size();i++){
-                        gp.enemy.ySpeed -= 15.0;
-                        break;
+                    if (gp.enemy.jumps < 2) {
+                        for(int i = 0;i<gp.blocks.size();i++){
+                            gp.enemy.ySpeed -= 17.5;
+                            break;
+                        }
+                        gp.enemy.jumps++;
                     }
                     break;
                 case KeyEvent.VK_A:

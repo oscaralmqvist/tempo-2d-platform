@@ -14,6 +14,7 @@ public class Player extends Sprites {
     public double xSpeed = 0.0; 
     public double ySpeed = 0.0;
     public double gravity = 0;
+    public int jumps = 0;
     public int nuts = 5;
     public int maxNuts = 5;
     public boolean reloading = false;

@@ -27,7 +27,6 @@ public class Block extends Sprites{
 
     @Override
     public void paint(Graphics g) {
-        
         g.drawImage(super.image, super.x, super.y,super.width, super.height, null);
     }
     
