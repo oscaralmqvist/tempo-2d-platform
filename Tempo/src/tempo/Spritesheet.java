@@ -25,8 +25,10 @@ public class Spritesheet {
 
         }
     }
-    public BufferedImage getSprite(int x1, int y1, int x2, int y2){
-        return sheet.getSubimage(x1, y1, x2, y2);
+    public BufferedImage getSprite(int row, int column, int height, int width){
+        // längden på en rad/kolumn i spritesheet
+        int a = 32;
+        return sheet.getSubimage(row*a, column*a, height*a, width*a);
     }
 
     
