@@ -21,7 +21,7 @@ public class Window extends JFrame{
         add(panel);
         setTitle("Tempo");
         setVisible(true);
-        setSize(1200,740);
+        setSize(Tempo.width, Tempo.height);
         setResizable(false);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         addKeyListener(new Keyboard(panel));

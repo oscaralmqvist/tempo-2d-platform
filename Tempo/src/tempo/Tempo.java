@@ -8,7 +8,15 @@ package tempo;
  */
 public class Tempo {
 
+    public static int width;
+    public static int height;
+    
+    public Tempo() {
+        width = 1200;
+        height = 740;
+    }
+    
     public static void main(String[] args) {
-        Window w = new Window();
+        new Window();
     }
 }
