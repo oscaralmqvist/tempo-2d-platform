@@ -14,9 +14,10 @@ public class Tempo {
     public Tempo() {
         width = 1200;
         height = 740;
+        new Window();
     }
     
     public static void main(String[] args) {
-        new Window();
+        new Tempo();
     }
 }
