@@ -83,14 +83,14 @@ public class GameEngine implements Runnable {
             
             for(int i = 0; i < gp.clouds.size(); i++){
                 gp.clouds.get(i).x += gp.clouds.get(i).SpeedX;
-                if(gp.clouds.get(i).x > 1400){
+                if(gp.clouds.get(i).x > Tempo.width + 100){
                     gp.clouds.remove(i);
                     gp.clouds.add(new Block(-100, gp.blockSize+(int)(Math.random()*5*(gp.clouds.size()-i)*21), gp.blockSize*2, gp.blockSize, gp.ss.getSprite(3, 2, 2, 1), false)); 
                     gp.clouds.get(gp.clouds.size()-1).SpeedX = 1;
                 }
                 if(gp.clouds.get(i).x < -100){
                     gp.clouds.remove(i);
-                    gp.clouds.add(new Block(1300, gp.blockSize+(int)(Math.random()*5*(gp.clouds.size()-i)*21), gp.blockSize*2, gp.blockSize, gp.ss.getSprite(3, 2, 2, 1), false));
+                    gp.clouds.add(new Block((Tempo.width + 100), gp.blockSize+(int)(Math.random()*5*(gp.clouds.size()-i)*21), gp.blockSize*2, gp.blockSize, gp.ss.getSprite(3, 2, 2, 1), false));
                     gp.clouds.get(gp.clouds.size()-1).SpeedX = 1;
                 }
             }
@@ -153,6 +153,7 @@ public class GameEngine implements Runnable {
                             for(int i = 0;i<gp.bullets.size();i++){
                                 gp.bullets.get(i).x += 10;
                             }
+                            gp.player.x += 10;
                         }else{
                             for(int i = 0;i<gp.blocks.size();i++){
                                 gp.blocks.get(i).SpeedX = 0;
@@ -173,6 +174,7 @@ public class GameEngine implements Runnable {
                             for(int i = 0;i<gp.bullets.size();i++){
                                 gp.bullets.get(i).x += -10;
                             }
+                            gp.player.x += -10;
                         }else{
                             for(int i = 0;i<gp.blocks.size();i++){
                                 gp.blocks.get(i).SpeedX = 0;
