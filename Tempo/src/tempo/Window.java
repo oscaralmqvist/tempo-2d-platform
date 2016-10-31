@@ -26,5 +26,6 @@ public class Window extends JFrame{
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         addKeyListener(new Keyboard(panel));
         addMouseListener(new Mouse(panel));
+    //    setLocationRelativeTo(null);
     }
 }

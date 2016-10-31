@@ -15,16 +15,16 @@ import tempo.sprites.*;
  * @author Elev
  */
 public class GamePanel extends JPanel{
+    // FLYTTA TILL PLAYER?
     public boolean isPaused, movingLeft, movingRight, movingUp;
 
     // Längden på sidan av ett block på kartan
     int blockSize = 75;
-    
     Spritesheet ss = new Spritesheet();
     
     // Karaktärer skapas och placeras
-    Player player = new Player(blockSize, blockSize * 7, blockSize, blockSize*2, ss.getSprite(5, 0, 1, 2));
-    Player enemy = new Player(600, 420, blockSize, blockSize*2, ss.getSprite(7, 0, 1, 2));
+    public Player player = new Player(blockSize, blockSize * 7, blockSize, blockSize*2, ss.getSprite(5, 0, 1, 2));
+    public Player enemy = new Player((Tempo.width/2), 420, blockSize, blockSize*2, ss.getSprite(7, 0, 1, 2));
     
     ArrayList<Block> blocks = new ArrayList<Block>();
     ArrayList<Block> sky = new ArrayList<Block>();
@@ -38,7 +38,7 @@ public class GamePanel extends JPanel{
         setFont(font);
         int row = 0;
         int collumn = 0;
-        sky.add(new Block(0, 0, 1200, 740, ss.getSprite(2, 1, 1, 1), false));
+        sky.add(new Block(0, 0, Tempo.width, Tempo.height, ss.getSprite(2, 1, 1, 1), false));
         
         //clouds.add(new Block(blockSize*3, blockSize*2, blockSize*2, blockSize, ss.getSprite(3, 2, 2, 1), false));
        // clouds.add(new Block(blockSize*7, blockSize*1, blockSize*2, blockSize, ss.getSprite(5, 2, 2, 1), false));
@@ -91,12 +91,12 @@ public class GamePanel extends JPanel{
         for(int i = 0; i < enemy.nuts ; i++){
             g.drawImage(ss.getSprite(2, 2, 1, 1), 100+38*i, 680, this);
         }
-        if( enemy.nuts > 0){
+        if(enemy.nuts > 0){
            g.drawImage(ss.getSprite(2, 2, 1, 1),enemy.x + enemy.currentHand,enemy.y + enemy.height/2,this);
         }
         
         if(isPaused){
-            g.drawString("PAUSED", 400, 350);
+            g.drawString("PAUSED", Tempo.width/2-105, Tempo.height/2);
         }
     }  
     public void addBlock(int x, int y){

@@ -30,7 +30,7 @@ public class Keyboard implements KeyListener {
                 case KeyEvent.VK_W:
                     if (gp.enemy.jumps < 2) {
                         for(int i = 0;i<gp.blocks.size();i++){
-                            gp.enemy.ySpeed = -17.5;
+                            gp.enemy.ySpeed = -22.5f;
                             break;
                         }
                         gp.enemy.jumps++;

@@ -74,6 +74,8 @@ public class GameEngine implements Runnable {
         public synchronized void tick() {
             
         if(!gp.isPaused){
+            
+            
             gp.enemy.x += gp.enemy.xSpeed;
             gp.enemy.y += gp.enemy.ySpeed;   
             
@@ -108,7 +110,7 @@ public class GameEngine implements Runnable {
                     }
                     else{ 
                         
-                        gp.enemy.gravity = 1.5;
+                        gp.enemy.gravity = 2f;
                     }
                 }
             }
@@ -141,7 +143,7 @@ public class GameEngine implements Runnable {
             
             
         if(gp.movingLeft){
-             if(gp.enemy.x <= 600){
+             if(gp.enemy.x <= (Tempo.width/2)){
                             for(int i = 0;i<gp.blocks.size();i++){
                                 gp.blocks.get(i).x += 10;
                             }
@@ -161,7 +163,7 @@ public class GameEngine implements Runnable {
              
         }
         if(gp.movingRight){
-                if(gp.enemy.x >= 600){
+                if(gp.enemy.x >= (Tempo.width/2)){
                             for(int i = 0;i<gp.blocks.size();i++){
                                 gp.blocks.get(i).x += -10;
                             }
@@ -179,7 +181,7 @@ public class GameEngine implements Runnable {
                         }
                 }
         }
-        if(MouseInfo.getPointerInfo().getLocation().x  > 600){
+        if(MouseInfo.getPointerInfo().getLocation().x  > (Tempo.width/2 + gp.enemy.width/2)){
             gp.enemy.currentHand = gp.enemy.width - 15;
         }
         else{
