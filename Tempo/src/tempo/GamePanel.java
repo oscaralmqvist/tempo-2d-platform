@@ -30,6 +30,7 @@ public class GamePanel extends JPanel{
     ArrayList<Block> sky = new ArrayList<Block>();
     ArrayList<Block> clouds = new ArrayList<Block>();
     ArrayList<Bullet> bullets = new ArrayList<Bullet>();
+    ArrayList<Particle> particle = new ArrayList<Particle>();
     
     public Collision coll = new Collision();
     final Font font = new Font("TimesRoman", Font.PLAIN, 78);
@@ -93,6 +94,9 @@ public class GamePanel extends JPanel{
         }
         if(enemy.nuts > 0){
            g.drawImage(ss.getSprite(2, 2, 1, 1),enemy.x + enemy.currentHand,enemy.y + enemy.height/2,this);
+        }
+        for(int i = 0; i < particle.size() ; i++){
+            particle.get(i).paint(g);
         }
         
         if(isPaused){

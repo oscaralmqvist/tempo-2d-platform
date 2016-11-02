@@ -5,6 +5,7 @@ import java.awt.Rectangle;
 import javax.swing.*;
 import tempo.sprites.Block;
 import tempo.sprites.Bullet;
+import tempo.sprites.Particle;
 /**
  *
  * @author Oscar Almqvist
@@ -125,11 +126,17 @@ public class GameEngine implements Runnable {
                     for(int j = 0;j<gp.bullets.size();j++){
                         if(gp.coll.isIntersect(new Rectangle(gp.bullets.get(j).x,gp.bullets.get(j).y,gp.bullets.get(j).width,gp.bullets.get(j).height), new Rectangle(gp.blocks.get(i).x,gp.blocks.get(i).y,gp.blocks.get(i).width,gp.blocks.get(i).height)))
                         {
+                            for(int l = 0;l<20;l++){
+                                gp.particle.add(new Particle(gp.bullets.get(j).x, gp.bullets.get(j).y, 20,20,gp.ss.getSprite(2, 2, 1, 1)));
+                            }
                                gp.bullets.remove(j);
 
                         }
                     }
                 }
+            }
+            for(int l = 0;l<gp.particle.size();l++){
+                gp.particle.get(l).Update();
             }
             for(int i = 0; i < gp.bullets.size(); i++) {
                 gp.bullets.get(i).shoot();
@@ -144,6 +151,9 @@ public class GameEngine implements Runnable {
             
         if(gp.movingLeft){
              if(gp.enemy.x <= (Tempo.width/2)){
+                            for(int l = 0;l<gp.particle.size();l++){
+                                gp.particle.get(l).x += 10;
+                            }
                             for(int i = 0;i<gp.blocks.size();i++){
                                 gp.blocks.get(i).x += 10;
                             }
@@ -165,6 +175,9 @@ public class GameEngine implements Runnable {
         }
         if(gp.movingRight){
                 if(gp.enemy.x >= (Tempo.width/2)){
+                            for(int l = 0;l<gp.particle.size();l++){
+                                gp.particle.get(l).x += -10;
+                            }
                             for(int i = 0;i<gp.blocks.size();i++){
                                 gp.blocks.get(i).x += -10;
                             }
