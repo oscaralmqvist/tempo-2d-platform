@@ -7,6 +7,8 @@ package tempo.sprites;
 
 import java.awt.Graphics;
 import java.awt.image.*;
+import java.util.ArrayList;
+import tempo.Health;
 
 
 public class Player extends Sprites {
@@ -19,8 +21,15 @@ public class Player extends Sprites {
     public int maxNuts = 5;
     public boolean reloading = false;
     public int currentHand;
-    public Player(int x, int y, int width, int height, BufferedImage image) {
+    public ArrayList<Health> health = new ArrayList<Health>();
+
+    
+    public Player(int x, int y, int width, int height, BufferedImage image, int hp) {
         super(x, y, width, height, image);
+        
+        for(int i = 0; i < hp; i++){
+            health.add(new Health(x + 10*i, (y-10), 8, 8, null));
+        }
     }
 
     @Override

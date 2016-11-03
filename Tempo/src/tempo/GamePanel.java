@@ -23,8 +23,8 @@ public class GamePanel extends JPanel{
     Spritesheet ss = new Spritesheet();
     
     // Karaktärer skapas och placeras
-    public Player player = new Player(blockSize, blockSize * 7, blockSize, blockSize*2, ss.getSprite(5, 0, 1, 2));
-    public Player enemy = new Player((Tempo.width/2), 420, blockSize, blockSize*2, ss.getSprite(7, 0, 1, 2));
+    public Player player = new Player(blockSize, blockSize * 7, blockSize, blockSize*2, ss.getSprite(5, 0, 1, 2), 5);
+    public Player enemy = new Player((Tempo.width/2), 420, blockSize, blockSize*2, ss.getSprite(7, 0, 1, 2), 10);
     
     ArrayList<Block> blocks = new ArrayList<Block>();
     ArrayList<Block> sky = new ArrayList<Block>();
@@ -83,6 +83,8 @@ public class GamePanel extends JPanel{
         sprites.add(player);
         sprites.addAll(bullets);
         sprites.addAll(particle);
+        sprites.addAll(player.health);
+        sprites.addAll(enemy.health);
         for(Sprites sprite : sprites) {sprite.paint(g);}
         /*
         
@@ -104,6 +106,9 @@ public class GamePanel extends JPanel{
             particle.get(i).paint(g);
         }
 */
+        for(int i = 0; i < enemy.health.size(); i++){
+            enemy.health.get(i).y = enemy.y;
+        }
         for(int i = 0; i < enemy.nuts ; i++){
             g.drawImage(ss.getSprite(2, 2, 1, 1), 100+38*i, 680, this);
         }
