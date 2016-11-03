@@ -119,7 +119,7 @@ public class GamePanel extends JPanel{
         if(isPaused){
             g.drawString("PAUSED", Tempo.width/2-105, Tempo.height/2);
         }
-        if(player.health.size() == 0){
+        if(player.health.isEmpty()){
             player.image = null;
         }
     }  
