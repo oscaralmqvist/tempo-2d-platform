@@ -119,6 +119,9 @@ public class GamePanel extends JPanel{
         if(isPaused){
             g.drawString("PAUSED", Tempo.width/2-105, Tempo.height/2);
         }
+        if(player.health.size() == 0){
+            player.image = null;
+        }
     }  
     public void addBlock(int x, int y){
         for(int i = 0;i<9-y;i++){
