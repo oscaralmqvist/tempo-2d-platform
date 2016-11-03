@@ -75,6 +75,17 @@ public class GamePanel extends JPanel{
     }
     public void paintComponent(Graphics g){
         super.paintComponent(g);
+        ArrayList<Sprites> sprites = new ArrayList<Sprites>();
+        sprites.addAll(sky);
+        sprites.addAll(clouds);
+        sprites.addAll(blocks);
+        sprites.add(enemy);
+        sprites.add(player);
+        sprites.addAll(bullets);
+        sprites.addAll(particle);
+        for(Sprites sprite : sprites) {sprite.paint(g);}
+        /*
+        
         for(int i = 0;i<sky.size();i++){
             sky.get(i).paint(g);
         }
@@ -89,14 +100,15 @@ public class GamePanel extends JPanel{
         for(Bullet bullet : bullets) {
             bullet.paint(g);
         }
+        for(int i = 0; i < particle.size() ; i++){
+            particle.get(i).paint(g);
+        }
+*/
         for(int i = 0; i < enemy.nuts ; i++){
             g.drawImage(ss.getSprite(2, 2, 1, 1), 100+38*i, 680, this);
         }
         if(enemy.nuts > 0){
            g.drawImage(ss.getSprite(2, 2, 1, 1),enemy.x + enemy.currentHand,enemy.y + enemy.height/2,this);
-        }
-        for(int i = 0; i < particle.size() ; i++){
-            particle.get(i).paint(g);
         }
         
         if(isPaused){
