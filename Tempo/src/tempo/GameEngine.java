@@ -152,7 +152,7 @@ public class GameEngine implements Runnable {
                                     gp.particle.add(new Particle(gp.bullets.get(j).x, gp.bullets.get(j).y, 20,20,gp.ss.getSprite(2, 2, 1, 1)));
                                 }
                                     gp.bullets.remove(j);
-                                    if(!gp.player.health.isEmpty())
+                                    if(!gpplayer.health.isEmpty())
                                         gp.player.health.remove(j);
                             }
                         }
