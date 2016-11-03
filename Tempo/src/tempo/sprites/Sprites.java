@@ -24,6 +24,7 @@ public abstract class Sprites {
         this.image = image;
     }
     
+    
     public abstract void paint(Graphics g);
     
 }

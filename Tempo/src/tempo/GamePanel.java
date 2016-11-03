@@ -31,6 +31,16 @@ public class GamePanel extends JPanel{
     ArrayList<Block> clouds = new ArrayList<Block>();
     ArrayList<Bullet> bullets = new ArrayList<Bullet>();
     ArrayList<Particle> particle = new ArrayList<Particle>();
+    ArrayList<String> strings = new ArrayList<String>() {{
+          add("får MASSVIS med random invites :S");
+          add("lyssnar på muSIK");
+          add("fryser");
+          add("jag pajja glajjorna");
+          add("VARFÖR E INGEN INLOGGAD 5.00?!?!?!");
+      }};
+      ArrayList<Dialogue> dialogue = new ArrayList<Dialogue>() {{
+          add(new Dialogue(strings, ss.getSprite(7, 0, 1, 2).getSubimage(0, 0, 32, 32),  ss.getSprite(5, 0, 1, 2).getSubimage(0, 0, 32, 32)));
+      }};
     
     public Collision coll = new Collision();
     final Font font = new Font("TimesRoman", Font.PLAIN, 78);
@@ -85,6 +95,7 @@ public class GamePanel extends JPanel{
         sprites.addAll(particle);
         sprites.addAll(player.health);
         sprites.addAll(enemy.health);
+        sprites.addAll(dialogue);
         for(Sprites sprite : sprites) {sprite.paint(g);}
         /*
         

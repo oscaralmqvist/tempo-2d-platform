@@ -75,7 +75,13 @@ public class GameEngine implements Runnable {
         public synchronized void tick() {
             
         if(!gp.isPaused){
-            
+            for(int i = 0; i < gp.dialogue.size(); i++) {
+               if(gp.dialogue.get(i).isDone()) {
+                   gp.dialogue.remove(i);
+               } else {
+                   gp.dialogue.get(i).printDialogue();
+               }
+            }
             
             gp.enemy.x += gp.enemy.xSpeed;
             gp.enemy.y += gp.enemy.ySpeed;   
@@ -169,7 +175,6 @@ public class GameEngine implements Runnable {
                 gp.bullets.get(i).ySpeed += gp.bullets.get(i).gravity;
                 if(gp.bullets.get(i).killBullet) {
                     gp.bullets.remove(i);
-                    System.out.println("bullet removed");
                 }
             }
             

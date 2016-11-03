@@ -41,7 +41,6 @@ public class Mouse implements MouseListener {
                 if(gp.enemy.nuts == 0){
                     gp.enemy.reload();
                 }
-                System.out.println("SKJUTTTTT!");
             }
         }   
     
