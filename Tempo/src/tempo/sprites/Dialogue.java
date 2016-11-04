@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package tempo.sprites;
 
 import java.awt.Color;
@@ -11,10 +7,6 @@ import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 
-/**
- *
- * @author Frupz
- */
 public class Dialogue extends Sprites {
     
     public ArrayList<String> dialogue;
@@ -25,12 +17,14 @@ public class Dialogue extends Sprites {
     public BufferedImage p2;
     public int ticks;
     
-    public Dialogue(ArrayList<String> dialogue, BufferedImage p1, BufferedImage p2) {
+    public Dialogue(BufferedImage p1, BufferedImage p2, String... args) {
         super(0, 0, 0, 0, null);
-        this.dialogue = dialogue;
+        dialogue = new ArrayList<String>();
+        for(String arg : args) {
+            dialogue.add(arg);
+        }
         this.p1 = p1;
         this.p2 = p2;
-        this.printing = false;
         this.printingDone = false;
         this.output = "";
         this.ticks = 0;
@@ -51,17 +45,12 @@ public class Dialogue extends Sprites {
         }
     }
     
-    public boolean isPrinting() {
-        return printing;
-    }
-    
     public boolean isDone() {
         return printingDone;
     }
     
     @Override
     public void paint(Graphics g) {
-        
         g.setColor(Color.DARK_GRAY);
         g.fillRect(200, 500, 900, 200);
         g.setFont(new Font("TimesRoman", Font.PLAIN, 25));
