@@ -50,14 +50,14 @@ public class Keyboard implements KeyListener {
                     gp.isPaused = !gp.isPaused;
                     break;
                 case KeyEvent.VK_Z:
-                    ArrayList<String> strings = new ArrayList<String>() {{
-                        add("får MASSVIS med random invites :S");
-                        add("lyssnar på muSIK");
-                        add("fryser");
-                        add("jag pajja glajjorna");
-                        add("VARFÖR E INGEN INLOGGAD 5.00?!?!?!");
-                    }};
-                    gp.dialogue.add(new Dialogue(strings, gp.ss.getSprite(7, 0, 1, 2).getSubimage(0, 0, 32, 32),  gp.ss.getSprite(5, 0, 1, 2).getSubimage(0, 0, 32, 32)));
+
+                    gp.dialogue.add(new Dialogue(gp.ss.getSprite(7, 0, 1, 2).getSubimage(0, 0, 32, 32),  gp.ss.getSprite(5, 0, 1, 2).getSubimage(0, 0, 32, 32),
+                            "får MASSVIS med random invites :S",
+                            "lyssnar på muSIK",
+                            "fryser",
+                            "jag pajja glajjorna",
+                            "VARFÖR E INGEN INLOGGAD 5.00?!?!?!"
+                    ));
                     break;
                 }
     }
