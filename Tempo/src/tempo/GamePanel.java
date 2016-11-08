@@ -120,6 +120,8 @@ public class GamePanel extends JPanel{
         }
         
         if(isPaused){
+            g.setColor(Color.black);
+            g.setFont(new Font("TimesRoman", Font.PLAIN, 78));
             g.drawString("PAUSED", Tempo.width/2-105, Tempo.height/2);
         }
         
