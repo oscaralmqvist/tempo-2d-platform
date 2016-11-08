@@ -31,7 +31,7 @@ public class Dialogue extends Sprites {
     }
     
     public void printDialogue() {
-        ticks += 1;
+        ticks ++;
         if(dialogue.isEmpty()) {
             printingDone = true;
         } else {
