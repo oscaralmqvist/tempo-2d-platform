@@ -232,6 +232,10 @@ public class GameEngine implements Runnable {
                         gp.enemy.x += 10.0;
                         }
                 }
+        if (gp.enemy.y > Tempo.height) {
+            gp.enemy.die();
+        }
+        
         }
         if(MouseInfo.getPointerInfo().getLocation().x  > (Tempo.width/2 + gp.enemy.width/2)){
             gp.enemy.currentHand = gp.enemy.width - 15;

@@ -51,7 +51,7 @@ public class Keyboard implements KeyListener {
                     break;
                 case KeyEvent.VK_Z:
 
-                    gp.dialogue.add(new Dialogue(gp.ss.getSprite(7, 0, 1, 2).getSubimage(0, 0, 32, 32),  gp.ss.getSprite(5, 0, 1, 2).getSubimage(0, 0, 32, 32),
+                    gp.dialogue.add(new Dialogue(gp.ss.getSprite(7, 0, 1, 2).getSubimage(0, 0, 32, 32), gp.ss.getSprite(5, 0, 1, 2).getSubimage(0, 0, 32, 32),
                             "får MASSVIS med random invites :S",
                             "lyssnar på muSIK",
                             "fryser",

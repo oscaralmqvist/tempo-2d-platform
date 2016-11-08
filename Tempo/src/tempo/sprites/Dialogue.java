@@ -57,7 +57,7 @@ public class Dialogue extends Sprites {
         g.setColor(Color.white);
         g.drawImage(p1, 900, 500, 200, 200, null);
         g.drawImage(p2, 200, 500, 200, 200, null);
-        g.drawString(output, 400, 550);
+        g.drawString(output, 500, 550);
     }
     
 }

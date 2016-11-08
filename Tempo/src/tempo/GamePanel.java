@@ -23,8 +23,8 @@ public class GamePanel extends JPanel{
     Spritesheet ss = new Spritesheet();
     
     // Karaktärer skapas och placeras
-    public Player player = new Player(blockSize, blockSize * 7, blockSize, blockSize*2, ss.getSprite(5, 0, 1, 2), 5);
-    public Player enemy = new Player((Tempo.width/2), 420, blockSize, blockSize*2, ss.getSprite(7, 0, 1, 2), 10);
+    public Player player = new Player(blockSize, blockSize * 7, blockSize, blockSize*2, ss.getSprite(5, 0, 1, 2), 5, 1, false);
+    public Player enemy = new Player((Tempo.width/2), 420, blockSize, blockSize*2, ss.getSprite(7, 0, 1, 2), 10, 3, true);
     
     ArrayList<Block> blocks = new ArrayList<Block>();
     ArrayList<Block> sky = new ArrayList<Block>();
@@ -123,7 +123,7 @@ public class GamePanel extends JPanel{
             g.drawString("PAUSED", Tempo.width/2-105, Tempo.height/2);
         }
         if(player.health.isEmpty()){
-            player.image = null;
+            enemy.die();
         }
     }  
     public void addBlock(int x, int y){
