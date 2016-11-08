@@ -21,6 +21,7 @@ public class Player extends Sprites {
     public int maxNuts = 5;
     public boolean reloading = false;
     public int currentHand;
+    public int ticks;
     public ArrayList<Health> health = new ArrayList<Health>();
 
     
@@ -40,20 +41,19 @@ public class Player extends Sprites {
     }
 
         public void reload(){
-            if(!reloading){
-                reloading = true;
-                    new java.util.Timer().schedule( 
-                new java.util.TimerTask() {
-                    @Override
-                    public void run() {
-                        nuts = maxNuts;
-                        reloading = false;
-                    }
-                }, 
-                1000 
-        );
-                    }
-    }
+            ticks+=1;
+            if(nuts == maxNuts){
+                reloading = false;
+            }
+            else{
+                if((int)(ticks/8) > 3){
+                    nuts++;
+                    ticks = 0;
+                }
+            }
+                    
+                    
+        }
         
        
     
