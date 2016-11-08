@@ -73,7 +73,7 @@ public class Player extends Sprites {
             y = 525;
             nuts = maxNuts;
         } else {
-            System.exit(0);
+            super.image = null;
         }
     }
         

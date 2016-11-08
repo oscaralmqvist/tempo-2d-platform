@@ -122,7 +122,14 @@ public class GamePanel extends JPanel{
         if(isPaused){
             g.drawString("PAUSED", Tempo.width/2-105, Tempo.height/2);
         }
+        
+        
+        //Behöver byta till hp och hit() i Player;
         if(enemy.health.isEmpty()){
+            enemy.die();
+        }
+        //Behöver byta till hp och hit() i Player;
+        if (player.health.isEmpty()) {
             player.die();
         }
     }
