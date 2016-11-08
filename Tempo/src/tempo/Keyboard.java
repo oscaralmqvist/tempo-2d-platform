@@ -56,7 +56,13 @@ public class Keyboard implements KeyListener {
                             "lyssnar på muSIK",
                             "fryser",
                             "jag pajja glajjorna",
-                            "VARFÖR E INGEN INLOGGAD 5.00?!?!?!"
+                            "VARFÖR E INGEN INLOGGAD 5.00?!?!?!",
+                            "oh mai gawd",
+                            "megaultraawesomerandomofrandomness",
+                            "i'm BAck! ;D",
+                            "bRAIN FREEZE!!!",
+                            "chillar , gjort klart läxan . YES!!",
+                            "skirver om vad jag gör just nu"
                     ));
                     break;
                 }
