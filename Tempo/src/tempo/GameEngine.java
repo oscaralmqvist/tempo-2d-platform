@@ -44,11 +44,11 @@ public class GameEngine implements Runnable {
             //boolean shouldRender = true;
             
             
-            try {
+            /*try {
                 Thread.sleep(2);
             } catch(InterruptedException e) {
                 e.printStackTrace();
-            }
+            }*/
             
             while (delta >= 1) {
                 //ticks++;
@@ -107,14 +107,15 @@ public class GameEngine implements Runnable {
             
             for(int i = 0;i<gp.blocks.size();i++){
                 if(gp.blocks.get(i).collision){
-                    if(gp.coll.getTopCollision(new Rectangle(gp.enemy.x,gp.enemy.y,gp.enemy.width,gp.enemy.height),new Rectangle(gp.blocks.get(i).x,gp.blocks.get(i).y,gp.blocks.get(i).width,gp.blocks.get(i).height)) && gp.enemy.ySpeed > 0 
-                            || gp.coll.getBottomCollision(new Rectangle(gp.enemy.x,gp.enemy.y,gp.enemy.width,gp.enemy.height),new Rectangle(gp.blocks.get(i).x,gp.blocks.get(i).y,gp.blocks.get(i).width,gp.blocks.get(i).height)) && gp.enemy.ySpeed < 0 ){
+                    if(gp.coll.getTopCollision(new Rectangle(gp.enemy.x,gp.enemy.y,gp.enemy.width,gp.enemy.height),new Rectangle(gp.blocks.get(i).x,gp.blocks.get(i).y,gp.blocks.get(i).width,gp.blocks.get(i).height)) && gp.enemy.ySpeed > 0){
                         gp.enemy.gravity = 0;
                         gp.enemy.ySpeed = 0;
                         gp.enemy.jumps = 0;
                         break;
-                    }
-                    else{ 
+                    } else if (gp.coll.getBottomCollision(new Rectangle(gp.enemy.x,gp.enemy.y,gp.enemy.width,gp.enemy.height),new Rectangle(gp.blocks.get(i).x,gp.blocks.get(i).y,gp.blocks.get(i).width,gp.blocks.get(i).height)) && gp.enemy.ySpeed < 0) {
+                        gp.enemy.gravity = 0;
+                        gp.enemy.ySpeed = 0;
+                    } else { 
                         
                         gp.enemy.gravity = 2f;
                     }
