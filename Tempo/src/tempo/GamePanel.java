@@ -125,7 +125,7 @@ public class GamePanel extends JPanel{
         if(enemy.health.isEmpty()){
             player.die();
         }
-    }  
+    }
     public void addBlock(int x, int y){
         for(int i = 0;i<9-y;i++){
             //blocks.add(new Block(blockSize * x, blockSize * (y + i), blockSize, blockSize, ss.getSprite(32, 64, 32, 32), false));
