@@ -54,7 +54,7 @@ public class Player extends Sprites {
     }
 
         public void reload(){
-            ticks+=1;
+            ticks++;
             if(nuts == maxNuts){
                 reloading = false;
             }
