@@ -83,10 +83,10 @@ public class GameEngine implements Runnable {
                }
             }
             
-            gp.enemy.x += gp.enemy.xSpeed;
-            gp.enemy.y += gp.enemy.ySpeed;   
+            gp.player.x += gp.player.xSpeed;
+            gp.player.y += gp.player.ySpeed;   
             
-            gp.enemy.ySpeed += gp.enemy.gravity;
+            gp.player.ySpeed += gp.player.gravity;
             
             for(int i = 0; i < gp.clouds.size(); i++){
                 gp.clouds.get(i).x += gp.clouds.get(i).SpeedX;
@@ -107,17 +107,17 @@ public class GameEngine implements Runnable {
             
             for(int i = 0;i<gp.blocks.size();i++){
                 if(gp.blocks.get(i).collision){
-                    if(gp.coll.getTopCollision(new Rectangle(gp.enemy.x,gp.enemy.y,gp.enemy.width,gp.enemy.height),new Rectangle(gp.blocks.get(i).x,gp.blocks.get(i).y,gp.blocks.get(i).width,gp.blocks.get(i).height)) && gp.enemy.ySpeed > 0){
-                        gp.enemy.gravity = 0;
-                        gp.enemy.ySpeed = 0;
-                        gp.enemy.jumps = 0;
+                    if(gp.coll.getTopCollision(new Rectangle(gp.player.x,gp.player.y,gp.player.width,gp.player.height),new Rectangle(gp.blocks.get(i).x,gp.blocks.get(i).y,gp.blocks.get(i).width,gp.blocks.get(i).height)) && gp.player.ySpeed > 0){
+                        gp.player.gravity = 0;
+                        gp.player.ySpeed = 0;
+                        gp.player.jumps = 0;
                         break;
-                    } else if (gp.coll.getBottomCollision(new Rectangle(gp.enemy.x,gp.enemy.y,gp.enemy.width,gp.enemy.height),new Rectangle(gp.blocks.get(i).x,gp.blocks.get(i).y,gp.blocks.get(i).width,gp.blocks.get(i).height)) && gp.enemy.ySpeed < 0) {
-                        gp.enemy.gravity = 0;
-                        gp.enemy.ySpeed = 0;
+                    } else if (gp.coll.getBottomCollision(new Rectangle(gp.player.x,gp.player.y,gp.player.width,gp.player.height),new Rectangle(gp.blocks.get(i).x,gp.blocks.get(i).y,gp.blocks.get(i).width,gp.blocks.get(i).height)) && gp.player.ySpeed < 0) {
+                        gp.player.gravity = 0;
+                        gp.player.ySpeed = 0;
                     } else { 
                         
-                        gp.enemy.gravity = 2f;
+                        gp.player.gravity = 2f;
                     }
                 }
             }
@@ -126,9 +126,9 @@ public class GameEngine implements Runnable {
                 gp.blocks.get(i).x += gp.blocks.get(i).SpeedX;
                 gp.blocks.get(i).y += gp.blocks.get(i).SpeedY;
                 if(gp.blocks.get(i).collision){
-                    Rectangle temp = gp.coll.getCollision(new Rectangle(gp.enemy.x,gp.enemy.y,gp.enemy.width,gp.enemy.height), new Rectangle(gp.blocks.get(i).x,gp.blocks.get(i).y,gp.blocks.get(i).width,gp.blocks.get(i).height));
-                    gp.enemy.x = temp.x;
-                    gp.enemy.y = temp.y;
+                    Rectangle temp = gp.coll.getCollision(new Rectangle(gp.player.x,gp.player.y,gp.player.width,gp.player.height), new Rectangle(gp.blocks.get(i).x,gp.blocks.get(i).y,gp.blocks.get(i).width,gp.blocks.get(i).height));
+                    gp.player.x = temp.x;
+                    gp.player.y = temp.y;
 
                     for(int j = 0;j<gp.bullets.size();j++){
                         if(gp.coll.isIntersect(new Rectangle(gp.bullets.get(j).x,gp.bullets.get(j).y,gp.bullets.get(j).width,gp.bullets.get(j).height), new Rectangle(gp.blocks.get(i).x,gp.blocks.get(i).y,gp.blocks.get(i).width,gp.blocks.get(i).height)))
@@ -143,24 +143,24 @@ public class GameEngine implements Runnable {
                 }
             }
             
-            if(gp.player.image != null){
+            if(gp.enemy.image != null){
                 for(int i = 0;i<gp.blocks.size();i++){
                     gp.blocks.get(i).x += gp.blocks.get(i).SpeedX;
                     gp.blocks.get(i).y += gp.blocks.get(i).SpeedY;
                     if(gp.blocks.get(i).collision){
-                        Rectangle temp = gp.coll.getCollision(new Rectangle(gp.enemy.x,gp.enemy.y,gp.enemy.width,gp.enemy.height), new Rectangle(gp.player.x,gp.player.y,gp.player.width,gp.player.height));
-                        gp.enemy.x = temp.x;
-                        gp.enemy.y = temp.y;
+                        Rectangle temp = gp.coll.getCollision(new Rectangle(gp.player.x,gp.player.y,gp.player.width,gp.player.height), new Rectangle(gp.enemy.x,gp.enemy.y,gp.enemy.width,gp.enemy.height));
+                        gp.player.x = temp.x;
+                        gp.player.y = temp.y;
 
                         for(int j = 0;j<gp.bullets.size();j++){
-                            if(gp.coll.isIntersect(new Rectangle(gp.bullets.get(j).x,gp.bullets.get(j).y,gp.bullets.get(j).width,gp.bullets.get(j).height), new Rectangle(gp.player.x,gp.player.y,gp.player.width,gp.player.height)))
+                            if(gp.coll.isIntersect(new Rectangle(gp.bullets.get(j).x,gp.bullets.get(j).y,gp.bullets.get(j).width,gp.bullets.get(j).height), new Rectangle(gp.enemy.x,gp.enemy.y,gp.enemy.width,gp.enemy.height)))
                             {
                                 for(int l = 0;l<20;l++){
                                     gp.particle.add(new Particle(gp.bullets.get(j).x, gp.bullets.get(j).y, 20,20,gp.ss.getSprite(2, 2, 1, 1)));
                                 }
                                     gp.bullets.remove(j);
-                                    if(!gp.player.health.isEmpty())
-                                        gp.player.health.remove(j);
+                                    if(!gp.enemy.health.isEmpty())
+                                        gp.enemy.health.remove(j);
                             }
                         }
                     }
@@ -181,7 +181,7 @@ public class GameEngine implements Runnable {
             
             
         if(gp.movingLeft){
-             if(gp.enemy.x <= (Tempo.width/2)){
+             if(gp.player.x <= (Tempo.width/2)){
                             for(int l = 0;l<gp.particle.size();l++){
                                 gp.particle.get(l).x += 10;
                             }
@@ -194,21 +194,21 @@ public class GameEngine implements Runnable {
                             for(int i = 0;i<gp.bullets.size();i++){
                                 gp.bullets.get(i).x += 10;
                             }
-                            for(int i = 0;i<gp.player.health.size();i++){
-                                gp.player.health.get(i).x += 10;
+                            for(int i = 0;i<gp.enemy.health.size();i++){
+                                gp.enemy.health.get(i).x += 10;
                             }
-                            gp.player.x += 10;
+                            gp.enemy.x += 10;
                         }else{
                             for(int i = 0;i<gp.blocks.size();i++){
                                 gp.blocks.get(i).SpeedX = 0;
                             }
-                            gp.enemy.x -= 10.0;
+                            gp.player.x -= 10.0;
                         }  
              
              
         }
         if(gp.movingRight){
-                if(gp.enemy.x >= (Tempo.width/2)){
+                if(gp.player.x >= (Tempo.width/2)){
                             for(int l = 0;l<gp.particle.size();l++){
                                 gp.particle.get(l).x += -10;
                             }
@@ -221,27 +221,27 @@ public class GameEngine implements Runnable {
                             for(int i = 0;i<gp.bullets.size();i++){
                                 gp.bullets.get(i).x += -10;
                             }
-                            for(int i = 0;i<gp.player.health.size();i++){
-                                gp.player.health.get(i).x += -10;
+                            for(int i = 0;i<gp.enemy.health.size();i++){
+                                gp.enemy.health.get(i).x += -10;
                             }
-                            gp.player.x += -10;
+                            gp.enemy.x += -10;
                         }else{
                             for(int i = 0;i<gp.blocks.size();i++){
                                 gp.blocks.get(i).SpeedX = 0;
                             }
-                        gp.enemy.x += 10.0;
+                        gp.player.x += 10.0;
                         }
                 }
-        if (gp.enemy.y > Tempo.height) {
-            gp.enemy.die();
+        if (gp.player.y > Tempo.height) {
+            gp.player.die();
         }
         
         }
-        if(MouseInfo.getPointerInfo().getLocation().x  > (Tempo.width/2 + gp.enemy.width/2)){
-            gp.enemy.currentHand = gp.enemy.width - 15;
+        if(MouseInfo.getPointerInfo().getLocation().x  > (Tempo.width/2 + gp.player.width/2)){
+            gp.player.currentHand = gp.player.width - 15;
         }
         else{
-            gp.enemy.currentHand = gp.enemy.width - 85;
+            gp.player.currentHand = gp.player.width - 85;
         }
 
         gp.repaint();

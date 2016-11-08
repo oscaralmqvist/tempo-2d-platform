@@ -23,8 +23,8 @@ public class GamePanel extends JPanel{
     Spritesheet ss = new Spritesheet();
     
     // Karaktärer skapas och placeras
-    public Player player = new Player(blockSize, blockSize * 7, blockSize, blockSize*2, ss.getSprite(5, 0, 1, 2), 5, 1, false);
-    public Player enemy = new Player((Tempo.width/2), 420, blockSize, blockSize*2, ss.getSprite(7, 0, 1, 2), 10, 3, true);
+    public Player enemy = new Player(blockSize, blockSize * 7, blockSize, blockSize*2, ss.getSprite(5, 0, 1, 2), 5, 1, false);
+    public Player player = new Player((Tempo.width/2), 420, blockSize, blockSize*2, ss.getSprite(7, 0, 1, 2), 10, 3, true);
     
     ArrayList<Block> blocks = new ArrayList<Block>();
     ArrayList<Block> sky = new ArrayList<Block>();
@@ -81,12 +81,12 @@ public class GamePanel extends JPanel{
         sprites.addAll(sky);
         sprites.addAll(clouds);
         sprites.addAll(blocks);
-        sprites.add(enemy);
         sprites.add(player);
+        sprites.add(enemy);
         sprites.addAll(bullets);
         sprites.addAll(particle);
-        sprites.addAll(player.health);
         sprites.addAll(enemy.health);
+        sprites.addAll(player.health);
         sprites.addAll(dialogue);
         for(Sprites sprite : sprites) {sprite.paint(g);}
         /*
@@ -100,7 +100,7 @@ public class GamePanel extends JPanel{
         for(int i = 0;i<blocks.size();i++){
             blocks.get(i).paint(g);
         }
-        enemy.paint(g);
+        player.paint(g);
         player.paint(g);
         for(Bullet bullet : bullets) {
             bullet.paint(g);
@@ -109,21 +109,21 @@ public class GamePanel extends JPanel{
             particle.get(i).paint(g);
         }
 */
-        for(int i = 0; i < enemy.health.size(); i++){
-            enemy.health.get(i).y = enemy.y;
+        for(int i = 0; i < player.health.size(); i++){
+            player.health.get(i).y = player.y;
         }
-        for(int i = 0; i < enemy.nuts ; i++){
+        for(int i = 0; i < player.nuts ; i++){
             g.drawImage(ss.getSprite(2, 2, 1, 1), 100+38*i, 680, this);
         }
-        if(enemy.nuts > 0){
-           g.drawImage(ss.getSprite(2, 2, 1, 1),enemy.x + enemy.currentHand,enemy.y + enemy.height/2,this);
+        if(player.nuts > 0){
+           g.drawImage(ss.getSprite(2, 2, 1, 1),player.x + player.currentHand,player.y + player.height/2,this);
         }
         
         if(isPaused){
             g.drawString("PAUSED", Tempo.width/2-105, Tempo.height/2);
         }
-        if(player.health.isEmpty()){
-            enemy.die();
+        if(enemy.health.isEmpty()){
+            player.die();
         }
     }  
     public void addBlock(int x, int y){

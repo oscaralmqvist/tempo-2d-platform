@@ -30,12 +30,12 @@ public class Keyboard implements KeyListener {
         switch(e.getKeyCode()){
                 case KeyEvent.VK_SPACE:
                 case KeyEvent.VK_W:
-                    if (gp.enemy.jumps < 2) {
+                    if (gp.player.jumps < 2) {
                         for(int i = 0;i<gp.blocks.size();i++){
-                            gp.enemy.ySpeed = -22.5f;
+                            gp.player.ySpeed = -22.5f;
                             break;
                         }
-                        gp.enemy.jumps++;
+                        gp.player.jumps++;
                     }
                     break;
                 case KeyEvent.VK_A:
@@ -74,7 +74,7 @@ public class Keyboard implements KeyListener {
                 //        movingRight = true;
                     break;
                 case KeyEvent.VK_R:
-                        gp.enemy.reload();
+                        gp.player.reload();
                     break;
                 }
         /*
