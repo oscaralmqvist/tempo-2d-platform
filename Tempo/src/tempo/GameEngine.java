@@ -82,6 +82,9 @@ public class GameEngine implements Runnable {
                    gp.dialogue.get(i).printDialogue();
                }
             }
+            if(gp.player.reloading){
+                gp.player.reload();
+            }
             
             gp.player.x += gp.player.xSpeed;
             gp.player.y += gp.player.ySpeed;   

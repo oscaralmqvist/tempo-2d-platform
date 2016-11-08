@@ -74,7 +74,7 @@ public class Keyboard implements KeyListener {
                 //        movingRight = true;
                     break;
                 case KeyEvent.VK_R:
-                        gp.player.reload();
+                        gp.player.reloading = true;
                     break;
                 }
         /*

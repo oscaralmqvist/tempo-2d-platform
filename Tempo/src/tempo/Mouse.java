@@ -39,7 +39,7 @@ public class Mouse implements MouseListener {
                 
                 gp.player.nuts--;
                 if(gp.player.nuts == 0){
-                    gp.player.reload();
+                    gp.player.reloading = true;
                 }
             }
         }   
