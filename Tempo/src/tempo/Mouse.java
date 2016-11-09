@@ -31,7 +31,8 @@ public class Mouse implements MouseListener {
     @Override
     public void mousePressed(MouseEvent e) {
         if(!gp.isPaused){
-            if((gp.player.nuts >0 && !gp.player.reloading) /*&& (e.getX() < gp.player.x || e.getX() > gp.player.x + gp.player.width)*/){
+            if((gp.player.nuts >0) /*&& (e.getX() < gp.player.x || e.getX() > gp.player.x + gp.player.width)*/){
+                gp.player.reloading = false;
                 float angle = (float) Math.toDegrees(Math.atan2(e.getY() - (gp.player.y + gp.player.height/2), e.getX() - (gp.player.x + gp.player.currentHand)));
                 int i = (int)(Math.random() * 4 + 30);
                                 
