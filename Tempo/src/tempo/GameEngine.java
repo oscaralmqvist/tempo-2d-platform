@@ -111,14 +111,14 @@ public class GameEngine implements Runnable {
             
             
             
-            for(int i = 0;i<gp.blocks.size();i++){
-                if(gp.blocks.get(i).collision){
-                    if(gp.coll.getTopCollision(new Rectangle(gp.player.x,gp.player.y,gp.player.width,gp.player.height),new Rectangle(gp.blocks.get(i).x,gp.blocks.get(i).y,gp.blocks.get(i).width,gp.blocks.get(i).height)) && gp.player.ySpeed > 0){
+            for(int i = 0;i<gp.level.blocks.size();i++){
+                if(gp.level.blocks.get(i).collision){
+                    if(gp.coll.getTopCollision(new Rectangle(gp.player.x,gp.player.y,gp.player.width,gp.player.height),new Rectangle(gp.level.blocks.get(i).x,gp.level.blocks.get(i).y,gp.level.blocks.get(i).width,gp.level.blocks.get(i).height)) && gp.player.ySpeed > 0){
                         gp.player.gravity = 0;
                         gp.player.ySpeed = 0;
                         gp.player.jumps = 0;
                         break;
-                    } else if (gp.coll.getBottomCollision(new Rectangle(gp.player.x,gp.player.y,gp.player.width,gp.player.height),new Rectangle(gp.blocks.get(i).x,gp.blocks.get(i).y,gp.blocks.get(i).width,gp.blocks.get(i).height)) && gp.player.ySpeed < 0) {
+                    } else if (gp.coll.getBottomCollision(new Rectangle(gp.player.x,gp.player.y,gp.player.width,gp.player.height),new Rectangle(gp.level.blocks.get(i).x,gp.level.blocks.get(i).y,gp.level.blocks.get(i).width,gp.level.blocks.get(i).height)) && gp.player.ySpeed < 0) {
                         gp.player.gravity = 0;
                         gp.player.ySpeed = 0;
                     } else { 
@@ -128,16 +128,16 @@ public class GameEngine implements Runnable {
                 }
             }
             
-            for(int i = 0;i<gp.blocks.size();i++){
-                gp.blocks.get(i).x += gp.blocks.get(i).SpeedX;
-                gp.blocks.get(i).y += gp.blocks.get(i).SpeedY;
-                if(gp.blocks.get(i).collision){
-                    Rectangle temp = gp.coll.getCollision(new Rectangle(gp.player.x,gp.player.y,gp.player.width,gp.player.height), new Rectangle(gp.blocks.get(i).x,gp.blocks.get(i).y,gp.blocks.get(i).width,gp.blocks.get(i).height));
+            for(int i = 0;i<gp.level.blocks.size();i++){
+                gp.level.blocks.get(i).x += gp.level.blocks.get(i).SpeedX;
+                gp.level.blocks.get(i).y += gp.level.blocks.get(i).SpeedY;
+                if(gp.level.blocks.get(i).collision){
+                    Rectangle temp = gp.coll.getCollision(new Rectangle(gp.player.x,gp.player.y,gp.player.width,gp.player.height), new Rectangle(gp.level.blocks.get(i).x,gp.level.blocks.get(i).y,gp.level.blocks.get(i).width,gp.level.blocks.get(i).height));
                     gp.player.x = temp.x;
                     gp.player.y = temp.y;
 
                     for(int j = 0;j<gp.bullets.size();j++){
-                        if(gp.coll.isIntersect(new Rectangle(gp.bullets.get(j).x,gp.bullets.get(j).y,gp.bullets.get(j).width,gp.bullets.get(j).height), new Rectangle(gp.blocks.get(i).x,gp.blocks.get(i).y,gp.blocks.get(i).width,gp.blocks.get(i).height)))
+                        if(gp.coll.isIntersect(new Rectangle(gp.bullets.get(j).x,gp.bullets.get(j).y,gp.bullets.get(j).width,gp.bullets.get(j).height), new Rectangle(gp.level.blocks.get(i).x,gp.level.blocks.get(i).y,gp.level.blocks.get(i).width,gp.level.blocks.get(i).height)))
                         {
                             for(int l = 0;l<20;l++){
                                 gp.particle.add(new Particle(gp.bullets.get(j).x, gp.bullets.get(j).y, 20,20,gp.ss.getSprite(2, 2, 1, 1)));
@@ -150,10 +150,10 @@ public class GameEngine implements Runnable {
             }
             
             if(gp.enemy.image != null){
-                for(int i = 0;i<gp.blocks.size();i++){
-                    gp.blocks.get(i).x += gp.blocks.get(i).SpeedX;
-                    gp.blocks.get(i).y += gp.blocks.get(i).SpeedY;
-                    if(gp.blocks.get(i).collision){
+                for(int i = 0;i<gp.level.blocks.size();i++){
+                    gp.level.blocks.get(i).x += gp.level.blocks.get(i).SpeedX;
+                    gp.level.blocks.get(i).y += gp.level.blocks.get(i).SpeedY;
+                    if(gp.level.blocks.get(i).collision){
                         Rectangle temp = gp.coll.getCollision(new Rectangle(gp.player.x,gp.player.y,gp.player.width,gp.player.height), new Rectangle(gp.enemy.x,gp.enemy.y,gp.enemy.width,gp.enemy.height));
                         gp.player.x = temp.x;
                         gp.player.y = temp.y;
@@ -191,8 +191,8 @@ public class GameEngine implements Runnable {
                             for(int l = 0;l<gp.particle.size();l++){
                                 gp.particle.get(l).x += 10;
                             }
-                            for(int i = 0;i<gp.blocks.size();i++){
-                                gp.blocks.get(i).x += 10;
+                            for(int i = 0;i<gp.level.blocks.size();i++){
+                                gp.level.blocks.get(i).x += 10;
                             }
                             for(int i = 0;i<gp.clouds.size();i++){
                                 gp.clouds.get(i).x += 10;
@@ -205,8 +205,8 @@ public class GameEngine implements Runnable {
                             }
                             gp.enemy.x += 10;
                         }else{
-                            for(int i = 0;i<gp.blocks.size();i++){
-                                gp.blocks.get(i).SpeedX = 0;
+                            for(int i = 0;i<gp.level.blocks.size();i++){
+                                gp.level.blocks.get(i).SpeedX = 0;
                             }
                             gp.player.x -= 10.0;
                         }  
@@ -218,8 +218,8 @@ public class GameEngine implements Runnable {
                             for(int l = 0;l<gp.particle.size();l++){
                                 gp.particle.get(l).x += -10;
                             }
-                            for(int i = 0;i<gp.blocks.size();i++){
-                                gp.blocks.get(i).x += -10;
+                            for(int i = 0;i<gp.level.blocks.size();i++){
+                                gp.level.blocks.get(i).x += -10;
                             }
                             for(int i = 0;i<gp.clouds.size();i++){
                                 gp.clouds.get(i).x += -10;
@@ -232,8 +232,8 @@ public class GameEngine implements Runnable {
                             }
                             gp.enemy.x += -10;
                         }else{
-                            for(int i = 0;i<gp.blocks.size();i++){
-                                gp.blocks.get(i).SpeedX = 0;
+                            for(int i = 0;i<gp.level.blocks.size();i++){
+                                gp.level.blocks.get(i).SpeedX = 0;
                             }
                         gp.player.x += 10.0;
                         }

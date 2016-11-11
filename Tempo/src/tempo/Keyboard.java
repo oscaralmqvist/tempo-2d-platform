@@ -31,7 +31,7 @@ public class Keyboard implements KeyListener {
                 case KeyEvent.VK_SPACE:
                 case KeyEvent.VK_W:
                     if (gp.player.jumps < 2) {
-                        for(int i = 0;i<gp.blocks.size();i++){
+                        for(int i = 0;i<gp.level.blocks.size();i++){
                             gp.player.ySpeed = -22.5f;
                             break;
                         }

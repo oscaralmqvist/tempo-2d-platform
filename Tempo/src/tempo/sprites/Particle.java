@@ -17,7 +17,7 @@ import java.util.Random;
 public class Particle extends Sprites{
     float velocityX;
     float velocityY;
-    int size = 40;
+    int size = 10;
     float speed = 0.5f;
     float gravity = 4f;
     static Random random = new Random();
@@ -47,7 +47,7 @@ public class Particle extends Sprites{
 
     @Override
     public void paint(Graphics g) {
-        g.drawImage(super.image, super.x, super.y,super.width, super.height, null);
+        g.drawImage(super.image, super.x, super.y,4, 4, null);
     }
     
 }
