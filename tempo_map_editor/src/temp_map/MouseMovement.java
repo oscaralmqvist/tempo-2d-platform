@@ -24,7 +24,7 @@ import java.awt.event.MouseMotionListener;
         
     @Override
     public void mouseDragged(MouseEvent e) {
-        int mouseX = e.getX();
+        int mouseX = mp.getMousePosition().x;
         int mouseY = mp.getMousePosition().y;
         System.out.println("Mouse position: " + mouseX + ", " + mouseY);
         for(Block b : mp.blocks) {
