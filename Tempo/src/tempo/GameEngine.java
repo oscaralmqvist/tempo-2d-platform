@@ -119,7 +119,7 @@ public class GameEngine implements Runnable {
 
                         {
                             for(int l = 0;l<25;l++){
-                                gp.particle.add(new Particle(gp.bullets.get(j).x, gp.bullets.get(j).y, 25,25,gp.ss.getSprite(7, 2, 1, 1)));
+                                gp.particle.add(new Particle(gp.bullets.get(j).x, gp.bullets.get(j).y, 25,25,gp.ss.getSprite(10, 0, 1, 1)));
                             }
                                gp.bullets.remove(j);
                         }
@@ -179,10 +179,10 @@ public class GameEngine implements Runnable {
                 if(gp.clouds.get(i).x > Tempo.width + 100){
                     BufferedImage tempCloud;
                     if(Math.random() > 0.5){
-                        tempCloud = gp.ss.getSprite(3, 2, 2, 1);
+                        tempCloud = gp.ss.getSprite(0, 2, 2, 1);
                     }
                     else{
-                        tempCloud = gp.ss.getSprite(5, 2, 2, 1);
+                        tempCloud = gp.ss.getSprite(2, 2, 2, 1);
                     }
                     gp.clouds.remove(i);
                     gp.clouds.add(new Block(-100, gp.blockSize+(int)(Math.random()*5*(gp.clouds.size()-i)*21), gp.blockSize*2, gp.blockSize, tempCloud, false)); 
@@ -191,10 +191,10 @@ public class GameEngine implements Runnable {
                 if(gp.clouds.get(i).x < -100){
                     BufferedImage tempCloud;
                     if(Math.random() > 0.5){
-                        tempCloud = gp.ss.getSprite(3, 2, 2, 1);
+                        tempCloud = gp.ss.getSprite(0, 2, 2, 1);
                     }
                     else{
-                        tempCloud = gp.ss.getSprite(5, 2, 2, 1);
+                        tempCloud = gp.ss.getSprite(2, 2, 2, 1);
                     }
                     gp.clouds.remove(i);
                     gp.clouds.add(new Block((Tempo.width + 100), gp.blockSize+(int)(Math.random()*5*(gp.clouds.size()-i)*21), gp.blockSize*2, gp.blockSize, tempCloud, false));

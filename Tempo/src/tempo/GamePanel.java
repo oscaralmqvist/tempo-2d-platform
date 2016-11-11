@@ -24,17 +24,15 @@ public class GamePanel extends JPanel{
     Spritesheet ss = new Spritesheet();
     
     // Karaktärer skapas och placeras
+    public Player player = new Player((Tempo.width/2), 420, blockSize, blockSize*2, ss.getSprite(4, 0, 1, 2), 10, 3, true);
     public Player enemy = new Player(blockSize, blockSize * 7, blockSize, blockSize*2, ss.getSprite(5, 0, 1, 2), 5, 1, false);
-    public Player player = new Player((Tempo.width/2), 420, blockSize, blockSize*2, ss.getSprite(7, 0, 1, 2), 10, 3, true);
     
     Level level = new Level(ss,"level1");
     ArrayList<Block> sky = new ArrayList<Block>();
     ArrayList<Block> clouds = new ArrayList<Block>();
     ArrayList<Bullet> bullets = new ArrayList<Bullet>();
     ArrayList<Particle> particle = new ArrayList<Particle>();
-
-      ArrayList<Dialogue> dialogue = new ArrayList<Dialogue>();
-      
+    ArrayList<Dialogue> dialogue = new ArrayList<Dialogue>(); 
     
     public Collision coll = new Collision();
     final Font font = new Font("TimesRoman", Font.PLAIN, 78);
@@ -43,7 +41,7 @@ public class GamePanel extends JPanel{
         setFont(font);
         int row = 0;
         int collumn = 0;
-        sky.add(new Block(0, 0, Tempo.width, Tempo.height, ss.getSprite(2, 1, 1, 1), false));
+        sky.add(new Block(0, 0, Tempo.width, Tempo.height, ss.getSprite(0, 3, 1, 1), false));
         
         //clouds.add(new Block(blockSize*3, blockSize*2, blockSize*2, blockSize, ss.getSprite(3, 2, 2, 1), false));
        // clouds.add(new Block(blockSize*7, blockSize*1, blockSize*2, blockSize, ss.getSprite(5, 2, 2, 1), false));
@@ -52,12 +50,12 @@ public class GamePanel extends JPanel{
         for(int i = 0; i < 4; i++){
         BufferedImage tempCloud;
         if(Math.random() > 0.5){
-            tempCloud = ss.getSprite(3, 2, 2, 1);
+            tempCloud = ss.getSprite(0, 2, 2, 1);
          }
         else{
-            tempCloud = ss.getSprite(5, 2, 2, 1);
+            tempCloud = ss.getSprite(2, 2, 2, 1);
          }            
-            clouds.add(new Block(64+blockSize+(int)(Math.random()*20*i*64), blockSize+(int)(Math.random()*5*i*32), blockSize*2, blockSize, ss.getSprite(3, 2, 2, 1), false)); 
+            clouds.add(new Block(64+blockSize+(int)(Math.random()*20*i*64), blockSize+(int)(Math.random()*5*i*32), blockSize*2, blockSize, ss.getSprite(0, 2, 2, 1), false)); 
             clouds.get(i).SpeedX = 1;
         }  
     }
@@ -105,10 +103,10 @@ public class GamePanel extends JPanel{
             player.health.get(i).x = player.x + i * 10;
         }
         for(int i = 0; i < player.nuts ; i++){
-            g.drawImage(ss.getSprite(2, 2, 1, 1), 100+38*i, 680, this);
+            g.drawImage(ss.getSprite(9, 0, 1, 1), 100+38*i, 680, this);
         }
         if(player.nuts > 0){
-           g.drawImage(ss.getSprite(2, 2, 1, 1),player.x + player.currentHand,player.y + player.height/2,this);
+           g.drawImage(ss.getSprite(9, 0, 1, 1),player.x + player.currentHand,player.y + player.height/2,this);
         }
         
         if(isPaused){

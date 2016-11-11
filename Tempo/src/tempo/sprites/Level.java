@@ -41,17 +41,17 @@ public class Level{
                     if(tempSubStr.equals("-")){
 
                     }else if(tempSubStr.equals("l")){
-                        addBlock(true,collumn,row,2,0,1,1);
+                        addBlock(true,collumn,row,0,0,1,1);
                     }else if (tempSubStr.equals("d")) {
-                        addBlock(true,collumn,row,1,2,1,1);
+                        addBlock(true,collumn,row,1,0,1,1);
                     }else if(tempSubStr.equals("i")){
                         if (Math.random() > 0.5) {
-                            addBlock(false,collumn,row,8,0,1,1);
+                            addBlock(false,collumn,row,0,4,1,1);
                         } else {
-                            addBlock(false,collumn,row,8,1,1,1);
+                            addBlock(false,collumn,row,1,4,1,1);
                         }
                     }else if(tempSubStr.equals("t")){
-                        addBlock(false,collumn,row,6,0,1,2);
+                        addBlock(false,collumn,row,0,5,1,2);
                     }
                     
                     collumn++;
