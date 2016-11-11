@@ -18,15 +18,18 @@ public class Bullet extends Sprites {
     public boolean killBullet = false;
     
     
-    public Bullet(int x, int y, int width, int height, float angle, BufferedImage image, GamePanel gp, int xmouse) {
+    public Bullet(int x, int y, int width, int height, float angle, BufferedImage image, GamePanel gp, int xmouse,int xSpeed) {
         super(x, y, width, height, image);
+        this.xSpeed = xSpeed;
+        this.ySpeed = xSpeed;
         this.rads = angle*(Math.PI/180);
         this.ySpeed = (float)(Math.sin(rads) * ySpeed);
         
         if(gp.movingRight && xmouse > Tempo.width/2)
-            this.xSpeed = xSpeed * 2 + 10;
+            this.xSpeed = (float) (xSpeed * 1.2);
         else if(gp.movingLeft && xmouse < Tempo.width/2)
-            this.xSpeed = xSpeed * 2 + 10;
+            this.xSpeed =(float) (xSpeed * 1.2);
+  
     }
     
     public void shoot() {

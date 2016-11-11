@@ -16,6 +16,9 @@ import tempo.sprites.Sprites;
  */
 public class Health extends Sprites{
    // GamePanel gp;
+    private int red = 255;
+    private int green = 0;
+    private int blue = 0;
     
     public Health(int x, int y, int width, int height, BufferedImage image){
         super(x, y, width, height, image);
@@ -23,7 +26,12 @@ public class Health extends Sprites{
 
     @Override
     public void paint(Graphics g) {
-        g.setColor(Color.red);
+        g.setColor(new Color(red, green, blue));
         g.fillRect(super.x, super.y,super.width, super.height);
+    }
+    public void setColor(int r,int g, int b){
+        red = r;
+        green = g;
+        blue = b;
     }
 }

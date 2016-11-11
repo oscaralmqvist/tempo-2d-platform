@@ -85,6 +85,9 @@ public class GameEngine implements Runnable {
             if(gp.player.reloading){
                 gp.player.reload();
             }
+            if(gp.player.charging){
+                gp.player.charge();
+            }
             
             gp.player.x += gp.player.xSpeed;
             gp.player.y += gp.player.ySpeed;   

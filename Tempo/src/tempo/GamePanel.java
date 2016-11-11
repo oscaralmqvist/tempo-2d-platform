@@ -33,6 +33,7 @@ public class GamePanel extends JPanel{
     ArrayList<Particle> particle = new ArrayList<Particle>();
 
       ArrayList<Dialogue> dialogue = new ArrayList<Dialogue>();
+      
     
     public Collision coll = new Collision();
     final Font font = new Font("TimesRoman", Font.PLAIN, 78);
@@ -88,6 +89,9 @@ public class GamePanel extends JPanel{
         sprites.addAll(enemy.health);
         sprites.addAll(player.health);
         sprites.addAll(dialogue);
+        
+        sprites.addAll(player.reload);
+        sprites.addAll(player.charge);
         for(Sprites sprite : sprites) {sprite.paint(g);}
         /*
         

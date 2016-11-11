@@ -23,10 +23,15 @@ public class Player extends Sprites {
     public int maxNuts = 5;
     public int lives;
     public boolean reloading = false;
+    public boolean charging = false;
     public boolean player;
     public int currentHand;
-    public int ticks;
+    public int reloadTick;
+    public int chargeTick;
+    public int chargeSpeed;
     public ArrayList<Health> health = new ArrayList<Health>();
+    public ArrayList<Health> reload = new ArrayList<Health>();
+    public ArrayList<Health> charge = new ArrayList<Health>();
 
     
     public Player(int x, int y, int width, int height, BufferedImage image, int hp, int lives, boolean player) {
@@ -54,17 +59,38 @@ public class Player extends Sprites {
     }
 
         public void reload(){
-            ticks++;
+            reloadTick++;
             if(nuts == maxNuts){
                 reloading = false;
             }
-            else if((int)(ticks/8) > 3){
+            else if(reloadTick%2 == 0){
+                Health test = new Health(105 + 10*reload.size(),720, 10, 10, null);
+                test.setColor(255-10*reload.size(), 30+10*reload.size(), 0);
+                reload.add(test);
+                
+            }
+            if(reloadTick > 30){
                     nuts++;
-                    ticks = 0;
+                    reload.clear();
+                    reloadTick = 0;
+            }          
+        }
+        public void charge(){
+            chargeTick++;
+            if(charge.size() < 20){
+                if(chargeTick%2 == 0){
+                    Health test = new Health(500+16*charge.size(),700,16,16,null);
+                    test.setColor(30+10*charge.size(),205-10*charge.size(),0);
+                    charge.add(test);
                 }
+            }
+            else{
+                chargeTick = 0;
+                charging = false;
+            }
+        
             
-                    
-                    
+            
         }
         
     public void die() {

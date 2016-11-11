@@ -30,8 +30,9 @@ public class Mouse implements MouseListener {
 
     @Override
     public void mousePressed(MouseEvent e) {
-        if(!gp.isPaused){
-            if((gp.player.nuts >0) /*&& (e.getX() < gp.player.x || e.getX() > gp.player.x + gp.player.width)*/){
+      // if(!gp.isPaused){
+       //    if((gp.player.nuts >0) /*&& (e.getX() < gp.player.x || e.getX() > gp.player.x + gp.player.width)*/){
+            /*  gp.player.reload.clear();
                 gp.player.reloading = false;
                 float angle = (float) Math.toDegrees(Math.atan2(e.getY() - (gp.player.y + gp.player.height/2), e.getX() - (gp.player.x + gp.player.currentHand)));
                 int i = (int)(Math.random() * 4 + 30);
@@ -42,13 +43,32 @@ public class Mouse implements MouseListener {
                 if(gp.player.nuts == 0){
                     gp.player.reloading = true;
                 }
-            }
-        }   
-    
+            }*/
+        //}  
+            if((gp.player.nuts >0) /*&& (e.getX() < gp.player.x || e.getX() > gp.player.x + gp.player.width)*/){
+              gp.player.reload.clear();
+                gp.player.reloading = false;   
+                gp.player.charging = true;
+
+        }
     }
 
     @Override
-    public void mouseReleased(MouseEvent e) {}
+    public void mouseReleased(MouseEvent e) {
+        if(gp.player.nuts > 0){
+            gp.player.charging = false;
+            
+                float angle = (float) Math.toDegrees(Math.atan2(e.getY() - (gp.player.y + gp.player.height/2), e.getX() - (gp.player.x + gp.player.currentHand)));
+                int i = (int)(Math.random() * 4 + 30);
+                gp.bullets.add(new Bullet(gp.player.x + gp.player.currentHand, gp.player.y + gp.player.height/2, i, i, angle, gp.ss.getSprite(2, 2, 1, 1), gp, e.getX(),gp.player.charge.size()));
+                
+                gp.player.nuts--;
+                if(gp.player.nuts == 0){
+                    gp.player.reloading = true;
+                }
+        gp.player.charge.clear();
+        }
+    }
 
     @Override
     public void mouseEntered(MouseEvent e) {}
