@@ -102,6 +102,4 @@ public class Player extends Sprites {
             super.image = null;
         }
     }
-        
-          
 }

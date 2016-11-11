@@ -25,7 +25,7 @@ public class GamePanel extends JPanel{
     
     // Karaktärer skapas och placeras
     public Player player = new Player((Tempo.width/2), 420, blockSize, blockSize*2, ss.getSprite(4, 0, 1, 2), 10, 3, true);
-    public Player enemy = new Player(blockSize, blockSize * 7, blockSize, blockSize*2, ss.getSprite(5, 0, 1, 2), 5, 1, false);
+    public Npc enemy = new Npc(blockSize, blockSize * 7, blockSize, blockSize*2, ss.getSprite(5, 0, 1, 2), 5, 1, false);
     
     Level level = new Level(ss,"level1");
     ArrayList<Block> sky = new ArrayList<Block>();
@@ -69,7 +69,7 @@ public class GamePanel extends JPanel{
         sprites.add(enemy);
         sprites.addAll(bullets);
         sprites.addAll(particle);
-        sprites.addAll(enemy.health);
+        sprites.addAll(enemy.getHealth());
         sprites.addAll(player.health);
         sprites.addAll(dialogue);
         
@@ -117,7 +117,7 @@ public class GamePanel extends JPanel{
         
         
         //Behöver byta till hp och hit() i Player;
-        if(enemy.health.isEmpty()){
+        if(enemy.getHealth().isEmpty()){
             enemy.die();
         }
         //Behöver byta till hp och hit() i Player;

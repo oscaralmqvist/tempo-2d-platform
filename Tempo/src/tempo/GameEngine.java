@@ -220,8 +220,8 @@ public class GameEngine implements Runnable {
                             for(int i = 0;i<gp.bullets.size();i++){
                                 gp.bullets.get(i).x += 10;
                             }
-                            for(int i = 0;i<gp.enemy.health.size();i++){
-                                gp.enemy.health.get(i).x += 10;
+                            for(int i = 0;i<gp.enemy.getHealth().size();i++){
+                                gp.enemy.getHealth().get(i).x += 10;
                             }
                             gp.enemy.x += 10;
                         }else{
@@ -245,8 +245,8 @@ public class GameEngine implements Runnable {
                             for(int i = 0;i<gp.bullets.size();i++){
                                 gp.bullets.get(i).x += -10;
                             }
-                            for(int i = 0;i<gp.enemy.health.size();i++){
-                                gp.enemy.health.get(i).x += -10;
+                            for(int i = 0;i<gp.enemy.getHealth().size();i++){
+                                gp.enemy.getHealth().get(i).x += -10;
                             }
                             gp.enemy.x += -10;
                         }else{
