@@ -138,8 +138,10 @@ public class GameEngine implements Runnable {
                     Rectangle temp2 = gp.coll.getCollision(new Rectangle(gp.player.x,gp.player.y,gp.player.width,gp.player.height), new Rectangle(gp.enemy.x,gp.enemy.y,gp.enemy.width,gp.enemy.height));                    
                     gp.player.x = temp2.x;
                     gp.player.y = temp2.y;
-
+                  
                     for(int j = 0;j<gp.bullets.size();j++){
+                        if(gp.coll.isIntersect(new Rectangle(gp.bullets.get(j).x,gp.bullets.get(j).y,gp.bullets.get(j).width,gp.bullets.get(j).height), new Rectangle(gp.level.blocks.get(i).x,gp.level.blocks.get(i).y,gp.level.blocks.get(i).width,gp.level.blocks.get(i).height)))
+
                         {
                             for(int l = 0;l<25;l++){
                                 gp.particle.add(new Particle(gp.bullets.get(j).x, gp.bullets.get(j).y, 30,30,gp.ss.getSprite(7, 2, 1, 1)));
