@@ -94,6 +94,7 @@ public class GamePanel extends JPanel{
 */      
         for(int i = 0; i < player.health.size(); i++){
             player.health.get(i).y = player.y;
+            player.health.get(i).x = player.x + i * 10;
         }
         for(int i = 0; i < player.nuts ; i++){
             g.drawImage(ss.getSprite(2, 2, 1, 1), 100+38*i, 680, this);

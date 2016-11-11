@@ -78,7 +78,7 @@ public class Player extends Sprites {
         public void charge(){
             chargeTick++;
             if(charge.size() < 20){
-                if(chargeTick%2 == 0){
+                if(chargeTick%2 == 0 || chargeTick % 3 == 0){
                     Health test = new Health(500+16*charge.size(),700,16,16,null);
                     test.setColor(30+10*charge.size(),205-10*charge.size(),0);
                     charge.add(test);
