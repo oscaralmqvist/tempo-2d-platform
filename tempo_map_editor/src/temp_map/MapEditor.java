@@ -21,12 +21,14 @@ public class MapEditor extends JPanel {
     public int mapY = 10;
     public Spritesheet ss;
     BufferedImage dirt;
+    BufferedImage grass;
     
     public ArrayList<Block> blocks = new ArrayList<Block>();
     
     public MapEditor(Spritesheet ss) {
         this.ss = ss;
-        dirt = ss.getSprite(2, 0, 1, 1);
+        dirt = ss.getSprite(1, 2, 1, 1);
+        grass = ss.getSprite(2, 0, 1, 1);
         for(int i = 0; i < mapY; i++) {
             for(int j = 0; j < mapX; j++) {
                 blocks.add(new Block(j * blockSize, i * blockSize));
@@ -48,6 +50,9 @@ public class MapEditor extends JPanel {
         for(Block b : blocks) {
             g.drawRect(b.x, b.y, blockSize, blockSize);
             if(b.id == 1) {
+                g.drawImage(grass, b.x, b.y, blockSize, blockSize, null);
+            }
+            else if(b.id == 2) {
                 g.drawImage(dirt, b.x, b.y, blockSize, blockSize, null);
             }
         }

@@ -7,6 +7,8 @@ package temp_map;
 
 import java.awt.BorderLayout;
 import java.awt.TextField;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -28,6 +30,7 @@ public class Window extends JFrame {
     
     Spritesheet ss = new Spritesheet();
     MapEditor mp = new MapEditor(ss);
+    int id = 2;
     
     public Window() {
         setTitle("Tempo Map Editor");
@@ -43,14 +46,43 @@ public class Window extends JFrame {
         toolbar.add(new JTextField("600"));
         toolbar.add(new JLabel("x"));
         toolbar.add(new JTextField("100"));
-        BufferedImage buttonIcon = ss.getSprite(2, 0, 1, 1);
-        JButton button = new JButton(new ImageIcon(buttonIcon));
-        toolbar.add(button);
+        
+        JButton grass = new JButton(new ImageIcon(ss.getSprite(2, 0, 1, 1))); // Grass
+        JButton dirt = new JButton(new ImageIcon(ss.getSprite(1, 2, 1, 1))); // Dirt
+       
+        dirt.setText("Dirt");
+        grass.setText("Grass");
+        
+        toolbar.add(grass);
+        toolbar.add(dirt);
+        
+        Al al = new Al(this);
+        grass.addActionListener(al);
+        dirt.addActionListener(al);
+        
         add(toolbar, BorderLayout.NORTH);
         add(mp, BorderLayout.CENTER);
         revalidate();  
     }
    
-
+    private class Al implements ActionListener {
+        
+        Window w;
+        
+        public Al(Window w) {
+            this.w = w;
+        }
+        
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            if(e.getActionCommand() == "Dirt") {
+                w.id = 2;
+            }
+            else if(e.getActionCommand() == "Grass") {
+                w.id = 1;
+            }
+        }
+    
+}
     
 }

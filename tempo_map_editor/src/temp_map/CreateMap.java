@@ -43,6 +43,9 @@ public class CreateMap {
                     if(b.id == 1) {
                         line += "l";
                     }     
+                    if(b.id == 2) {
+                        line += "d";
+                    }
                 } else {
                     System.out.println(currentline);
                     writer.println(line);
@@ -53,6 +56,9 @@ public class CreateMap {
                     if(b.id == 1) {
                         line = "l";
                     }   
+                    if(b.id == 2) {
+                        line += "d";
+                    }
                     currentline++;
                 }
             }

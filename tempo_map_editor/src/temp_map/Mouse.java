@@ -23,7 +23,7 @@ public class Mouse implements MouseListener {
         System.out.println("Mouse position: " + mouseX + ", " + mouseY);
         for(Block b : mp.blocks) {
             if(mp.isHitRect(mouseX, mouseY, b)) {
-                b.setID(1);
+                b.setID(w.id);
                 System.out.println("Block position: " + b.x + ", " + b.y);
                 w.repaint();
                 new CreateMap(mp.blocks, mp.blockSize);
