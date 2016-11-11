@@ -51,7 +51,7 @@ public class GamePanel extends JPanel{
             clouds.get(i).SpeedX = 1;
         }
         for(int i = 0; i < 2; i++){
-            units.add(new Npc(blockSize*i*2+200, blockSize*7, blockSize, blockSize*2, ss.getSprite(6, 0, 1, 2), 5, 1, true));
+            units.add(new Npc(blockSize*i*3+250, blockSize*7, blockSize, blockSize*2, ss.getSprite(6, 0, 1, 2), 5, 1, true));
         }
     }
     public void paintComponent(Graphics g){
