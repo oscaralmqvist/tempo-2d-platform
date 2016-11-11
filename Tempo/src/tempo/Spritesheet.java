@@ -34,6 +34,17 @@ public class Spritesheet {
             return sheet.getSubimage(3*a, 0, a, a);
         }
     }
+    
+    public BufferedImage cloudRandomizer(){
+        BufferedImage randBlock;
+        if(Math.random() > 0.5){
+            randBlock = getSprite(0, 2, 2, 1);
+         }
+        else{
+            randBlock = getSprite(2, 2, 2, 1);
+         }            
+        return  randBlock;
+    }
 
     
 }

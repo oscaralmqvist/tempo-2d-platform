@@ -183,27 +183,13 @@ public class GameEngine implements Runnable {
             for(int i = 0; i < gp.clouds.size(); i++){
                 gp.clouds.get(i).x += gp.clouds.get(i).SpeedX;
                 if(gp.clouds.get(i).x > Tempo.width + 100){
-                    BufferedImage tempCloud;
-                    if(Math.random() > 0.5){
-                        tempCloud = gp.ss.getSprite(0, 2, 2, 1);
-                    }
-                    else{
-                        tempCloud = gp.ss.getSprite(2, 2, 2, 1);
-                    }
                     gp.clouds.remove(i);
-                    gp.clouds.add(new Block(-100, gp.blockSize+(int)(Math.random()*5*(gp.clouds.size()-i)*21), gp.blockSize*2, gp.blockSize, tempCloud, false)); 
+                    gp.clouds.add(new Block(-100, gp.blockSize+(int)(Math.random()*5*(gp.clouds.size()-i)*21), gp.blockSize*2, gp.blockSize, gp.ss.cloudRandomizer(), false)); 
                     gp.clouds.get(gp.clouds.size()-1).SpeedX = 1;
                 }
                 if(gp.clouds.get(i).x < -100){
-                    BufferedImage tempCloud;
-                    if(Math.random() > 0.5){
-                        tempCloud = gp.ss.getSprite(0, 2, 2, 1);
-                    }
-                    else{
-                        tempCloud = gp.ss.getSprite(2, 2, 2, 1);
-                    }
                     gp.clouds.remove(i);
-                    gp.clouds.add(new Block((Tempo.width + 100), gp.blockSize+(int)(Math.random()*5*(gp.clouds.size()-i)*21), gp.blockSize*2, gp.blockSize, tempCloud, false));
+                    gp.clouds.add(new Block((Tempo.width + 100), gp.blockSize+(int)(Math.random()*5*(gp.clouds.size()-i)*21), gp.blockSize*2, gp.blockSize, gp.ss.cloudRandomizer(), false));
                     gp.clouds.get(gp.clouds.size()-1).SpeedX = 1;
                 }
             }

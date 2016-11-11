@@ -8,6 +8,7 @@ package tempo.sprites;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 import tempo.Collision;
+import tempo.Spritesheet;
 
 /**
  *
