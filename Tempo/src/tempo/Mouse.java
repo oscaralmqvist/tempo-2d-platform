@@ -65,7 +65,7 @@ public class Mouse implements MouseListener {
             
                 float angle = (float) Math.toDegrees(Math.atan2(e.getY() - (gp.player.y + gp.player.height/2), e.getX() - (gp.player.x + gp.player.currentHand)));
                 int i = (int)(Math.random() * 4 + 30);
-                gp.bullets.add(new Bullet(gp.player.x + gp.player.currentHand, gp.player.y + gp.player.height/2, i, i, angle, gp.ss.getSprite(2, 2, 1, 1), gp, e.getX(),speed));
+                gp.bullets.add(new Bullet(gp.player.x + gp.player.currentHand, gp.player.y + gp.player.height/2, i, i, angle, gp.ss.getSprite(9, 0, 1, 1), gp, e.getX(),speed));
                 
                 gp.player.nuts--;
                 if(gp.player.nuts == 0){
