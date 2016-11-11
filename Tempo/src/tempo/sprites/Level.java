@@ -42,8 +42,14 @@ public class Level{
 
                     }else if(tempSubStr.equals("l")){
                         addBlock(true,collumn,row,2,0,1,1);
+                    }else if (tempSubStr.equals("d")) {
+                        addBlock(true,collumn,row,1,2,1,1);
                     }else if(tempSubStr.equals("i")){
-                        addBlock(false,collumn,row,8,0,1,1);
+                        if (Math.random() > 0.5) {
+                            addBlock(false,collumn,row,8,0,1,1);
+                        } else {
+                            addBlock(false,collumn,row,8,1,1,1);
+                        }
                     }else if(tempSubStr.equals("t")){
                         addBlock(false,collumn,row,6,0,1,2);
                     }
