@@ -6,6 +6,7 @@ import java.awt.image.BufferedImage;
 import javax.swing.*;
 import tempo.sprites.Block;
 import tempo.sprites.Bullet;
+import tempo.sprites.Npc;
 import tempo.sprites.Particle;
 /**
  *
@@ -103,6 +104,24 @@ public class GameEngine implements Runnable {
                     }
                 }
             }
+            for(int i = 0; i < gp.level.blocks.size();i++){
+                if(gp.level.blocks.get(i).collision){
+                    for(int u = 0; u < gp.units.size(); u++){
+                        Rectangle u_temp = gp.coll.getCollision(new Rectangle(gp.units.get(u).x,gp.units.get(u).y,gp.units.get(u).width,gp.units.get(u).height), new Rectangle(gp.level.blocks.get(i).x,gp.level.blocks.get(i).y,gp.level.blocks.get(i).width,gp.level.blocks.get(i).height));
+                        if(gp.coll.isIntersect(new Rectangle(gp.units.get(u).x,gp.units.get(u).y,gp.units.get(u).width,gp.units.get(u).height), new Rectangle(gp.level.blocks.get(i).x,gp.level.blocks.get(i).y,gp.level.blocks.get(i).width,gp.level.blocks.get(i).height))){
+                            gp.units.get(u).xSpeed = -gp.units.get(u).xSpeed;
+                        }
+                        gp.units.get(u).x = u_temp.x;
+                    }
+                }
+            }
+
+            for(int u = 0; u < gp.units.size(); u++){
+                Rectangle u_temp = gp.coll.getCollision(new Rectangle(gp.units.get(u).x,gp.units.get(u).y,gp.units.get(u).width,gp.units.get(u).height), new Rectangle(gp.player.x,gp.player.y,gp.player.width,gp.player.height));
+                if(gp.coll.isIntersect(new Rectangle(gp.units.get(u).x,gp.units.get(u).y,gp.units.get(u).width,gp.units.get(u).height), new Rectangle(gp.player.x,gp.player.y,gp.player.width,gp.player.height))){
+                    gp.units.get(u).xSpeed = -gp.units.get(u).xSpeed;
+                }
+            }
             
             for(int i = 0;i<gp.level.blocks.size();i++){
                 gp.level.blocks.get(i).x += gp.level.blocks.get(i).SpeedX;
@@ -118,6 +137,8 @@ public class GameEngine implements Runnable {
                         gp.player.x = temp.x;
                         gp.player.y = temp.y;
                     }
+                    
+                    
                     for(int j = 0;j<gp.bullets.size();j++){
                         if(((gp.units.get(q).image != null && gp.coll.isIntersect(new Rectangle(gp.bullets.get(j).x,gp.bullets.get(j).y,gp.bullets.get(j).width,gp.bullets.get(j).height),new Rectangle(gp.units.get(q).x,gp.units.get(q).y,gp.units.get(q).width,gp.units.get(q).height)))) || gp.coll.isIntersect(new Rectangle(gp.bullets.get(j).x,gp.bullets.get(j).y,gp.bullets.get(j).width,gp.bullets.get(j).height), new Rectangle(gp.level.blocks.get(i).x,gp.level.blocks.get(i).y,gp.level.blocks.get(i).width,gp.level.blocks.get(i).height)))
                         {
@@ -127,7 +148,6 @@ public class GameEngine implements Runnable {
                             }
                                gp.bullets.remove(j);
                             if(test && gp.units.get(q).getIsHostile()){
-                                System.out.println("SASA");
                                 gp.units.get(q).loseHealth(1);
                             }
                         }
@@ -199,7 +219,15 @@ public class GameEngine implements Runnable {
         }
         public void checkMovement(){
             gp.player.x += gp.player.xSpeed;
-            gp.player.y += gp.player.ySpeed;   
+            gp.player.y += gp.player.ySpeed;  
+            for(int i = 0; i < gp.units.size(); i++){
+                gp.units.get(i).x += gp.units.get(i).xSpeed;
+                if(gp.units.get(i).getIsHostile()){
+                        for(int j = 0;j<gp.units.get(i).getHealth().size();j++){
+                            gp.units.get(i).getHealth().get(j).x = gp.units.get(i).x;
+                        }
+                    }
+            }
             gp.player.ySpeed += gp.player.gravity;
             if(gp.movingLeft){
                 if(gp.player.x <= (Tempo.width/2)){

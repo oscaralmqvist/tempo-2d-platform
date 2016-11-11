@@ -13,12 +13,17 @@ import tempo.Health;
 public class Npc extends Sprites{
     private boolean isHostile;
     private int lives;
+    public double xSpeed = 0; 
+    public float ySpeed = 0;
     private ArrayList<Health> health = new ArrayList<Health>();
     
     public Npc(int x, int y, int width, int height, BufferedImage image, int hp, int lives, boolean isHostile) {
         super(x, y, width, height, image);
         this.lives = lives;
         this.isHostile = isHostile;
+        if(isHostile == true){
+            xSpeed = 1;
+        }
         for(int i = 0; i < hp; i++){
             health.add(new Health(x + 10*i, (y-10), 8, 8, null));
         }
