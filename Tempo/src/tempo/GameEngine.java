@@ -144,7 +144,7 @@ public class GameEngine implements Runnable {
 
                         {
                             for(int l = 0;l<25;l++){
-                                gp.particle.add(new Particle(gp.bullets.get(j).x, gp.bullets.get(j).y, 30,30,gp.ss.getSprite(7, 2, 1, 1)));
+                                gp.particle.add(new Particle(gp.bullets.get(j).x, gp.bullets.get(j).y, 25,25,gp.ss.getSprite(7, 2, 1, 1)));
                             }
                                gp.bullets.remove(j);
                         }

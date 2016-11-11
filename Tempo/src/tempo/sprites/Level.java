@@ -38,7 +38,7 @@ public class Level{
                 System.out.println(tempStr);
                 for(int j = 0;j<tempStr.length();j++){
                     String tempSubStr = tempStr.substring(j, j+1);
-                    if(tempSubStr.equals("o")){
+                    if(tempSubStr.equals("-")){
 
                     }else if(tempSubStr.equals("l")){
                         addBlock(true,collumn,row,2,0,1,1);
