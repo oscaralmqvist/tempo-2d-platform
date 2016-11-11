@@ -37,6 +37,15 @@ public class Npc extends Sprites{
     public ArrayList<Health> getHealth(){
         return health;
     }
+    
+    public void loseHealth(int healthLost){
+        if(!this.health.isEmpty())
+            for(int i = healthLost; i > 0; i--){
+                health.remove(health.size()-i);
+            }
+        else image = null;
+    }
+    
     public void die(){
             super.image = null;
     } 
