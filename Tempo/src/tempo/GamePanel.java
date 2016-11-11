@@ -26,7 +26,7 @@ public class GamePanel extends JPanel{
     // Karaktärer skapas och placeras
     public Player player = new Player((Tempo.width/2), 420, blockSize, blockSize*2, ss.getSprite(4, 0, 1, 2), 10, 3, true);
     public Npc enemy = new Npc(blockSize, blockSize * 7, blockSize, blockSize*2, ss.getSprite(5, 0, 1, 2), 5, 1, false);
-    public Npc enemy_test = new Npc(blockSize*19, blockSize*7, blockSize, blockSize*2, ss.getSprite(6, 0, 1, 2), 5, 1, false);
+    public Npc enemy_test = new Npc(blockSize*19, blockSize*7, blockSize, blockSize*2, ss.getSprite(6, 0, 1, 2), 5, 1, true);
     
     Level level = new Level(ss,"level1");
     ArrayList<Block> sky = new ArrayList<Block>();
@@ -49,7 +49,10 @@ public class GamePanel extends JPanel{
         for(int i = 0; i < 4; i++){        
             clouds.add(new Block(64+blockSize+(int)(Math.random()*20*i*64), blockSize+(int)(Math.random()*5*i*32), blockSize*2, blockSize, ss.cloudRandomizer(), false)); 
             clouds.get(i).SpeedX = 1;
-        }  
+        }
+        for(int i = 0; i < 2; i++){
+            units.add(new Npc(blockSize*i*2+200, blockSize*7, blockSize, blockSize*2, ss.getSprite(6, 0, 1, 2), 5, 1, true));
+        }
     }
     public void paintComponent(Graphics g){
         super.paintComponent(g);

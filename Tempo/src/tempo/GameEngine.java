@@ -126,7 +126,7 @@ public class GameEngine implements Runnable {
                                 gp.particle.add(new Particle(gp.bullets.get(j).x, gp.bullets.get(j).y, 25,25,gp.ss.getSprite(10, 0, 1, 1)));
                             }
                                gp.bullets.remove(j);
-                            if(test){
+                            if(test && gp.units.get(q).getIsHostile()){
                                 System.out.println("SASA");
                                 gp.units.get(q).loseHealth(1);
                             }
