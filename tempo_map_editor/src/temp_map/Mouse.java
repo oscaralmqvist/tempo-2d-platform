@@ -9,10 +9,11 @@ import java.awt.event.MouseListener;
 public class Mouse implements MouseListener {
 
     private MapEditor mp;
-    private boolean pressing;
+    private Window w;
     
-    public Mouse(MapEditor mp) {
+    public Mouse(MapEditor mp, Window w) {
         this.mp = mp;
+        this.w = w;
     }
     
     @Override
@@ -24,7 +25,7 @@ public class Mouse implements MouseListener {
             if(mp.isHitRect(mouseX, mouseY, b)) {
                 b.setID(1);
                 System.out.println("Block position: " + b.x + ", " + b.y);
-                mp.repaint();
+                w.repaint();
             }
             
         }
