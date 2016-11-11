@@ -17,6 +17,7 @@ import java.util.logging.Logger;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -49,16 +50,19 @@ public class Window extends JFrame {
         
         JButton grass = new JButton(new ImageIcon(ss.getSprite(2, 0, 1, 1))); // Grass
         JButton dirt = new JButton(new ImageIcon(ss.getSprite(1, 2, 1, 1))); // Dirt
+        JButton save = new JButton("Spara");
        
         dirt.setText("Dirt");
         grass.setText("Grass");
         
         toolbar.add(grass);
         toolbar.add(dirt);
+        toolbar.add(save);
         
         Al al = new Al(this);
         grass.addActionListener(al);
         dirt.addActionListener(al);
+        save.addActionListener(al);
         
         add(toolbar, BorderLayout.NORTH);
         add(mp, BorderLayout.CENTER);
@@ -80,6 +84,19 @@ public class Window extends JFrame {
             }
             else if(e.getActionCommand() == "Grass") {
                 w.id = 1;
+            } 
+            else if(e.getActionCommand() == "Spara") {
+                System.out.println("sad");
+                JFileChooser c = new JFileChooser();
+                c.setDialogTitle("Specify a file to save");  
+                int userSelection = c.showSaveDialog(w);
+                if (userSelection  == JFileChooser.APPROVE_OPTION) {
+                 // filename.setText(c.getSelectedFile().getName());
+                 // dir.setText(c.getCurrentDirectory().toString());
+                 File fileToSave = c.getSelectedFile();
+                 System.out.println(fileToSave.getAbsolutePath());
+                 new CreateMap(w.mp.blocks, w.mp.blockSize, fileToSave.getAbsolutePath());
+                }
             }
         }
     

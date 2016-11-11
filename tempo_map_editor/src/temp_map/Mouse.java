@@ -26,7 +26,6 @@ public class Mouse implements MouseListener {
                 b.setID(w.id);
                 System.out.println("Block position: " + b.x + ", " + b.y);
                 w.repaint();
-                new CreateMap(mp.blocks, mp.blockSize);
             }
             
         }

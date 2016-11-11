@@ -7,10 +7,10 @@ import java.util.ArrayList;
 public class CreateMap {
     
 
-    public CreateMap(ArrayList<Block> bs, int blockSize) {
+    public CreateMap(ArrayList<Block> bs, int blockSize, String path) {
 
         try{
-            PrintWriter writer = new PrintWriter("level1.txt", "UTF-8");
+            PrintWriter writer = new PrintWriter(path + ".txt", "UTF-8");
             /*
             String line = "";
             int currentline = 0;
