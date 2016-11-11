@@ -15,9 +15,11 @@ import java.awt.event.MouseMotionListener;
     public class MouseMovement implements MouseMotionListener {
 
     private MapEditor mp;
+    private Window w;
     
-    public MouseMovement(MapEditor mp) {
+    public MouseMovement(MapEditor mp, Window w) {
         this.mp = mp;
+        this.w = w;
     }
         
     @Override
@@ -29,7 +31,7 @@ import java.awt.event.MouseMotionListener;
             if(mp.isHitRect(mouseX, mouseY, b)) {
                 b.setID(1);
                 System.out.println("Block position: " + b.x + ", " + b.y);
-                mp.repaint();
+                w.repaint();
             }
             
         }

@@ -33,22 +33,24 @@ public class Window extends JFrame {
         setTitle("Tempo Map Editor");
         setSize(1000, 300);
         setVisible(true);
-        addMouseMotionListener(new MouseMovement(mp));
-        addMouseListener(new Mouse(mp));
+        addMouseMotionListener(new MouseMovement(mp, this));
+        addMouseListener(new Mouse(mp, this));
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         
         JPanel toolbar = new JPanel();
         //toolbar.setLayout(new BorderLayout());
         
-        toolbar.add(new JTextField("600"), BorderLayout.NORTH);
-        toolbar.add(new JLabel("x"), BorderLayout.NORTH);
-        toolbar.add(new JTextField("100"), BorderLayout.NORTH);
+        toolbar.add(new JTextField("600"));
+        toolbar.add(new JLabel("x"));
+        toolbar.add(new JTextField("100"));
         BufferedImage buttonIcon = ss.getSprite(2, 0, 1, 1);
         JButton button = new JButton(new ImageIcon(buttonIcon));
         toolbar.add(button);
         add(toolbar, BorderLayout.NORTH);
         add(mp, BorderLayout.CENTER);
-        revalidate();    
+        revalidate();  
     }
+   
+
     
 }
