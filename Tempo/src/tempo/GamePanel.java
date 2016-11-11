@@ -6,6 +6,7 @@
 package tempo;
 
 import java.awt.*;
+import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import javax.swing.*;
 import tempo.sprites.*;
@@ -47,8 +48,15 @@ public class GamePanel extends JPanel{
         //clouds.add(new Block(blockSize*3, blockSize*2, blockSize*2, blockSize, ss.getSprite(3, 2, 2, 1), false));
        // clouds.add(new Block(blockSize*7, blockSize*1, blockSize*2, blockSize, ss.getSprite(5, 2, 2, 1), false));
        // clouds.get(0).SpeedX = 1;
-       // clouds.get(1).SpeedX = 2;
+       // clouds.get(1).SpeedX = 2;       
         for(int i = 0; i < 4; i++){
+        BufferedImage tempCloud;
+        if(Math.random() > 0.5){
+            tempCloud = ss.getSprite(3, 2, 2, 1);
+         }
+        else{
+            tempCloud = ss.getSprite(5, 2, 2, 1);
+         }            
             clouds.add(new Block(64+blockSize+(int)(Math.random()*20*i*64), blockSize+(int)(Math.random()*5*i*32), blockSize*2, blockSize, ss.getSprite(3, 2, 2, 1), false)); 
             clouds.get(i).SpeedX = 1;
         }  
