@@ -47,6 +47,6 @@ public class Npc extends Sprites{
     }
     
     public void die(){
-            super.image = null;
+        super.image = null;
     } 
 }
