@@ -7,6 +7,7 @@ package temp_map;
 
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionListener;
+import javax.swing.SwingUtilities;
 
 /**
  *
@@ -28,8 +29,12 @@ import java.awt.event.MouseMotionListener;
         int mouseY = mp.getMousePosition().y;
         System.out.println("Mouse position: " + mouseX + ", " + mouseY);
         for(Block b : mp.blocks) {
-            if(mp.isHitRect(mouseX, mouseY, b)) {
-                b.setID(w.id);
+            if(mp.isHitRect(mouseX, mouseY, b)) {    
+                if(SwingUtilities.isRightMouseButton(e)){
+                    b.setID(0);
+                } else {
+                    b.setID(w.id);
+                }
                 System.out.println("Block position: " + b.x + ", " + b.y);
                 w.repaint();
             }
