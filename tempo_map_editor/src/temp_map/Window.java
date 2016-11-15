@@ -6,16 +6,10 @@
 package temp_map;
 
 import java.awt.BorderLayout;
-import java.awt.TextField;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.image.BufferedImage;
 import java.io.File;
-import java.io.IOException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.imageio.ImageIO;
-import javax.swing.ImageIcon;
+import java.util.ArrayList;
 import javax.swing.JButton;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
@@ -30,7 +24,13 @@ import javax.swing.JTextField;
 public class Window extends JFrame {
     
     Spritesheet ss = new Spritesheet();
-    MapEditor mp = new MapEditor(ss);
+    public ArrayList<BlockData> blocksdata = new ArrayList<BlockData>() {{
+            add(new BlockData("Dirt", 2, ss.getSprite(1, 2, 1, 1), 'j'));
+            add(new BlockData("Grass", 1, ss.getSprite(2, 0, 1, 1), 'l'));
+        } 
+    };
+    MapEditor mp = new MapEditor(ss, blocksdata);
+    
     int id = 2;
     
     public Window() {
@@ -41,6 +41,7 @@ public class Window extends JFrame {
         addMouseListener(new Mouse(mp, this));
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         
+        
         JPanel toolbar = new JPanel();
         //toolbar.setLayout(new BorderLayout());
         
@@ -48,21 +49,17 @@ public class Window extends JFrame {
         toolbar.add(new JLabel("x"));
         toolbar.add(new JTextField("100"));
         
-        JButton grass = new JButton(new ImageIcon(ss.getSprite(2, 0, 1, 1))); // Grass
-        JButton dirt = new JButton(new ImageIcon(ss.getSprite(1, 2, 1, 1))); // Dirt
-        JButton save = new JButton("Spara");
-       
-        dirt.setText("Dirt");
-        grass.setText("Grass");
+        Al al = new Al(this, blocksdata);
+        for(BlockData bd : blocksdata) {
+            toolbar.add(bd.getJButton());
+            bd.getJButton().addActionListener(al);
+        }
         
-        toolbar.add(grass);
-        toolbar.add(dirt);
+        
+        JButton save = new JButton("Spara");
+        save.addActionListener(al);
         toolbar.add(save);
         
-        Al al = new Al(this);
-        grass.addActionListener(al);
-        dirt.addActionListener(al);
-        save.addActionListener(al);
         
         add(toolbar, BorderLayout.NORTH);
         add(mp, BorderLayout.CENTER);
@@ -72,21 +69,20 @@ public class Window extends JFrame {
     private class Al implements ActionListener {
         
         Window w;
+        ArrayList<BlockData> blocksdata;
         
-        public Al(Window w) {
+        public Al(Window w, ArrayList<BlockData> blocksdata) {
             this.w = w;
+            this.blocksdata = blocksdata;
         }
         
         @Override
         public void actionPerformed(ActionEvent e) {
-            if(e.getActionCommand() == "Dirt") {
-                w.id = 2;
+            for(BlockData bd : blocksdata) {
+                if(e.getActionCommand() == bd.getName())
+                    w.id = bd.getID();
             }
-            else if(e.getActionCommand() == "Grass") {
-                w.id = 1;
-            } 
-            else if(e.getActionCommand() == "Spara") {
-                System.out.println("sad");
+            if(e.getActionCommand() == "Spara") {
                 JFileChooser c = new JFileChooser();
                 c.setDialogTitle("Specify a file to save");  
                 int userSelection = c.showSaveDialog(w);
@@ -95,7 +91,7 @@ public class Window extends JFrame {
                  // dir.setText(c.getCurrentDirectory().toString());
                  File fileToSave = c.getSelectedFile();
                  System.out.println(fileToSave.getAbsolutePath());
-                 new CreateMap(w.mp.blocks, w.mp.blockSize, fileToSave.getAbsolutePath());
+                 new CreateMap(w.mp.blocks, blocksdata, w.mp.blockSize, fileToSave.getAbsolutePath());
                 }
             }
         }

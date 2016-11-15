@@ -17,16 +17,18 @@ import javax.swing.JPanel;
 public class MapEditor extends JPanel {
     
     public int blockSize = 30;
-    public int mapX = 35;
+    public int mapX = 10;
     public int mapY = 10;
     public Spritesheet ss;
     BufferedImage dirt;
     BufferedImage grass;
+    public ArrayList<BlockData> blocksdata;
     
     public ArrayList<Block> blocks = new ArrayList<Block>();
     
-    public MapEditor(Spritesheet ss) {
+    public MapEditor(Spritesheet ss, ArrayList<BlockData> blocksdata) {
         this.ss = ss;
+        this.blocksdata = blocksdata;
         dirt = ss.getSprite(1, 2, 1, 1);
         grass = ss.getSprite(2, 0, 1, 1);
         for(int i = 0; i < mapY; i++) {
@@ -49,11 +51,9 @@ public class MapEditor extends JPanel {
     public void paintComponent(Graphics g) {
         for(Block b : blocks) {
             g.drawRect(b.x, b.y, blockSize, blockSize);
-            if(b.id == 1) {
-                g.drawImage(grass, b.x, b.y, blockSize, blockSize, null);
-            }
-            else if(b.id == 2) {
-                g.drawImage(dirt, b.x, b.y, blockSize, blockSize, null);
+            for(BlockData bd : blocksdata) {
+                if(b.id == bd.getID())
+                    g.drawImage(bd.getImage(), b.x, b.y, blockSize, blockSize, null);
             }
         }
        
