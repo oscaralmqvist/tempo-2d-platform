@@ -56,6 +56,7 @@ public class GamePanel extends JPanel{
     }
     public void paintComponent(Graphics g){
         super.paintComponent(g);
+       // Graphics g2d = (Graphics2D) g;
         paintAllSprites(g);
         paintPlayerData(g);
         if(isPaused){
