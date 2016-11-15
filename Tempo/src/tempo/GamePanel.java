@@ -31,6 +31,7 @@ public class GamePanel extends JPanel{
     Level level = new Level(ss,"level1");
     ArrayList<Block> sky = new ArrayList<Block>();
     ArrayList<Block> clouds = new ArrayList<Block>();
+    ArrayList<SetBackground> set = new ArrayList<SetBackground>();
     ArrayList<Bullet> bullets = new ArrayList<Bullet>();
     ArrayList<Particle> particle = new ArrayList<Particle>();
     ArrayList<Dialogue> dialogue = new ArrayList<Dialogue>(); 
@@ -116,6 +117,7 @@ public class GamePanel extends JPanel{
     public void paintAllSprites(Graphics g){
         sprites = new ArrayList<Sprites>();
         sprites.addAll(sky);
+        sprites.addAll(set);
         sprites.addAll(clouds);
         sprites.addAll(level.blocks);
         sprites.add(player);

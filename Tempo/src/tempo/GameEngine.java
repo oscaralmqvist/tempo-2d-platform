@@ -231,6 +231,9 @@ public class GameEngine implements Runnable {
             gp.player.ySpeed += gp.player.gravity;
             if(gp.movingLeft){
                 if(gp.player.x <= (Tempo.width/2)){
+                            for(int l = 0;l<gp.set.size();l++){
+                                gp.set.get(l).moveLeft();
+                            }
                             for(int l = 0;l<gp.particle.size();l++){
                                 gp.particle.get(l).x += 10;
                             }
@@ -261,6 +264,9 @@ public class GameEngine implements Runnable {
         }
         if(gp.movingRight){
                 if(gp.player.x >= (Tempo.width/2)){
+                            for(int l = 0;l<gp.set.size();l++){
+                                gp.set.get(l).moveRight();
+                            }
                             for(int l = 0;l<gp.particle.size();l++){
                                 gp.particle.get(l).x += -10;
                             }
