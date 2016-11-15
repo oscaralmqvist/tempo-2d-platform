@@ -82,10 +82,41 @@ public class GameEngine implements Runnable {
             checkWeapon();
             checkDialogue();
             checkPlayer();
+            resetScreen();
         }
         gp.repaint();
         }
+        public void resetScreen(){
+            if(gp.player.resetScreen){
+                gp.player.resetScreen = false;
+                                            for(int l = 0;l<gp.particle.size();l++){
+                                gp.particle.get(l).x += gp.player.spawnDiff;
+                            }
+                            for(int i = 0;i<gp.level.blocks.size();i++){
+                                gp.level.blocks.get(i).x += gp.player.spawnDiff;
+                            }
+                            for(int i = 0;i<gp.clouds.size();i++){
+                                gp.clouds.get(i).x += gp.player.spawnDiff;
+                            }
+                            for(int i = 0;i<gp.bullets.size();i++){
+                                gp.bullets.get(i).x +=gp.player.spawnDiff;
+                            }
+                            for(int i = 0; i < gp.units.size(); i++){
+                                for(int j = 0;j<gp.units.get(i).getHealth().size();j++){
+                                    gp.units.get(i).getHealth().get(j).x += gp.player.spawnDiff + 8;
+                                }
+                            }
+                            for(int i = 0; i < gp.units.size(); i++){
+                                gp.units.get(i).x += gp.player.spawnDiff;
+                            }
+                            for(int i = 0; i < gp.level.checkpoints.size(); i++){
+                                gp.level.checkpoints.get(i).x +=gp.player.spawnDiff;
+                            }
+                gp.level.spawn.x +=gp.player.spawnDiff;
+                gp.player.x+=gp.player.spawnDiff;
         
+            }
+        }
         public void checkCollision(){
             for(int i = 0;i<gp.level.blocks.size();i++){
                 if(gp.level.blocks.get(i).collision){
@@ -154,6 +185,12 @@ public class GameEngine implements Runnable {
                     }
                     }
                 }
+            }
+                 
+            for(int l=0; l < gp.level.checkpoints.size();l++){
+                if(gp.coll.isIntersect(new Rectangle(gp.player.x,gp.player.y,gp.player.width,gp.player.height),new Rectangle(gp.level.checkpoints.get(l).x,gp.level.checkpoints.get(l).y,gp.level.checkpoints.get(l).width,gp.level.checkpoints.get(l).height))){
+                         gp.player.setCheckpoint(gp.level.checkpoints.get(l));
+                    }
             }
         }
         public void checkPlayer(){
@@ -251,10 +288,14 @@ public class GameEngine implements Runnable {
                                     gp.units.get(i).getHealth().get(j).x += 10;
                                 }
                             }
+                            for(int i = 0; i< gp.level.checkpoints.size(); i++){
+                                gp.level.checkpoints.get(i).x+=10;
+                            }
                            // gp.enemy.x += 10;
                             for(int i = 0; i < gp.units.size(); i++){
                                 gp.units.get(i).x += 10;
                             }
+                            gp.level.spawn.x+=10;
                         }else{
                             for(int i = 0;i<gp.level.blocks.size();i++){
                                 gp.level.blocks.get(i).SpeedX = 0;
@@ -279,6 +320,9 @@ public class GameEngine implements Runnable {
                             for(int i = 0;i<gp.bullets.size();i++){
                                 gp.bullets.get(i).x += -10;
                             }
+                            for(int i = 0; i< gp.level.checkpoints.size(); i++){
+                                gp.level.checkpoints.get(i).x -=10;
+                            }
                             for(int i = 0; i < gp.units.size(); i++){
                                 for(int j = 0;j<gp.units.get(i).getHealth().size();j++){
                                     gp.units.get(i).getHealth().get(j).x += -10;
@@ -287,6 +331,7 @@ public class GameEngine implements Runnable {
                             for(int i = 0; i < gp.units.size(); i++){
                                 gp.units.get(i).x -= 10;
                             }
+                            gp.level.spawn.x -=10;
                         }else{
                             for(int i = 0;i<gp.level.blocks.size();i++){
                                 gp.level.blocks.get(i).SpeedX = 0;

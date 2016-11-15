@@ -32,9 +32,12 @@ public class Player extends Sprites {
     public ArrayList<Health> health = new ArrayList<Health>();
     public ArrayList<Health> reload = new ArrayList<Health>();
     public ArrayList<Health> charge = new ArrayList<Health>();
-
     
-    public Player(int x, int y, int width, int height, BufferedImage image, int hp, int lives, boolean player) {
+    public Block checkpoint;
+    public boolean resetScreen = false;
+    public int spawnDiff =0;
+    
+    public Player(int x , int y, int width, int height, BufferedImage image, int hp, int lives, boolean player) {
         super(x, y, width, height, image);
         
         for(int i = 0; i < hp; i++){
@@ -48,7 +51,7 @@ public class Player extends Sprites {
     @Override
     public void paint(Graphics g) {
        // g.drawRect(super.x, super.y, super.width, super.height);
-        g.drawImage(super.image, super.x + super.width, super.y,-super.width, super.height, null);
+        g.drawImage(super.image, super.x, super.y,super.width, super.height, null);
         
         if (player) {
             g.setFont(new Font("TimesRoman", Font.PLAIN, 25));
@@ -95,11 +98,18 @@ public class Player extends Sprites {
         
     public void die() {
         if (--lives > 0) {
-            x += 200;
-            y = 525;
+            spawnDiff = x- checkpoint.x;
+            resetScreen = true;
+            x = checkpoint.x;
+            y = checkpoint.y;
             nuts = maxNuts;
         } else {
             super.image = null;
+        }
+    }
+    public void setCheckpoint(Block block){
+        if(checkpoint != block){
+            checkpoint = block;
         }
     }
 }
