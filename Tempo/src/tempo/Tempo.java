@@ -12,7 +12,7 @@ public class Tempo {
     public static int height;
     
     public Tempo() {
-        width = 1366;
+        width = 1280;
         height = 768;
         new Window();
     }

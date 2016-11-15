@@ -31,6 +31,7 @@ public class GamePanel extends JPanel{
     Level level = new Level(ss,"level1");
     ArrayList<Block> sky = new ArrayList<Block>();
     ArrayList<Block> clouds = new ArrayList<Block>();
+    ArrayList<SetBackground> set = new ArrayList<SetBackground>();
     ArrayList<Bullet> bullets = new ArrayList<Bullet>();
     ArrayList<Particle> particle = new ArrayList<Particle>();
     ArrayList<Dialogue> dialogue = new ArrayList<Dialogue>(); 
@@ -44,6 +45,10 @@ public class GamePanel extends JPanel{
         int row = 0;
         int collumn = 0;
         sky.add(new Block(0, 0, Tempo.width, Tempo.height, ss.getSprite(0, 3, 1, 1), false));
+        set.add(new SetBackground(0.1f,0,200,Tempo.width, Tempo.height-200,ss.getImage("src/resources/mountains.png")));
+        set.add(new SetBackground(0.5f,0,300,Tempo.width, Tempo.height-300,ss.getImage("src/resources/trees.png")));
+        set.add(new SetBackground(0.7f,0,200,Tempo.width, Tempo.height-200,ss.getImage("src/resources/trees.png")));
+        set.add(new SetBackground(0.8f,0,-30,Tempo.width, Tempo.height,ss.getImage("src/resources/bushes.png")));
         units.add(enemy);
         units.add(enemy_test);
         for(int i = 0; i < 4; i++){        
@@ -56,6 +61,7 @@ public class GamePanel extends JPanel{
     }
     public void paintComponent(Graphics g){
         super.paintComponent(g);
+       // Graphics g2d = (Graphics2D) g;
         paintAllSprites(g);
         paintPlayerData(g);
         if(isPaused){
@@ -115,6 +121,7 @@ public class GamePanel extends JPanel{
     public void paintAllSprites(Graphics g){
         sprites = new ArrayList<Sprites>();
         sprites.addAll(sky);
+        sprites.addAll(set);
         sprites.addAll(clouds);
         sprites.addAll(level.blocks);
         sprites.add(player);

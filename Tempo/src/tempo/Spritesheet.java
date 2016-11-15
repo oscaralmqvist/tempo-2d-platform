@@ -34,6 +34,19 @@ public class Spritesheet {
             return sheet.getSubimage(3*a, 0, a, a);
         }
     }
+    public BufferedImage getImage(String content){
+        BufferedImage tempImage = null;
+        try{
+            tempImage = ImageIO.read(new File(content));
+        }catch(Exception e){
+            try{
+                tempImage = ImageIO.read(new File("src/resources/sheet_new.png"));
+            }catch(Exception a){
+            
+            }
+        }
+        return tempImage;
+    }
     
     public BufferedImage cloudRandomizer(){
         BufferedImage randBlock;
