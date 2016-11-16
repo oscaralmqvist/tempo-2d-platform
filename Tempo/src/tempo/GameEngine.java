@@ -238,7 +238,7 @@ public class GameEngine implements Runnable {
             }
         }
         public void checkMovement(){
-            gp.player.x += gp.player.xSpeed;
+           // gp.player.x += gp.player.xSpeed;
             gp.player.y += gp.player.ySpeed;  
             for(int i = 0; i < gp.units.size(); i++){
                 gp.units.get(i).x += gp.units.get(i).xSpeed;
@@ -255,35 +255,35 @@ public class GameEngine implements Runnable {
                                 gp.set.get(l).moveLeft();
                             }
                             for(int l = 0;l<gp.particle.size();l++){
-                                gp.particle.get(l).x += 10;
+                                gp.particle.get(l).x += gp.player.xSpeed;
                             }
                             for(int i = 0;i<gp.level.blocks.size();i++){
-                                gp.level.blocks.get(i).x += 10;
+                                gp.level.blocks.get(i).x += gp.player.xSpeed;
                             }
                             for(int i = 0;i<gp.clouds.size();i++){
                                 gp.clouds.get(i).x += 1;
                             }
                             for(int i = 0;i<gp.bullets.size();i++){
-                                gp.bullets.get(i).x += 10;
+                                gp.bullets.get(i).x += gp.player.xSpeed;
                             }
                             for(int i = 0; i < gp.units.size(); i++){
                                 for(int j = 0;j<gp.units.get(i).getHealth().size();j++){
-                                    gp.units.get(i).getHealth().get(j).x += 10;
+                                    gp.units.get(i).getHealth().get(j).x += gp.player.xSpeed;
                                 }
                             }
                             for(int i = 0; i< gp.level.checkpoints.size(); i++){
-                                gp.level.checkpoints.get(i).x+=10;
+                                gp.level.checkpoints.get(i).x+= gp.player.xSpeed;
                             }
                            // gp.enemy.x += 10;
                             for(int i = 0; i < gp.units.size(); i++){
-                                gp.units.get(i).x += 10;
+                                gp.units.get(i).x += gp.player.xSpeed;
                             }
-                            gp.level.spawn.x+=10;
+                            gp.level.spawn.x+=gp.player.xSpeed;
                         }else{
                             for(int i = 0;i<gp.level.blocks.size();i++){
                                 gp.level.blocks.get(i).SpeedX = 0;
                             }
-                            gp.player.x -= 10.0;
+                            gp.player.x -= gp.player.xSpeed;
                         }               
         }
         if(gp.movingRight){
@@ -292,34 +292,34 @@ public class GameEngine implements Runnable {
                                 gp.set.get(l).moveRight();
                             }
                             for(int l = 0;l<gp.particle.size();l++){
-                                gp.particle.get(l).x += -10;
+                                gp.particle.get(l).x -= gp.player.xSpeed;
                             }
                             for(int i = 0;i<gp.level.blocks.size();i++){
-                                gp.level.blocks.get(i).x += -10;
+                                gp.level.blocks.get(i).x -= gp.player.xSpeed;
                             }
                             for(int i = 0;i<gp.clouds.size();i++){
                                 gp.clouds.get(i).x += -1;
                             }
                             for(int i = 0;i<gp.bullets.size();i++){
-                                gp.bullets.get(i).x += -10;
+                                gp.bullets.get(i).x -= gp.player.xSpeed;
                             }
                             for(int i = 0; i< gp.level.checkpoints.size(); i++){
-                                gp.level.checkpoints.get(i).x -=10;
+                                gp.level.checkpoints.get(i).x -= gp.player.xSpeed;
                             }
                             for(int i = 0; i < gp.units.size(); i++){
                                 for(int j = 0;j<gp.units.get(i).getHealth().size();j++){
-                                    gp.units.get(i).getHealth().get(j).x += -10;
+                                    gp.units.get(i).getHealth().get(j).x -= gp.player.xSpeed;
                                 }
                             }
                             for(int i = 0; i < gp.units.size(); i++){
-                                gp.units.get(i).x -= 10;
+                                gp.units.get(i).x -= gp.player.xSpeed;
                             }
-                            gp.level.spawn.x -=10;
+                            gp.level.spawn.x -= gp.player.xSpeed;
                         }else{
                             for(int i = 0;i<gp.level.blocks.size();i++){
                                 gp.level.blocks.get(i).SpeedX = 0;
                             }
-                        gp.player.x += 10.0;
+                        gp.player.x += gp.player.xSpeed;
                         }
                 }  
         }

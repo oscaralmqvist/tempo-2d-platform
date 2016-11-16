@@ -15,7 +15,7 @@ import tempo.Health;
 
 public class Player extends Sprites {
     
-    public float xSpeed = 0; 
+    public float xSpeed = 20; 
     public float ySpeed = 0;
     public float gravity = 0;
     public int jumps = 0;

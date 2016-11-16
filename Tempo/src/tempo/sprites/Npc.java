@@ -15,12 +15,14 @@ public class Npc extends Sprites{
     private int lives;
     public double xSpeed = 0; 
     public float ySpeed = 0;
+    private boolean movingRight, movingLeft;
     private ArrayList<Health> health = new ArrayList<Health>();
     
     public Npc(int x, int y, int width, int height, BufferedImage image, int hp, int lives, boolean isHostile) {
         super(x, y, width, height, image);
         this.lives = lives;
         this.isHostile = isHostile;
+        this.movingRight = movingRight;
         if(isHostile == true){
             xSpeed = 1;
         }
@@ -37,6 +39,14 @@ public class Npc extends Sprites{
     
     public boolean getIsHostile(){
         return isHostile;
+    }
+    
+    public boolean getMovingRight(){
+        return movingRight;
+    }
+    
+    public boolean getMovingLeft(){
+        return movingLeft;
     }
     
     public ArrayList<Health> getHealth(){

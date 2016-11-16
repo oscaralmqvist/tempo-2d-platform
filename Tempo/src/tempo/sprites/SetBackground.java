@@ -14,10 +14,12 @@ import java.awt.image.BufferedImage;
  */
 public class SetBackground extends Sprites{
     float speed;
+    Player p;
     
-    public SetBackground(float speed, int x, int y, int width, int height, BufferedImage image){
+    public SetBackground(float speed, int x, int y, int width, int height, BufferedImage image, Player p){
         super(x, y, width, height, image);
         this.speed = speed;
+        this.p = p;
     }
 
     @Override
@@ -32,10 +34,10 @@ public class SetBackground extends Sprites{
         }
     }
     public void moveLeft() {
-        x += 10 * speed;
+        x += p.xSpeed * speed;
     }
     public void moveRight() {
-        x -= 10 * speed;
+        x -= p.xSpeed * speed;
     }
     
 }
