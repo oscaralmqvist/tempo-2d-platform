@@ -35,7 +35,7 @@ public class GamePanel extends JPanel{
     ArrayList<Dialogue> dialogue = new ArrayList<Dialogue>(); 
     ArrayList<Sprites> sprites;
     
-    public Player player = new Player(level.spawn.x,level.spawn.y,blockSize, blockSize*2, ss.getSprite(4, 0, 1, 2), 10, 3, true);
+    public Player player;
     public Npc enemy = new Npc(blockSize, blockSize * 7, blockSize, blockSize*2, ss.getSprite(4, 2, 1, 2), 5, 1, false);
     public Npc enemy_test = new Npc(blockSize*19, blockSize*7, blockSize, blockSize*2, ss.getSprite(4, 4, 1, 2), 5, 1, true);
     
@@ -44,6 +44,9 @@ public class GamePanel extends JPanel{
     final Font font = new Font("TimesRoman", Font.PLAIN, 78);
 
     public GamePanel(){
+        player = new Player(level.spawn.x,level.spawn.y,blockSize, blockSize*2, ss.getSprite(4, 0, 1, 2), 10, 3, true);
+        player.createAnimation();
+        player.getAnimation().setCurrentAnimation(ss.getSprite(6, 0, 1, 2), ss.getSprite(7, 0, 1, 2), ss.getSprite(8, 0, 1, 2));
         player.setCheckpoint(level.spawn);
         setFont(font);
         int row = 0;

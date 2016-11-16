@@ -59,6 +59,7 @@ public class GameEngine implements Runnable {
             checkDialogue();
             checkPlayer();
             resetScreen();
+            gp.player.getAnimation().tick();
         }
         gp.repaint();
         }

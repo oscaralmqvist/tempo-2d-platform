@@ -112,4 +112,5 @@ public class Player extends Sprites {
             checkpoint = block;
         }
     }
+
 }

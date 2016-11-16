@@ -40,9 +40,11 @@ public class Keyboard implements KeyListener {
                     break;
                 case KeyEvent.VK_A:
                      gp.movingLeft = true;
+                     gp.player.getAnimation().setCurrentAnimation(gp.ss.getSprite(6, 0, 1, 2), gp.ss.getSprite(7, 0, 1, 2), gp.ss.getSprite(8, 0, 1, 2));
                     break;
                 case KeyEvent.VK_D:
                     gp.movingRight = true;
+                    gp.player.getAnimation().setCurrentAnimation(gp.ss.getSprite(3, 0, 1, 2), gp.ss.getSprite(4, 0, 1, 2), gp.ss.getSprite(5, 0, 1, 2));
                   //  if(!movingRight)
                 //        movingRight = true;
                     break;
