@@ -25,8 +25,11 @@ public class Window extends JFrame {
     
     Spritesheet ss = new Spritesheet();
     public ArrayList<BlockData> blocksdata = new ArrayList<BlockData>() {{
-            add(new BlockData("Dirt", 2, ss.getSprite(1, 2, 1, 1), 'j'));
-            add(new BlockData("Grass", 1, ss.getSprite(2, 0, 1, 1), 'l'));
+            add(new BlockData("Dirt", 2, ss.getSprite(1, 0, 1, 1), 'd'));
+            add(new BlockData("Grass", 1, ss.getSprite(0, 0, 1, 1), 'l'));
+            add(new BlockData("Spawn", 3, ss.getSprite(2, 0, 1, 1), 's'));
+            add(new BlockData("Checkpoint", 4, ss.getSprite(0, 7, 1, 1), 'c'));
+            add(new BlockData("Tree", 5, ss.getSprite(0, 5, 1, 1), 't'));
         } 
     };
     MapEditor mp = new MapEditor(ss, blocksdata);

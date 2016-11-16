@@ -16,8 +16,8 @@ import javax.swing.JPanel;
  */
 public class MapEditor extends JPanel {
     
-    public int blockSize = 30;
-    public int mapX = 10;
+    public int blockSize = 10;
+    public int mapX = 140;
     public int mapY = 10;
     public Spritesheet ss;
     BufferedImage dirt;
