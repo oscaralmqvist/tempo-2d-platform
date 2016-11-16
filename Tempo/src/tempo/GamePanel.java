@@ -53,6 +53,7 @@ public class GamePanel extends JPanel{
         set.add(new SetBackground(0.5f,0,300,Tempo.width, Tempo.height-300,ss.getImage("src/resources/trees.png")));
         set.add(new SetBackground(0.7f,0,200,Tempo.width, Tempo.height-200,ss.getImage("src/resources/trees.png")));
         set.add(new SetBackground(0.8f,0,-30,Tempo.width, Tempo.height,ss.getImage("src/resources/bushes.png")));
+        set.add(new SetBackground(1.2f,0,-30,Tempo.width, Tempo.height,ss.getImage("src/resources/bushes.png")));
         units.add(enemy);
         units.add(enemy_test);
         for(int i = 0; i < 4; i++){        
@@ -126,7 +127,10 @@ public class GamePanel extends JPanel{
         sprites = new ArrayList<Sprites>();
         sprites.addAll(sky);
         sprites.addAll(clouds);
-        sprites.addAll(set);
+        sprites.add(set.get(0));
+        sprites.add(set.get(1));
+        sprites.add(set.get(2));
+        sprites.add(set.get(3));
         sprites.addAll(level.blocks);
         sprites.addAll(level.checkpoints);
         sprites.add(player);
@@ -143,6 +147,7 @@ public class GamePanel extends JPanel{
         sprites.addAll(dialogue);
         sprites.addAll(player.reload);
         sprites.addAll(player.charge);
+        sprites.add(set.get(4));
         for(Sprites sprite : sprites) {sprite.paint(g);}
     }
     
