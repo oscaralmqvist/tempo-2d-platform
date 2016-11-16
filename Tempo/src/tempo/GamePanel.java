@@ -125,8 +125,8 @@ public class GamePanel extends JPanel{
     public void paintAllSprites(Graphics g){
         sprites = new ArrayList<Sprites>();
         sprites.addAll(sky);
-        sprites.addAll(set);
         sprites.addAll(clouds);
+        sprites.addAll(set);
         sprites.addAll(level.blocks);
         sprites.addAll(level.checkpoints);
         sprites.add(player);

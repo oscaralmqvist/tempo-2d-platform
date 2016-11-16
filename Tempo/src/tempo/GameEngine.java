@@ -278,7 +278,7 @@ public class GameEngine implements Runnable {
                                 gp.level.blocks.get(i).x += 10;
                             }
                             for(int i = 0;i<gp.clouds.size();i++){
-                                gp.clouds.get(i).x += 10;
+                                gp.clouds.get(i).x += 1;
                             }
                             for(int i = 0;i<gp.bullets.size();i++){
                                 gp.bullets.get(i).x += 10;
@@ -315,7 +315,7 @@ public class GameEngine implements Runnable {
                                 gp.level.blocks.get(i).x += -10;
                             }
                             for(int i = 0;i<gp.clouds.size();i++){
-                                gp.clouds.get(i).x += -10;
+                                gp.clouds.get(i).x += -1;
                             }
                             for(int i = 0;i<gp.bullets.size();i++){
                                 gp.bullets.get(i).x += -10;
