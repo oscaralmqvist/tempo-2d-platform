@@ -52,8 +52,8 @@ public class GamePanel extends JPanel{
         set.add(new SetBackground(0.1f,0,200,Tempo.width, Tempo.height-200,ss.getImage("src/resources/mountains.png")));
         set.add(new SetBackground(0.5f,0,300,Tempo.width, Tempo.height-300,ss.getImage("src/resources/trees.png")));
         set.add(new SetBackground(0.7f,0,200,Tempo.width, Tempo.height-200,ss.getImage("src/resources/trees.png")));
-        set.add(new SetBackground(0.8f,0,-30,Tempo.width, Tempo.height,ss.getImage("src/resources/bushes.png")));
-        set.add(new SetBackground(1.2f,0,-30,Tempo.width, Tempo.height,ss.getImage("src/resources/bushes.png")));
+        set.add(new SetBackground(0.8f,0,-20,Tempo.width, Tempo.height,ss.getImage("src/resources/bushes.png")));
+        set.add(new SetBackground(1.2f,0,-20,Tempo.width, Tempo.height,ss.getImage("src/resources/bushes.png")));
         units.add(enemy);
         units.add(enemy_test);
         for(int i = 0; i < 4; i++){        
@@ -61,7 +61,7 @@ public class GamePanel extends JPanel{
             clouds.get(i).SpeedX = 1;
         }
         for(int i = 0; i < 2; i++){
-            units.add(new Npc(blockSize*i*3+250, blockSize*7, blockSize, blockSize*2, ss.getSprite(6, 0, 1, 2), 5, 1, true));
+            units.add(new Npc(blockSize*i*3+250, blockSize*7, blockSize, blockSize*2, ss.getSprite(4, 4, 1, 2), 5, 1, true));
         }
     }
     public void paintComponent(Graphics g){
@@ -74,53 +74,6 @@ public class GamePanel extends JPanel{
             g.setFont(new Font("TimesRoman", Font.PLAIN, 78));
             g.drawString("PAUSED", Tempo.width/2-105, Tempo.height/2);
         }
-        /*
-        
-        for(int i = 0;i<sky.size();i++){
-            sky.get(i).paint(g);
-        }
-        for(int i = 0;i<clouds.size();i++){
-            clouds.get(i).paint(g);
-        }   
-        for(int i = 0;i<blocks.size();i++){
-            blocks.get(i).paint(g);
-        }
-        player.paint(g);
-        player.paint(g);
-        for(Bullet bullet : bullets) {
-            bullet.paint(g);
-        }
-        for(int i = 0; i < particle.size() ; i++){
-            particle.get(i).paint(g);
-        }
-      
-        for(int i = 0; i < player.health.size(); i++){
-            player.health.get(i).y = player.y;
-            player.health.get(i).x = player.x + i * 10;
-        }
-        for(int i = 0; i < player.nuts ; i++){
-            g.drawImage(ss.getSprite(9, 0, 1, 1), 100+38*i, 680, this);
-        }
-        if(player.nuts > 0){
-           g.drawImage(ss.getSprite(9, 0, 1, 1),player.x + player.currentHand,player.y + player.height/2,this);
-        }
-        
-        if(isPaused){
-            g.setColor(Color.black);
-            g.setFont(new Font("TimesRoman", Font.PLAIN, 78));
-            g.drawString("PAUSED", Tempo.width/2-105, Tempo.height/2);
-        }
-        
-        
-        //Behöver byta till hp och hit() i Player;
-        if(enemy.getHealth().isEmpty()){
-            enemy.die();
-        }
-        //Behöver byta till hp och hit() i Player;
-        if (player.health.isEmpty()) {
-            player.die();
-        }
-        */
     }
     
     public void paintAllSprites(Graphics g){
@@ -145,9 +98,9 @@ public class GamePanel extends JPanel{
         sprites.addAll(enemy.getHealth());
         sprites.addAll(player.health);
         sprites.addAll(dialogue);
+        sprites.add(set.get(4));
         sprites.addAll(player.reload);
         sprites.addAll(player.charge);
-        sprites.add(set.get(4));
         for(Sprites sprite : sprites) {sprite.paint(g);}
     }
     
@@ -165,10 +118,10 @@ public class GamePanel extends JPanel{
             player.health.get(i).x = player.x + i * 10;
         }
         for(int i = 0; i < player.nuts ; i++){
-            g.drawImage(ss.getSprite(9, 0, 1, 1), 100+38*i, 680, this);
+            g.drawImage(ss.getSprite(12, 0, 1, 1), 100+38*i, 680, this);
         }
         if(player.nuts > 0){
-           g.drawImage(ss.getSprite(9, 0, 1, 1),player.x + player.currentHand,player.y + player.height/2,this);
+            g.drawImage(ss.getSprite(12, 0, 1, 1),player.x + player.currentHand,player.y + player.height/2,this);
         }
     }
     

@@ -56,10 +56,10 @@ public class Level{
                         addBlock(false,collumn,row,0,5,1,2);
                     }
                     else if(tempSubStr.equals("c")){
-                        addCheckpoint(collumn,row,7,0,1,2);
+                        addCheckpoint(collumn,row,0,7,2,2);
                     }
                     else if(tempSubStr.equals("s")){
-                        spawn = new Block(collumn * 75, row * 75,75, 75,ss.getSprite(0, 5, 1, 1), false);
+                        spawn = new Block(collumn * 75, row * 75,75, 75,null, false);
                     }
 
                     collumn++;

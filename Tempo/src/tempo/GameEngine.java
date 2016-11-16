@@ -175,7 +175,7 @@ public class GameEngine implements Runnable {
                         {
                             boolean test = gp.coll.isIntersect(new Rectangle(gp.bullets.get(j).x,gp.bullets.get(j).y,gp.bullets.get(j).width,gp.bullets.get(j).height),new Rectangle(gp.units.get(q).x,gp.units.get(q).y,gp.units.get(q).width,gp.units.get(q).height));
                             for(int l = 0;l<25;l++){
-                                gp.particle.add(new Particle(gp.bullets.get(j).x, gp.bullets.get(j).y, 25,25,gp.ss.getSprite(10, 0, 1, 1)));
+                                gp.particle.add(new Particle(gp.bullets.get(j).x, gp.bullets.get(j).y, 25,25,gp.ss.getSprite(13, 0, 1, 1)));
                             }
                                gp.bullets.remove(j);
                             if(test && gp.units.get(q).getIsHostile()){
@@ -189,8 +189,12 @@ public class GameEngine implements Runnable {
                  
             for(int l=0; l < gp.level.checkpoints.size();l++){
                 if(gp.coll.isIntersect(new Rectangle(gp.player.x,gp.player.y,gp.player.width,gp.player.height),new Rectangle(gp.level.checkpoints.get(l).x,gp.level.checkpoints.get(l).y,gp.level.checkpoints.get(l).width,gp.level.checkpoints.get(l).height))){
-                         gp.player.setCheckpoint(gp.level.checkpoints.get(l));
+                    gp.player.setCheckpoint(gp.level.checkpoints.get(l));
+                    gp.level.checkpoints.get(l).image = gp.ss.getSprite(2, 7, 2, 2);
+                    for (int i = 0; i < 2; i++) {
+                        gp.particle.add(new Particle(gp.level.checkpoints.get(l).x+40, gp.level.checkpoints.get(l).y+50, 20,40,gp.ss.getSprite(4, 0, 1, 2)));
                     }
+                }
             }
         }
         public void checkPlayer(){
