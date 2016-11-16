@@ -51,7 +51,7 @@ public class GamePanel extends JPanel{
         setFont(font);
         int row = 0;
         int collumn = 0;
-        sky.add(new Block(0, 0, Tempo.width, Tempo.height, ss.getSprite(0, 3, 1, 1), false));     
+       // sky.add(new Block(0, 0, Tempo.width, Tempo.height, ss.getSprite(0, 3, 1, 1), false));     
         set.add(new SetBackground(0,0,-200,Tempo.width, Tempo.height,ss.getImage("src/resources/sky.png"), player));  
         //speed proBlEm
         set.add(new SetBackground(0.01f,0,100,Tempo.width, Tempo.height+100,ss.getImage("src/resources/clouds.png"), player));   
@@ -91,6 +91,8 @@ public class GamePanel extends JPanel{
         sprites.add(set.get(1));
         sprites.add(set.get(2));
         sprites.add(set.get(3));
+        sprites.add(set.get(4));
+        sprites.add(set.get(5));
         sprites.addAll(level.blocks);
         sprites.addAll(level.checkpoints);
         sprites.add(player);
