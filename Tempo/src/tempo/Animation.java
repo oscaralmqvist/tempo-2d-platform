@@ -29,7 +29,7 @@ public class Animation {
     
     public void tick() {
         ticks++;
-        if(ticks == 30)  {
+        if(ticks == 15)  {
             if(currentImage < images.size()-1) {
                 ticks = 0;
                 currentImage++;
