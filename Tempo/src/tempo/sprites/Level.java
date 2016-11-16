@@ -37,7 +37,6 @@ public class Level{
             String line;
             while ((line = br.readLine()) != null) {
                 String tempStr = line;
-                System.out.println(tempStr);
                 for(int j = 0;j<tempStr.length();j++){
                     String tempSubStr = tempStr.substring(j, j+1);
                     if(tempSubStr.equals("-")){
