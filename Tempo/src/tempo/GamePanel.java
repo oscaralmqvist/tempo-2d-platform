@@ -52,7 +52,7 @@ public class GamePanel extends JPanel{
         int row = 0;
         int collumn = 0;
         sky.add(new Block(0, 0, Tempo.width, Tempo.height, ss.getSprite(0, 3, 1, 1), false));
-        set.add(new SetBackground(0.1f,0,200,Tempo.width, Tempo.height-200,ss.getImage("src/resources/mountains.png"), player));
+        set.add(new SetBackground(0.05f,0,200,Tempo.width, Tempo.height-200,ss.getImage("src/resources/mountains_final1.png"), player));
         set.add(new SetBackground(0.5f,0,300,Tempo.width, Tempo.height-300,ss.getImage("src/resources/trees.png"), player));
         set.add(new SetBackground(0.7f,0,200,Tempo.width, Tempo.height-200,ss.getImage("src/resources/trees.png"), player));
         set.add(new SetBackground(0.8f,0,-20,Tempo.width, Tempo.height,ss.getImage("src/resources/bushes.png"), player));
