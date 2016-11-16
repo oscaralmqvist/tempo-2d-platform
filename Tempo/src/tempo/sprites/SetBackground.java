@@ -13,7 +13,7 @@ import java.awt.image.BufferedImage;
  * @author Elev
  */
 public class SetBackground extends Sprites{
-    float speed;
+    public float speed;
     Player p;
     
     public SetBackground(float speed, int x, int y, int width, int height, BufferedImage image, Player p){

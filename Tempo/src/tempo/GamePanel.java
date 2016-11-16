@@ -51,18 +51,23 @@ public class GamePanel extends JPanel{
         setFont(font);
         int row = 0;
         int collumn = 0;
-        sky.add(new Block(0, 0, Tempo.width, Tempo.height, ss.getSprite(0, 3, 1, 1), false));
-        set.add(new SetBackground(0.05f,0,200,Tempo.width, Tempo.height-200,ss.getImage("src/resources/mountains_final1.png"), player));
+        sky.add(new Block(0, 0, Tempo.width, Tempo.height, ss.getSprite(0, 3, 1, 1), false));     
+        set.add(new SetBackground(0,0,-200,Tempo.width, Tempo.height,ss.getImage("src/resources/sky.png"), player));  
+        //speed proBlEm
+        set.add(new SetBackground(0.01f,0,100,Tempo.width, Tempo.height+100,ss.getImage("src/resources/clouds.png"), player));   
+        set.add(new SetBackground(0.05f,0,200,Tempo.width, Tempo.height-100,ss.getImage("src/resources/mountains_final1.png"), player));
         set.add(new SetBackground(0.5f,0,300,Tempo.width, Tempo.height-300,ss.getImage("src/resources/trees.png"), player));
         set.add(new SetBackground(0.7f,0,200,Tempo.width, Tempo.height-200,ss.getImage("src/resources/trees.png"), player));
         set.add(new SetBackground(0.8f,0,-20,Tempo.width, Tempo.height,ss.getImage("src/resources/bushes.png"), player));
         set.add(new SetBackground(1.2f,0,-20,Tempo.width, Tempo.height,ss.getImage("src/resources/bushes.png"), player));
         units.add(enemy);
         units.add(enemy_test);
+        /*
         for(int i = 0; i < 4; i++){        
             clouds.add(new Block(64+blockSize+(int)(Math.random()*20*i*64), blockSize+(int)(Math.random()*5*i*32), blockSize*2, blockSize, ss.cloudRandomizer(), false)); 
             clouds.get(i).SpeedX = 1;
         }
+        */
         for(int i = 0; i < 2; i++){
             units.add(new Npc(blockSize*i*3+250, blockSize*7, blockSize, blockSize*2, ss.getSprite(4, 4, 1, 2), 5, 1, true));
         }
@@ -80,8 +85,8 @@ public class GamePanel extends JPanel{
     
     public void paintAllSprites(Graphics g){
         sprites = new ArrayList<Sprites>();
-        sprites.addAll(sky);
-        sprites.addAll(clouds);
+       // sprites.addAll(sky);
+       // sprites.addAll(clouds);
         sprites.add(set.get(0));
         sprites.add(set.get(1));
         sprites.add(set.get(2));
@@ -100,7 +105,7 @@ public class GamePanel extends JPanel{
         sprites.addAll(enemy.getHealth());
         sprites.addAll(player.health);
         sprites.addAll(dialogue);
-        sprites.add(set.get(4));
+        sprites.add(set.get(6));
         sprites.addAll(player.reload);
         sprites.addAll(player.charge);
         for(Sprites sprite : sprites) {sprite.paint(g);}

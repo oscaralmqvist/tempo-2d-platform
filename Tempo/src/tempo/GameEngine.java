@@ -52,6 +52,7 @@ public class GameEngine implements Runnable {
     
         public synchronized void tick() {
         if(!gp.isPaused){
+            gp.set.get(1).x += 1;            
             checkMovement();
             checkCollision();
             checkClouds();
@@ -298,9 +299,10 @@ public class GameEngine implements Runnable {
                             for(int i = 0;i<gp.level.blocks.size();i++){
                                 gp.level.blocks.get(i).x -= gp.player.xSpeed;
                             }
+                            /*
                             for(int i = 0;i<gp.clouds.size();i++){
                                 gp.clouds.get(i).x += -1;
-                            }
+                            }*/
                             for(int i = 0;i<gp.bullets.size();i++){
                                 gp.bullets.get(i).x -= gp.player.xSpeed;
                             }
