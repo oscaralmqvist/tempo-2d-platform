@@ -9,6 +9,7 @@ import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 import java.util.Random;
+import tempo.Tempo;
 
 /**
  *
@@ -22,6 +23,7 @@ public class Particle extends Sprites{
     float gravity = 4f;
     static Random random = new Random();
     float opacity = 1f;
+    public boolean killParticle = false;
     
     public Particle(int x, int y,int width, int height, BufferedImage image){
         super(x,y,width,height,image);
@@ -42,6 +44,10 @@ public class Particle extends Sprites{
         size *= (1.01f*gravity);
         if(opacity > 0.01f){
             opacity -= 0.01f;
+        }
+        
+        if(y < 0 || y > Tempo.height) {
+            killParticle = true;
         }
     }
 

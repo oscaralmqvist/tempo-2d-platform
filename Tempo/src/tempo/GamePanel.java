@@ -36,8 +36,8 @@ public class GamePanel extends JPanel{
     ArrayList<Sprites> sprites;
     
     public Player player = new Player(level.spawn.x,level.spawn.y,blockSize, blockSize*2, ss.getSprite(4, 0, 1, 2), 10, 3, true);
-    public Npc enemy = new Npc(blockSize, blockSize * 7, blockSize, blockSize*2, ss.getSprite(5, 0, 1, 2), 5, 1, false);
-    public Npc enemy_test = new Npc(blockSize*19, blockSize*7, blockSize, blockSize*2, ss.getSprite(6, 0, 1, 2), 5, 1, true);
+    public Npc enemy = new Npc(blockSize, blockSize * 7, blockSize, blockSize*2, ss.getSprite(4, 2, 1, 2), 5, 1, false);
+    public Npc enemy_test = new Npc(blockSize*19, blockSize*7, blockSize, blockSize*2, ss.getSprite(4, 4, 1, 2), 5, 1, true);
     
 
     public Collision coll = new Collision();

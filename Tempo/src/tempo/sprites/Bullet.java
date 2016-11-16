@@ -36,7 +36,7 @@ public class Bullet extends Sprites {
         super.x += Math.cos(rads) * xSpeed;
         super.y += Math.sin(rads) * 10;
 
-        if(x < 0 || x > Tempo.width) {
+        if(y > Tempo.height) {
             killBullet = true;
         }
         
