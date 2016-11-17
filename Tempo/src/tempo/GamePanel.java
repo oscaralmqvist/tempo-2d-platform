@@ -44,10 +44,11 @@ public class GamePanel extends JPanel{
     final Font font = new Font("TimesRoman", Font.PLAIN, 78);
 
     public GamePanel(){
-        player = new Player(level.spawn.x,level.spawn.y,blockSize, blockSize*2, ss.getSprite(4, 0, 1, 2), 10, 3, true);
+        player = new Player(Tempo.width/2,Tempo.height/2,blockSize, blockSize*2, ss.getSprite(4, 0, 1, 2), 10, 3, true);
         player.createAnimation();
         player.getAnimation().setCurrentAnimation(ss.getSprite(6, 0, 1, 2), ss.getSprite(7, 0, 1, 2), ss.getSprite(8, 0, 1, 2));
         player.setCheckpoint(level.spawn);
+        player.die();
         setFont(font);
         int row = 0;
         int collumn = 0;

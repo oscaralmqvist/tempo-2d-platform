@@ -44,7 +44,7 @@ public class Player extends Sprites {
             health.add(new Health(x + 10*i, (y-10), 8, 8, null));
         }
         
-        this.lives = lives;
+        this.lives = ++lives;
         this.player = player;
     }
 
