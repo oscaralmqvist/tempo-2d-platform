@@ -155,10 +155,10 @@ public class GameEngine implements Runnable {
                             for(int l = 0;l<25;l++){
                                 gp.particle.add(new Particle(gp.bullets.get(j).x, gp.bullets.get(j).y, 25,25,gp.ss.getSprite(13, 0, 1, 1)));
                             }
-                               gp.bullets.remove(j);
                             if(test && gp.units.get(q).getIsHostile()){
-                                gp.units.get(q).loseHealth(1);
+                                gp.units.get(q).loseHealth(Math.round(gp.bullets.get(j).xSpeed/5));
                             }
+                            gp.bullets.remove(j);
                         }
                     }
                     }
