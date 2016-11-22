@@ -56,7 +56,7 @@ public class GamePanel extends JPanel{
         set.add(new SetBackground(0,0,-200,Tempo.width, Tempo.height,ss.getImage("src/resources/sky.png"), player));  
         //speed proBlEm
         set.add(new SetBackground(0.01f,0,100,Tempo.width, Tempo.height+100,ss.getImage("src/resources/clouds.png"), player));   
-        set.add(new SetBackground(0.05f,0,200,Tempo.width, Tempo.height-100,ss.getImage("src/resources/mountains_final1.png"), player));
+        set.add(new SetBackground(0.08f,0,200,Tempo.width, Tempo.height-100,ss.getImage("src/resources/mountains_final1.png"), player));
         set.add(new SetBackground(0.5f,0,300,Tempo.width, Tempo.height-300,ss.getImage("src/resources/trees.png"), player));
         set.add(new SetBackground(0.7f,0,200,Tempo.width, Tempo.height-200,ss.getImage("src/resources/trees.png"), player));
         set.add(new SetBackground(0.8f,0,-20,Tempo.width, Tempo.height,ss.getImage("src/resources/bushes.png"), player));
