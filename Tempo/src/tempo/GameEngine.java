@@ -61,6 +61,7 @@ public class GameEngine implements Runnable {
             checkPlayer();
             resetScreen();
             gp.player.getAnimation().tick();
+            
         }
         gp.repaint();
         }
@@ -166,15 +167,21 @@ public class GameEngine implements Runnable {
             }
                  
             for(int l=0; l < gp.level.checkpoints.size();l++){
-                if(gp.coll.isIntersect(new Rectangle(gp.player.x,gp.player.y,gp.player.width,gp.player.height),new Rectangle(gp.level.checkpoints.get(l).x,gp.level.checkpoints.get(l).y,gp.level.checkpoints.get(l).width,gp.level.checkpoints.get(l).height))){
+                //if(gp.coll.isIntersect(new Rectangle(gp.player.x,gp.player.y,gp.player.width,gp.player.height),new Rectangle(gp.level.checkpoints.get(l).x,gp.level.checkpoints.get(l).y,gp.level.checkpoints.get(l).width,gp.level.checkpoints.get(l).height))){
+                if(gp.coll.isIntersect(gp.player.getRect(),gp.level.checkpoints.get(l).getRect()) && !gp.level.checkpoints.get(l).getChecked()){
                     gp.player.setCheckpoint(gp.level.checkpoints.get(l));
+                    gp.level.checkpoints.get(l).checked();
                     gp.level.checkpoints.get(l).image = gp.ss.getSprite(2, 7, 2, 2);
-                    for (int i = 0; i < 1; i++) {
-                        gp.particle.add(new Particle(gp.level.checkpoints.get(l).x+40, gp.level.checkpoints.get(l).y+50, 75,150,gp.ss.getSprite(4, 0, 1, 2)));
+                   
+                        while(gp.level.checkpoints.get(l).getTick() < 100){   
+                            gp.particle.add(new Particle(gp.level.checkpoints.get(l).x+40, gp.level.checkpoints.get(l).y+50, 75,150,gp.ss.getSprite(4, 0, 1, 2)));
+                            gp.level.checkpoints.get(l).tick();
+                        }
                     }
                 }
             }
-        }
+       
+    
         public void checkPlayer(){
             if (gp.player.y > Tempo.height) {
                 gp.player.die();

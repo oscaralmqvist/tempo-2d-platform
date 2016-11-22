@@ -22,7 +22,7 @@ import tempo.Spritesheet;
  */
 public class Level{
     public ArrayList<Block> blocks = new ArrayList<Block>();
-    public ArrayList<Block> checkpoints  = new ArrayList<Block>();
+    public ArrayList<Checkpoint> checkpoints  = new ArrayList<Checkpoint>();
     public Block spawn;
     FileReader fr;
     BufferedReader out;
@@ -78,7 +78,7 @@ public class Level{
         blocks.add(new Block(x * 75,y * 75,75 * width,75 * height,ss.getSprite(x2, y2, width, height), coll));
     }
     public void addCheckpoint(int x, int y, int x2, int y2, int width, int height){
-        checkpoints.add(new Block(x*75, y*75, 75*width, 75*height,ss.getSprite(x2,y2,width,height),false));
+        checkpoints.add(new Checkpoint(x*75, y*75, 75*width, 75*height,ss.getSprite(x2,y2,width,height)));
     }
     
     public void paint(Graphics g) {
