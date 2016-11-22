@@ -10,7 +10,8 @@ public class Animation {
     private Sprites sprite;
     private ArrayList<BufferedImage> images;
     private int ticks = 0;
-    private int currentImage;
+    private int currentImage = 0;
+    private int changeImage = 1;
     
     public Animation(Sprites sprite) {
         this.sprite = sprite;
@@ -22,23 +23,20 @@ public class Animation {
         for(BufferedImage image : images) {
             this.images.add(image);
         }
-        currentImage = 0;
-        ticks = 0;
         sprite.setImage(this.images.get(currentImage));
     } 
     
     public void tick() {
         ticks++;
-        if(ticks == 15)  {
-            if(currentImage < images.size()-1) {
-                ticks = 0;
-                currentImage++;
-                sprite.setImage(this.images.get(currentImage));
-            } else {
-                currentImage = 0;
-                ticks = 0;
-                sprite.setImage(this.images.get(currentImage));
+        if(ticks == 8)  {
+            if(currentImage == 0/*currentImage < images.size()-1*/) {
+                changeImage = 1;
+            } else if (currentImage == images.size()-1) {
+                changeImage = -1;
             }
+            sprite.setImage(this.images.get(currentImage));
+            currentImage += changeImage;
+            ticks = 0;
         }
     }
     
