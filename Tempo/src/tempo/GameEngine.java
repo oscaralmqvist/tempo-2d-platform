@@ -167,7 +167,7 @@ public class GameEngine implements Runnable {
             }
                  
             for(int l=0; l < gp.level.checkpoints.size();l++){
-                if(gp.coll.isIntersect(new Rectangle(gp.player.x,gp.player.y,gp.player.width,gp.player.height),new Rectangle(gp.level.checkpoints.get(l).x,gp.level.checkpoints.get(l).y,gp.level.checkpoints.get(l).width,gp.level.checkpoints.get(l).height))){
+                if(gp.coll.isIntersect(new Rectangle(gp.player.x,gp.player.y,gp.player.width,gp.player.height),new Rectangle(gp.level.checkpoints.get(l).x,gp.level.checkpoints.get(l).y,gp.level.checkpoints.get(l).width,gp.level.checkpoints.get(l).height)) && !gp.level.checkpoints.get(l).getChecked()){
                     gp.player.setCheckpoint(gp.level.checkpoints.get(l));
                     gp.level.checkpoints.get(l).checked();
                     gp.level.checkpoints.get(l).image = gp.ss.getSprite(2, 7, 2, 2);
