@@ -46,7 +46,7 @@ public class Bullet extends Sprites {
     @Override
     public void paint(Graphics g) {
         //g.fillRect(x, y, width, height);
-        g.drawImage(super.image, x, y, width, height, null);
+        g.drawImage(super.image, rect.x, rect.y, rect.width, rect.height, null);
     }
     
     

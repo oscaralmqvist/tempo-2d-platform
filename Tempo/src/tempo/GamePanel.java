@@ -124,14 +124,14 @@ public class GamePanel extends JPanel{
             player.die();
         }    
         for(int i = 0; i < player.health.size(); i++){
-            player.health.get(i).y = player.y;
-            player.health.get(i).x = player.x + i * 10;
+            player.health.get(i).rect.y = player.rect.y;
+            player.health.get(i).rect.x = player.rect.x + i * 10;
         }
         for(int i = 0; i < player.nuts ; i++){
             g.drawImage(ss.getSprite(12, 0, 1, 1), 100+38*i, 680, this);
         }
         if(player.nuts > 0){
-            g.drawImage(ss.getSprite(12, 0, 1, 1),player.x + player.currentHand,player.y + player.height/2,this);
+            g.drawImage(ss.getSprite(12, 0, 1, 1),player.rect.x + player.currentHand,player.rect.y + player.rect.height/2,this);
         }
     }
     

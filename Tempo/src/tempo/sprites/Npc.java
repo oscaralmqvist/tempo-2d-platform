@@ -2,6 +2,7 @@
 package tempo.sprites;
 
 import java.awt.Graphics;
+import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import tempo.Health;
@@ -19,7 +20,7 @@ public class Npc extends Sprites{
     private ArrayList<Health> health = new ArrayList<Health>();
     
     public Npc(int x, int y, int width, int height, BufferedImage image, int hp, int lives, boolean isHostile) {
-        super(x, y, width, height, image);
+        super(new Rectangle(x,y,width,height), image);
         this.lives = lives;
         this.isHostile = isHostile;
         this.movingRight = movingRight;
@@ -34,7 +35,7 @@ public class Npc extends Sprites{
 
     @Override
     public void paint(Graphics g) {
-        g.drawImage(super.image, super.x, super.y,super.width, super.height, null);
+        g.drawImage(super.image, super.rect.x, super.rect.y,super.rect.width, super.rect.height, null);
     }
     
     public boolean getIsHostile(){

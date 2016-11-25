@@ -8,6 +8,7 @@ package tempo.sprites;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
+import java.awt.Rectangle;
 import java.awt.image.*;
 import java.util.ArrayList;
 import tempo.Health;
@@ -32,7 +33,7 @@ public class Player extends Sprites {
     public int spawnDiff =0;
     
     public Player(int x , int y, int width, int height, BufferedImage image, int hp, int lives, boolean player) {
-        super(x, y, width, height, image);
+        super(new Rectangle(x,y,width,height), image);
         
         for(int i = 0; i < hp; i++){
             health.add(new Health(x + 10*i, (y-10), 8, 8, null));
@@ -45,7 +46,7 @@ public class Player extends Sprites {
     @Override
     public void paint(Graphics g) {
        // g.drawRect(super.x, super.y, super.width, super.height);
-        g.drawImage(super.image, super.x, super.y,super.width, super.height, null);
+        g.drawImage(super.image, super.rect.x, super.rect.y,super.rect.width, super.rect.height, null);
         g.setFont(new Font("TimesRoman", Font.PLAIN, 25));
         g.setColor(Color.BLACK);
         g.drawString("x " + Integer.toString(lives), 90, 50);
@@ -89,10 +90,10 @@ public class Player extends Sprites {
         
     public void die() {
         if (--lives > 0) {
-            spawnDiff = x- checkpoint.x;
+            spawnDiff = rect.x- checkpoint.rect.x;
             resetScreen = true;
-            x = checkpoint.x;
-            y = checkpoint.y;
+            rect.x = checkpoint.rect.x;
+            rect.y = checkpoint.rect.y;
             nuts = maxNuts;
         } else {
             super.image = null;

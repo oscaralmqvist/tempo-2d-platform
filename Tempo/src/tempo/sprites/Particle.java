@@ -7,6 +7,7 @@ package tempo.sprites;
 
 import java.awt.Dimension;
 import java.awt.Graphics;
+import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
 import java.util.Random;
 import tempo.Tempo;
@@ -26,7 +27,7 @@ public class Particle extends Sprites{
     public boolean killParticle = false;
     
     public Particle(int x, int y,int width, int height, BufferedImage image){
-        super(x,y,width,height,image);
+        super(new Rectangle(x,y,width,height),image);
         velocityX = (float)((random.nextDouble()*(20)) + 1);
         velocityY = (float)((random.nextDouble()*(20)) + 1);
         
@@ -36,24 +37,24 @@ public class Particle extends Sprites{
         //gravity = (float)Math.random() + 0.5f;
     }
     public void Update(){
-        y += velocityY*speed;
+        rect.y += velocityY*speed;
         velocityY += (gravity*speed);
         
-        x += velocityX*speed;
+        rect.x += velocityX*speed;
         velocityX -= velocityX*(gravity*0.01f);
         size *= (1.01f*gravity);
         if(opacity > 0.01f){
             opacity -= 0.01f;
         }
         
-        if(y < 0 || y > Tempo.height) {
+        if(rect.y < 0 || rect.y > Tempo.height) {
             killParticle = true;
         }
     }
 
     @Override
     public void paint(Graphics g) {
-        g.drawImage(super.image, super.x, super.y,super.width, super.height, null);
+        g.drawImage(super.image, super.rect.x, super.rect.y,super.rect.width, super.rect.height, null);
     }
     
 }

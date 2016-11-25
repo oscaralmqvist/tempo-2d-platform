@@ -6,6 +6,7 @@
 package tempo.sprites;
 
 import java.awt.Graphics;
+import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
 import tempo.Collision;
 import tempo.Spritesheet;
@@ -23,13 +24,13 @@ public class Block extends Sprites{
     
     
     public Block(int x, int y, int width, int height, BufferedImage image, boolean collision){
-        super(x, y, width, height, image);
+        super(new Rectangle(x,y,width,height), image);
         this.collision = collision;
     }
 
     @Override
     public void paint(Graphics g) {
-        g.drawImage(super.image, super.x, super.y,super.width, super.height, null);
+        g.drawImage(super.image, super.rect.x, super.rect.y,super.rect.width, super.rect.height, null);
     }
     
 }
