@@ -2,6 +2,7 @@
 package tempo.sprites;
 
 import java.awt.Graphics;
+import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
 import tempo.GamePanel;
 import tempo.Tempo;
@@ -19,7 +20,7 @@ public class Bullet extends Sprites {
     
     
     public Bullet(int x, int y, int width, int height, float angle, BufferedImage image, GamePanel gp, int xmouse,int speed) {
-        super(x, y, width, height, image);
+        super(new Rectangle(x,y,width,height), image);
         this.xSpeed = speed;
         this.ySpeed = speed;
         this.rads = angle*(Math.PI/180);
@@ -33,10 +34,10 @@ public class Bullet extends Sprites {
     }
     
     public void shoot() {
-        super.x += Math.cos(rads) * xSpeed;
-        super.y += Math.sin(rads) * 10;
+        super.rect.x += Math.cos(rads) * xSpeed;
+        super.rect.y += Math.sin(rads) * 10;
 
-        if(y > Tempo.height) {
+        if(rect.y > Tempo.height) {
             killBullet = true;
         }
         

@@ -6,6 +6,7 @@
 package tempo.sprites;
 
 import java.awt.Graphics;
+import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
 
 /**
@@ -17,27 +18,27 @@ public class SetBackground extends Sprites{
     Player p;
     
     public SetBackground(float speed, int x, int y, int width, int height, BufferedImage image, Player p){
-        super(x, y, width, height, image);
+        super(new Rectangle(x,y,width,height), image);
         this.speed = speed;
         this.p = p;
     }
 
     @Override
     public void paint(Graphics g) {
-        g.drawImage(super.image, super.x, super.y,super.width, super.height, null);
-        g.drawImage(super.image, super.x + super.width, super.y,super.width, super.height, null);
-        if(x < -1280){
-            x = 0;
+        g.drawImage(super.image, super.rect.x, super.rect.y,super.rect.width, super.rect.height, null);
+        g.drawImage(super.image, super.rect.x + super.rect.width, super.rect.y,super.rect.width, super.rect.height, null);
+        if(rect.x < -1280){
+            rect.x = 0;
         }
-        if(x > 0){
-            x = -1280;
+        if(rect.x > 0){
+            rect.x = -1280;
         }
     }
     public void moveLeft() {
-        x += p.xSpeed * speed;
+        rect.x += p.xSpeed * speed;
     }
     public void moveRight() {
-        x -= p.xSpeed * speed;
+        rect.x -= p.xSpeed * speed;
     }
     
 }
