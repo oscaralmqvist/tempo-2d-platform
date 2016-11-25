@@ -35,6 +35,8 @@ public class GamePanel extends JPanel{
     ArrayList<Dialogue> dialogue = new ArrayList<Dialogue>(); 
     ArrayList<Sprites> sprites;
     
+    public Sound sound = new Sound();
+    
     public Player player;
     public Npc enemy = new Npc(blockSize, blockSize * 7, blockSize, blockSize*2, ss.getSprite(4, 2, 1, 2), 5, 1, false);
     public Npc enemy_test = new Npc(blockSize*19, blockSize*7, blockSize, blockSize*2, ss.getSprite(4, 4, 1, 2), 5, 1, true);

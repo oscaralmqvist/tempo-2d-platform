@@ -27,6 +27,7 @@ public class Keyboard implements KeyListener {
 
     @Override
     public void keyPressed(KeyEvent e) {
+        gp.sound.playSound("die");
         switch(e.getKeyCode()){
                 case KeyEvent.VK_SPACE:
                 case KeyEvent.VK_W:
