@@ -100,6 +100,7 @@ gp.set.get(1).rect.x += 1;
                                 gp.level.checkpoints.get(i).rect.x +=gp.player.spawnDiff;
                             }
                 gp.level.spawn.rect.x +=gp.player.spawnDiff;
+                gp.level.goal.rect.x  += gp.player.spawnDiff;
                 gp.player.rect.x+=gp.player.spawnDiff;
 
             }
@@ -151,7 +152,7 @@ gp.set.get(1).rect.x += 1;
                     gp.player.rect.y = temp.y;
 
                     if(gp.units.get(q).image != null){
-temp = gp.coll.getCollision(gp.player.rect, gp.units.get(q).rect);                    
+                        temp = gp.coll.getCollision(gp.player.rect, gp.units.get(q).rect);                    
                         gp.player.rect.x = temp.x;
                         gp.player.rect.y = temp.y;
                     }
@@ -179,13 +180,17 @@ temp = gp.coll.getCollision(gp.player.rect, gp.units.get(q).rect);
                     gp.level.checkpoints.get(l).checked();
                     gp.level.checkpoints.get(l).image = gp.ss.getSprite(2, 7, 2, 2);
 
-while(gp.level.checkpoints.get(l).getTick() < 100){   
+                    while(gp.level.checkpoints.get(l).getTick() < 100){   
                             gp.particle.add(new Particle(gp.level.checkpoints.get(l).rect.x+40, gp.level.checkpoints.get(l).rect.y+50, 75,150,gp.ss.getSprite(4, 0, 1, 2)));
                             gp.level.checkpoints.get(l).tick();
                         }
                     }
                 }
+            if(gp.coll.isIntersect(gp.player.rect, gp.level.goal.rect)){
+                gp.currentLevel++;
+                gp.loadLevel();
             }
+        }
 
 
         public void checkPlayer(){
@@ -294,6 +299,7 @@ gp.player.rect.y += gp.player.ySpeed;
                                 gp.units.get(i).rect.x += gp.player.xSpeed;
                             }
                             gp.level.spawn.rect.x+=gp.player.xSpeed;
+                            gp.level.goal.rect.x+=gp.player.xSpeed;
                         }else{
                             for(int i = 0;i<gp.level.blocks.size();i++){
                                 gp.level.blocks.get(i).SpeedX = 0;
@@ -331,6 +337,7 @@ gp.player.rect.y += gp.player.ySpeed;
                                 gp.units.get(i).rect.x -= gp.player.xSpeed;
                             }
                             gp.level.spawn.rect.x -= gp.player.xSpeed;
+                            gp.level.goal.rect.x -= gp.player.xSpeed;
                         }else{
                             for(int i = 0;i<gp.level.blocks.size();i++){
                                 gp.level.blocks.get(i).SpeedX = 0;

@@ -18,7 +18,7 @@ import tempo.sprites.*;
 public class GamePanel extends JPanel{
     // FLYTTA TILL PLAYER?
     public boolean isPaused, movingLeft, movingRight, movingUp;
-
+    int currentLevel =1;
     // Längden på sidan av ett block på kartan
     int blockSize = 75;
     Spritesheet ss = new Spritesheet();
@@ -26,7 +26,7 @@ public class GamePanel extends JPanel{
     // Karaktärer skapas och placeras
     //public Player player = new Player((Tempo.width/2), 420, blockSize, blockSize*2, ss.getSprite(4, 0, 1, 2), 10, 3, true);
     
-    Level level = new Level(ss,"level1");
+    Level level;
     ArrayList<Block> sky = new ArrayList<Block>();
     ArrayList<Block> clouds = new ArrayList<Block>();
     ArrayList<SetBackground> set = new ArrayList<SetBackground>();
@@ -46,11 +46,7 @@ public class GamePanel extends JPanel{
     final Font font = new Font("TimesRoman", Font.PLAIN, 78);
 
     public GamePanel(){
-        player = new Player(Tempo.width/2,Tempo.height/2,blockSize, blockSize*2, ss.getSprite(4, 0, 1, 2), 10, 3, true);
-        player.createAnimation();
-        player.getAnimation().setCurrentAnimation(ss.getSprite(6, 0, 1, 2), ss.getSprite(7, 0, 1, 2), ss.getSprite(8, 0, 1, 2));
-        player.setCheckpoint(level.spawn);
-        player.die();
+        loadLevel();
         setFont(font);
         int row = 0;
         int collumn = 0;
@@ -98,6 +94,7 @@ public class GamePanel extends JPanel{
         sprites.add(set.get(5));
         sprites.addAll(level.blocks);
         sprites.addAll(level.checkpoints);
+        sprites.add(level.goal);
         sprites.add(player);
         for(int i = 0; i < units.size(); i++){
             sprites.add(units.get(i));
@@ -135,6 +132,26 @@ public class GamePanel extends JPanel{
         if(player.nuts > 0){
             g.drawImage(ss.getSprite(12, 0, 1, 1),player.rect.x + player.currentHand,player.rect.y + player.rect.height/2,this);
         }
+    }
+     public void loadLevel(){
+         
+        if(sprites !=null){
+            sprites.clear();
+        }
+        try{
+            level = new Level(ss,"level"+currentLevel);
+            player = new Player(Tempo.width/2,Tempo.height/2,blockSize, blockSize*2, ss.getSprite(4, 0, 1, 2), 10, 3, true);
+            player.createAnimation();
+            player.getAnimation().setCurrentAnimation(ss.getSprite(6, 0, 1, 2), ss.getSprite(7, 0, 1, 2), ss.getSprite(8, 0, 1, 2));
+            player.setCheckpoint(level.spawn);
+            player.resetScreen();
+           
+
+        }catch(Exception e){
+            currentLevel = 1;
+            loadLevel();
+        }
+        
     }
     
 }

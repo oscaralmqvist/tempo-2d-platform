@@ -23,6 +23,7 @@ import tempo.Spritesheet;
 public class Level{
     public ArrayList<Block> blocks = new ArrayList<Block>();
     public ArrayList<Checkpoint> checkpoints  = new ArrayList<Checkpoint>();
+    public Goal goal;
     public Block spawn;
     FileReader fr;
     BufferedReader out;
@@ -59,6 +60,9 @@ public class Level{
                     }
                     else if(tempSubStr.equals("s")){
                         spawn = new Block(collumn * 75, row * 75,75, 75,null, false);
+                    }
+                    else if(tempSubStr.equals("g")){
+                        goal = new Goal(collumn * 75,row * 75,75,75*4,ss.getSprite(5, 0, 1, 4));
                     }
 
                     collumn++;

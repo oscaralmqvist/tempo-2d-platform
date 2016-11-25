@@ -39,7 +39,7 @@ public class Player extends Sprites {
             health.add(new Health(x + 10*i, (y-10), 8, 8, null));
         }
         
-        this.lives = ++lives;
+        this.lives = lives;
         this.player = player;
     }
 
@@ -90,10 +90,7 @@ public class Player extends Sprites {
         
     public void die() {
         if (--lives > 0) {
-            spawnDiff = rect.x- checkpoint.rect.x;
-            resetScreen = true;
-            rect.x = checkpoint.rect.x;
-            rect.y = checkpoint.rect.y;
+            resetScreen();
             nuts = maxNuts;
         } else {
             super.image = null;
@@ -103,6 +100,13 @@ public class Player extends Sprites {
         if(checkpoint != block){
             checkpoint = block;
         }
+    }
+    public void resetScreen(){
+            spawnDiff = rect.x- checkpoint.rect.x;
+            resetScreen = true;
+            rect.x = checkpoint.rect.x;
+            rect.y = checkpoint.rect.y;
+        
     }
 
 }
