@@ -15,7 +15,7 @@ import tempo.sprites.Dialogue;
  *
  * @author Elev
  */
-public class Keyboard extends KeyAdapter {
+public class Keyboard implements KeyListener {
     GamePanel gp;
    // public boolean movingRight, movingLeft, movingUp, movingDown, isPaused;
     public Keyboard(GamePanel gp){
