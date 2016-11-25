@@ -20,7 +20,7 @@ public class Spritesheet {
     
     public Spritesheet(){
         try{
-            sheet = ImageIO.read(new File("src/resources/sheet_new.png"));
+            sheet = ImageIO.read(new File("src/resources/pics/sheet_new.png"));
         }catch(Exception e){
 
         }
@@ -34,30 +34,24 @@ public class Spritesheet {
             return sheet.getSubimage(3*a, 0, a, a);
         }
     }
+    
+    /*public BufferedImage flipSprite(BufferedImage image) {
+        image 
+        return image;
+    }*/
+    
     public BufferedImage getImage(String content){
         BufferedImage tempImage = null;
         try{
             tempImage = ImageIO.read(new File(content));
         }catch(Exception e){
             try{
-                tempImage = ImageIO.read(new File("src/resources/sheet_new.png"));
+                tempImage = ImageIO.read(new File("src/resources/pics/sheet_new.png"));
             }catch(Exception a){
             
             }
         }
         return tempImage;
     }
-    
-    public BufferedImage cloudRandomizer(){
-        BufferedImage randBlock;
-        if(Math.random() > 0.5){
-            randBlock = getSprite(0, 2, 2, 1);
-         }
-        else{
-            randBlock = getSprite(2, 2, 2, 1);
-         }            
-        return  randBlock;
-    }
-
     
 }

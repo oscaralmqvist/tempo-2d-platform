@@ -17,15 +17,15 @@ public class Sound {
    
     
     public void loadSound(String name) {
-     try {
-        Clip c = AudioSystem.getClip();
-        AudioInputStream inputStream = AudioSystem.getAudioInputStream(
-          new File("src/resources/" + name + ".wav"));
-        c.open(inputStream);
-        sounds.add(c);
-      } catch (Exception e) {
-        System.err.println(e.getMessage());
-      }
+        try {
+            Clip c = AudioSystem.getClip();
+            AudioInputStream inputStream = AudioSystem.getAudioInputStream(
+            new File("src/resources/sounds/" + name + ".wav"));
+            c.open(inputStream);
+            sounds.add(c);
+        } catch (Exception e) {
+            System.err.println(e.getMessage());
+        }
     }
     
     public void playSound(int i) {
