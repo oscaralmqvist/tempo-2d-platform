@@ -15,7 +15,7 @@ import tempo.sprites.Particle;
 public class GameEngine implements Runnable {
     GamePanel gp;
     public double gravity;
-   
+    int ticks;
     public boolean running = false;
     
     public GameEngine(GamePanel gp){
@@ -51,11 +51,14 @@ public class GameEngine implements Runnable {
     }
     
         public synchronized void tick() {
+            ticks++;
         if(!gp.isPaused){
-            gp.set.get(1).x += 1;            
+            if(ticks % 4 == 2){
+                gp.set.get(1).x += 1;            
+            }
             checkMovement();
             checkCollision();
-            checkClouds();
+           // checkClouds();
             checkWeapon();
             checkDialogue();
             checkPlayer();
@@ -64,18 +67,22 @@ public class GameEngine implements Runnable {
             
         }
         gp.repaint();
+        if(ticks == 60){
+            ticks = 0;
+            }
         }
+        
         public void resetScreen(){
             if(gp.player.resetScreen){
                 gp.player.resetScreen = false;
-                                            for(int l = 0;l<gp.particle.size();l++){
+                            for(int l = 0;l<gp.particle.size();l++){
                                 gp.particle.get(l).x += gp.player.spawnDiff;
                             }
                             for(int i = 0;i<gp.level.blocks.size();i++){
                                 gp.level.blocks.get(i).x += gp.player.spawnDiff;
                             }
                             for(int i = 0;i<gp.clouds.size();i++){
-                                gp.clouds.get(i).x += gp.player.spawnDiff;
+                                    gp.clouds.get(i).x += gp.player.spawnDiff;
                             }
                             for(int i = 0;i<gp.bullets.size();i++){
                                 gp.bullets.get(i).x +=gp.player.spawnDiff;
@@ -147,7 +154,6 @@ public class GameEngine implements Runnable {
                         gp.player.x = temp.x;
                         gp.player.y = temp.y;
                     }
-                    
                     
                     for(int j = 0;j<gp.bullets.size();j++){
                         if(((gp.units.get(q).image != null && gp.coll.isIntersect(new Rectangle(gp.bullets.get(j).x,gp.bullets.get(j).y,gp.bullets.get(j).width,gp.bullets.get(j).height),new Rectangle(gp.units.get(q).x,gp.units.get(q).y,gp.units.get(q).width,gp.units.get(q).height)))) || gp.coll.isIntersect(new Rectangle(gp.bullets.get(j).x,gp.bullets.get(j).y,gp.bullets.get(j).width,gp.bullets.get(j).height), new Rectangle(gp.level.blocks.get(i).x,gp.level.blocks.get(i).y,gp.level.blocks.get(i).width,gp.level.blocks.get(i).height)))
@@ -229,7 +235,7 @@ public class GameEngine implements Runnable {
                 gp.player.currentHand = gp.player.width - 85;
             }
         }
-        
+        /*
         public void checkClouds(){
             for(int i = 0; i < gp.clouds.size(); i++){
                 gp.clouds.get(i).x += gp.clouds.get(i).SpeedX;
@@ -244,7 +250,7 @@ public class GameEngine implements Runnable {
                     gp.clouds.get(gp.clouds.size()-1).SpeedX = 1;
                 }
             }
-        }
+        }*/
         public void checkMovement(){
            // gp.player.x += gp.player.xSpeed;
             gp.player.y += gp.player.ySpeed;  
