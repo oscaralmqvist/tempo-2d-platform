@@ -7,6 +7,7 @@ package tempo;
 
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.awt.event.KeyAdapter;
 import java.util.ArrayList;
 import tempo.sprites.Dialogue;
 

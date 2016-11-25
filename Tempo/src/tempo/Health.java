@@ -7,6 +7,7 @@ package tempo;
 
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
 import tempo.sprites.Sprites;
 
@@ -22,14 +23,14 @@ public class Health extends Sprites{
     public double xSpeed = 0;
     
     public Health(int x, int y, int width, int height, BufferedImage image){
-        super(x, y, width, height, image);
+        super(new Rectangle(x, y, width, height), image);
         xSpeed = 1;
     }
 
     @Override
     public void paint(Graphics g) {
         g.setColor(new Color(red, green, blue));
-        g.fillRect(super.x, super.y,super.width, super.height);
+        g.fillRect(super.rect.x, super.rect.y,super.rect.width, super.rect.height);
     }
     public void setColor(int r,int g, int b){
         red = r;

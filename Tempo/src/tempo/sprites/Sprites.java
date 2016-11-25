@@ -2,6 +2,7 @@
 package tempo.sprites;
 
 import java.awt.Graphics;
+import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
 import tempo.Animation;
 
@@ -11,18 +12,12 @@ import tempo.Animation;
  */
 public abstract class Sprites {
     
-    public int x;
-    public int y;
-    public int width;
-    public int height;
+    public Rectangle rect;
     public BufferedImage image;
     public Animation animation;
     
-    public Sprites(int x, int y, int width, int height, BufferedImage image) {
-        this.x = x;
-        this.y = y;
-        this.width = width;
-        this.height = height;
+    public Sprites(Rectangle rect, BufferedImage image) {
+        this.rect = rect;
         this.image = image;
     }
     

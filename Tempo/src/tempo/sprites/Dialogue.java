@@ -4,6 +4,7 @@ package tempo.sprites;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
+import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 
@@ -18,7 +19,7 @@ public class Dialogue extends Sprites {
     public int ticks;
     
     public Dialogue(BufferedImage p1, BufferedImage p2, String... args) {
-        super(0, 0, 0, 0, null);
+        super(new Rectangle(0,0,0,0), null);
         dialogue = new ArrayList<String>();
         for(String arg : args) {
             dialogue.add(arg);
