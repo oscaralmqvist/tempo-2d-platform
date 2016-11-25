@@ -7,6 +7,7 @@ package tempo;
 
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.awt.event.KeyAdapter;
 import java.util.ArrayList;
 import tempo.sprites.Dialogue;
 
@@ -14,7 +15,7 @@ import tempo.sprites.Dialogue;
  *
  * @author Elev
  */
-public class Keyboard implements KeyListener {
+public class Keyboard extends KeyAdapter {
     GamePanel gp;
    // public boolean movingRight, movingLeft, movingUp, movingDown, isPaused;
     public Keyboard(GamePanel gp){
