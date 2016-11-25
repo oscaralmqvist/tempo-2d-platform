@@ -54,7 +54,7 @@ public class GameEngine implements Runnable {
             ticks++;
         if(!gp.isPaused){
             if(ticks % 4 == 2){
-                gp.set.get(1).x += 1;            
+                gp.set.get(1).rect.x += 1;            
             }
             checkMovement();
             checkCollision();
@@ -76,27 +76,27 @@ public class GameEngine implements Runnable {
             if(gp.player.resetScreen){
                 gp.player.resetScreen = false;
                             for(int l = 0;l<gp.particle.size();l++){
-                                gp.particle.get(l).x += gp.player.spawnDiff;
+                                gp.particle.get(l).rect.x+= gp.player.spawnDiff;
                             }
                             for(int i = 0;i<gp.level.blocks.size();i++){
-                                gp.level.blocks.get(i).x += gp.player.spawnDiff;
+                                gp.level.blocks.get(i).rect.x += gp.player.spawnDiff;
                             }
                             for(int i = 0;i<gp.clouds.size();i++){
-                                    gp.clouds.get(i).x += gp.player.spawnDiff;
+                                    gp.clouds.get(i).rect.x += gp.player.spawnDiff;
                             }
                             for(int i = 0;i<gp.bullets.size();i++){
-                                gp.bullets.get(i).x +=gp.player.spawnDiff;
+                                gp.bullets.get(i).rect.x +=gp.player.spawnDiff;
                             }
                             for(int i = 0; i < gp.units.size(); i++){
                                 for(int j = 0;j<gp.units.get(i).getHealth().size();j++){
-                                    gp.units.get(i).getHealth().get(j).x += gp.player.spawnDiff + 8;
+                                    gp.units.get(i).getHealth().get(j).rect.x += gp.player.spawnDiff + 8;
                                 }
                             }
                             for(int i = 0; i < gp.units.size(); i++){
-                                gp.units.get(i).x += gp.player.spawnDiff;
+                                gp.units.get(i).rect.x += gp.player.spawnDiff;
                             }
                             for(int i = 0; i < gp.level.checkpoints.size(); i++){
-                                gp.level.checkpoints.get(i).x +=gp.player.spawnDiff;
+                                gp.level.checkpoints.get(i).rect.x +=gp.player.spawnDiff;
                             }
                 gp.level.spawn.x +=gp.player.spawnDiff;
                 gp.player.x+=gp.player.spawnDiff;
