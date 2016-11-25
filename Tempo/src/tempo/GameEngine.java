@@ -20,15 +20,27 @@ public class GameEngine implements Runnable {
 
     public GameEngine(GamePanel gp){
         this.gp = gp;
+        
         start();
     }
 
     public synchronized void start() {
-        running = true;
-        new Thread(this).start();
+        //unning = true;
+      new Thread(this).start();
     }
-
-
+    
+    public void run() {
+        try {
+             while (true) {
+                 tick();
+                 Thread.sleep(16);
+             }
+         } catch (InterruptedException e) {
+             e.printStackTrace();
+         }
+    }
+    
+    /*
     public void run() {
         long lastTime = System.nanoTime();
         double nsPerTick = 1000000000D/60D;
@@ -49,7 +61,7 @@ public class GameEngine implements Runnable {
 }  
         }
     }
-
+*/
         public synchronized void tick() {
             ticks++;
 if(!gp.isPaused){         
