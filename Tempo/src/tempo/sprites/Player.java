@@ -21,14 +21,8 @@ public class Player extends Sprites {
     public int jumps = 0;
     public int nuts = 5;
     public int maxNuts = 5;
-    public int lives;
-    public boolean reloading = false;
-    public boolean charging = false;
-    public boolean player;
-    public int currentHand;
-    public int reloadTick;
-    public int chargeTick;
-    public int chargeSpeed;
+    public boolean reloading, charging, player;
+    public int currentHand, reloadTick, chargeTick, chargeSpeed, lives;
     public ArrayList<Health> health = new ArrayList<Health>();
     public ArrayList<Health> reload = new ArrayList<Health>();
     public ArrayList<Health> charge = new ArrayList<Health>();
@@ -52,13 +46,10 @@ public class Player extends Sprites {
     public void paint(Graphics g) {
        // g.drawRect(super.x, super.y, super.width, super.height);
         g.drawImage(super.image, super.x, super.y,super.width, super.height, null);
-        
-        if (player) {
-            g.setFont(new Font("TimesRoman", Font.PLAIN, 25));
-            g.setColor(Color.BLACK);
-            g.drawString("x " + Integer.toString(lives), 75, 50);
-            g.drawImage((super.image.getSubimage(6, 0, 20, 20)), 20, 20, 45, 45, null);
-        }
+        g.setFont(new Font("TimesRoman", Font.PLAIN, 25));
+        g.setColor(Color.BLACK);
+        g.drawString("x " + Integer.toString(lives), 90, 50);
+        g.drawImage((super.image.getSubimage(0, 0, 32, 20)), 15, 17, 72, 45, null);
     }
 
         public void reload(){
