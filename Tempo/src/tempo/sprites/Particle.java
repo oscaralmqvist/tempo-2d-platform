@@ -29,10 +29,10 @@ public class Particle extends Sprites{
     public Particle(int x, int y,int width, int height, BufferedImage image){
         super(new Rectangle(x,y,width,height),image);
         velocityX = (float)((random.nextDouble()*(20)) + 1);
-        velocityY = (float)((random.nextDouble()*(20)) + 1);
+        velocityY = -(float)((random.nextDouble()*(20)) + 1);
         
         velocityX = Math.random() > 0.5 ? (velocityX * -1) : velocityX;
-        velocityY = Math.random() > 0.5 ? (velocityY * -1) : velocityY;
+        //velocityY = Math.random() > 0.5 ? (velocityY * -1) : velocityY;
         
         //gravity = (float)Math.random() + 0.5f;
     }

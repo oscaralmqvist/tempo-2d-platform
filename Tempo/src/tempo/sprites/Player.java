@@ -22,7 +22,7 @@ public class Player extends Sprites {
     public int jumps = 0;
     public int nuts = 5;
     public int maxNuts = 5;
-    public boolean reloading, charging, player;
+    public boolean reloading, charging, player, flipped;
     public int currentHand, reloadTick, chargeTick, chargeSpeed, lives;
     public ArrayList<Health> health = new ArrayList<Health>();
     public ArrayList<Health> reload = new ArrayList<Health>();
@@ -46,7 +46,12 @@ public class Player extends Sprites {
     @Override
     public void paint(Graphics g) {
        // g.drawRect(super.x, super.y, super.width, super.height);
-        g.drawImage(super.image, super.rect.x, super.rect.y,super.rect.width, super.rect.height, null);
+        if (flipped) {
+            g.drawImage(super.image, super.rect.width + super.rect.x, super.rect.y,-super.rect.width, super.rect.height, null);
+        } else {
+            g.drawImage(super.image, super.rect.x, super.rect.y, super.rect.width, super.rect.height, null);
+        }
+        
         g.setFont(new Font("TimesRoman", Font.PLAIN, 25));
         g.setColor(Color.BLACK);
         g.drawString("x " + Integer.toString(lives), 90, 50);

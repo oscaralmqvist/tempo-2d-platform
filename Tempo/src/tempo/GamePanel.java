@@ -18,7 +18,7 @@ import tempo.sprites.*;
 public class GamePanel extends JPanel{
     // FLYTTA TILL PLAYER?
     public boolean isPaused, movingLeft, movingRight, movingUp;
-    int currentLevel =1;
+    int currentLevel = 1;
     // Längden på sidan av ett block på kartan
     int blockSize = 75;
     Spritesheet ss = new Spritesheet();
@@ -127,10 +127,10 @@ public class GamePanel extends JPanel{
             player.health.get(i).rect.x = player.rect.x + i * 10;
         }
         for(int i = 0; i < player.nuts ; i++){
-            g.drawImage(ss.getSprite(12, 0, 1, 1), 100+38*i, 680, this);
+            g.drawImage(ss.getSprite(13, 0, 1, 1), 100+38*i, 680, this);
         }
         if(player.nuts > 0){
-            g.drawImage(ss.getSprite(12, 0, 1, 1),player.rect.x + player.currentHand,player.rect.y + player.rect.height/2,this);
+            g.drawImage(ss.getSprite(13, 0, 1, 1),player.rect.x + player.currentHand,player.rect.y + player.rect.height/2,this);
         }
     }
      public void loadLevel(){
@@ -142,7 +142,7 @@ public class GamePanel extends JPanel{
             level = new Level(ss,"level"+currentLevel);
             player = new Player(Tempo.width/2,Tempo.height/2,blockSize, blockSize*2, ss.getSprite(4, 0, 1, 2), 10, 3, true);
             player.createAnimation();
-            player.getAnimation().setCurrentAnimation(ss.getSprite(6, 0, 1, 2), ss.getSprite(7, 0, 1, 2), ss.getSprite(8, 0, 1, 2));
+            player.getAnimation().setCurrentAnimation(ss.getSprite(4, 0, 1, 2));
             player.setCheckpoint(level.spawn);
             player.resetScreen();
            

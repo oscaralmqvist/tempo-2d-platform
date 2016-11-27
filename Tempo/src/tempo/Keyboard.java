@@ -42,12 +42,14 @@ public class Keyboard implements KeyListener {
                     break;
                 case KeyEvent.VK_A:
                     if(!gp.movingLeft)
-                        gp.player.getAnimation().setCurrentAnimation(gp.ss.getSprite(6, 0, 1, 2), gp.ss.getSprite(7, 0, 1, 2), gp.ss.getSprite(8, 0, 1, 2));
+                        gp.player.flipped = false;
+                        gp.player.getAnimation().setCurrentAnimation(gp.ss.getSprite(5, 0, 1, 2), gp.ss.getSprite(6, 0, 1, 2), gp.ss.getSprite(7, 0, 1, 2), gp.ss.getSprite(8, 0, 1, 2), gp.ss.getSprite(9, 0, 1, 2), gp.ss.getSprite(10, 0, 1, 2));
                      gp.movingLeft = true;
                     break;
                 case KeyEvent.VK_D:
                     if(!gp.movingRight)
-                        gp.player.getAnimation().setCurrentAnimation(gp.ss.getSprite(9, 0, 1, 2), gp.ss.getSprite(10, 0, 1, 2), gp.ss.getSprite(11, 0, 1, 2));
+                        gp.player.flipped = true;
+                        gp.player.getAnimation().setCurrentAnimation(gp.ss.getSprite(5, 0, 1, 2), gp.ss.getSprite(6, 0, 1, 2), gp.ss.getSprite(7, 0, 1, 2), gp.ss.getSprite(8, 0, 1, 2), gp.ss.getSprite(9, 0, 1, 2), gp.ss.getSprite(10, 0, 1, 2));
                     gp.movingRight = true;
                     
                   //  if(!movingRight)

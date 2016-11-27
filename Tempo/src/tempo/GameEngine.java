@@ -64,53 +64,54 @@ public class GameEngine implements Runnable {
 */
         public synchronized void tick() {
             ticks++;
-if(!gp.isPaused){         
-            if(ticks % 4 == 2){
-gp.set.get(1).rect.x += 1;            
+            if(!gp.isPaused){         
+                if(ticks % 4 == 2){
+                    gp.set.get(1).rect.x += 1;            
+                }
+                checkMovement();
+                checkCollision();
+               // checkClouds();
+                checkWeapon();
+                checkDialogue();
+                checkPlayer();
+                resetScreen();
+                gp.player.getAnimation().tick();
             }
-            checkMovement();
-            checkCollision();
-           // checkClouds();
-            checkWeapon();
-            checkDialogue();
-            checkPlayer();
-            resetScreen();
-            gp.player.getAnimation().tick();
-
-        }
-        gp.repaint();
-        if(ticks == 60){
-            ticks = 0;
+            gp.repaint();
+            if(ticks == 60){
+                ticks = 0;
             }
         }
 
         public void resetScreen(){
             if(gp.player.resetScreen){
                 gp.player.resetScreen = false;
-                            for(int l = 0;l<gp.particle.size();l++){
-                                gp.particle.get(l).rect.x += gp.player.spawnDiff;
-                            }
-                            for(int i = 0;i<gp.level.blocks.size();i++){
-                                gp.level.blocks.get(i).rect.x += gp.player.spawnDiff;
-                            }
-                            for(int i = 0;i<gp.clouds.size();i++){
-                                gp.clouds.get(i).rect.x += gp.player.spawnDiff;
-                                    gp.clouds.get(i).rect.x += gp.player.spawnDiff;
-                            }
-                            for(int i = 0;i<gp.bullets.size();i++){
-                                gp.bullets.get(i).rect.x +=gp.player.spawnDiff;
-                            }
-                            for(int i = 0; i < gp.units.size(); i++){
-                                for(int j = 0;j<gp.units.get(i).getHealth().size();j++){
-                                    gp.units.get(i).getHealth().get(j).rect.x += gp.player.spawnDiff + 8;
-                                }
-                            }
-                            for(int i = 0; i < gp.units.size(); i++){
-                                gp.units.get(i).rect.x += gp.player.spawnDiff;
-                            }
-                            for(int i = 0; i < gp.level.checkpoints.size(); i++){
-                                gp.level.checkpoints.get(i).rect.x +=gp.player.spawnDiff;
-                            }
+                
+                for(int l = 0;l<gp.particle.size();l++){
+                    gp.particle.get(l).rect.x += gp.player.spawnDiff;
+                }
+                for(int i = 0;i<gp.level.blocks.size();i++){
+                    gp.level.blocks.get(i).rect.x += gp.player.spawnDiff;
+                }
+                for(int i = 0;i<gp.clouds.size();i++){
+                    gp.clouds.get(i).rect.x += gp.player.spawnDiff;
+                        gp.clouds.get(i).rect.x += gp.player.spawnDiff;
+                }
+                for(int i = 0;i<gp.bullets.size();i++){
+                    gp.bullets.get(i).rect.x +=gp.player.spawnDiff;
+                }
+                for(int i = 0; i < gp.units.size(); i++){
+                    for(int j = 0;j<gp.units.get(i).getHealth().size();j++){
+                        gp.units.get(i).getHealth().get(j).rect.x += gp.player.spawnDiff + 8;
+                    }
+                }
+                for(int i = 0; i < gp.units.size(); i++){
+                    gp.units.get(i).rect.x += gp.player.spawnDiff;
+                }
+                for(int i = 0; i < gp.level.checkpoints.size(); i++){
+                    gp.level.checkpoints.get(i).rect.x +=gp.player.spawnDiff;
+                }
+                
                 gp.level.spawn.rect.x +=gp.player.spawnDiff;
                 gp.level.goal.rect.x  += gp.player.spawnDiff;
                 gp.player.rect.x+=gp.player.spawnDiff;
@@ -129,7 +130,7 @@ gp.set.get(1).rect.x += 1;
                         } else if(((gp.units.get(j).image != null && gp.coll.getTopCollision(gp.player.rect ,gp.units.get(j).rect)) || gp.coll.getTopCollision(gp.player.rect,gp.level.blocks.get(i).rect)) && gp.player.ySpeed < 0){
                             gp.player.gravity = 0;
                             gp.player.ySpeed = 0;
-} else { 
+                        } else { 
                             gp.player.gravity = 2f;
                         }
                     }
@@ -174,7 +175,7 @@ gp.set.get(1).rect.x += 1;
                         {
                             boolean test = gp.coll.isIntersect(gp.bullets.get(j).rect,gp.units.get(q).rect);
                             for(int l = 0;l<25;l++){
-                                gp.particle.add(new Particle(gp.bullets.get(j).rect.x, gp.bullets.get(j).rect.y, 25,25,gp.ss.getSprite(13, 0, 1, 1)));
+                                gp.particle.add(new Particle(gp.bullets.get(j).rect.x, gp.bullets.get(j).rect.y, 25,25,gp.ss.getSprite(14, 0, 1, 1)));
                             }
                             if(test && gp.units.get(q).getIsHostile()){
                                 gp.units.get(q).loseHealth(Math.round(gp.bullets.get(j).xSpeed/5));
@@ -192,12 +193,13 @@ gp.set.get(1).rect.x += 1;
                     gp.level.checkpoints.get(l).checked();
                     gp.level.checkpoints.get(l).image = gp.ss.getSprite(2, 7, 2, 2);
 
-                    while(gp.level.checkpoints.get(l).getTick() < 100){   
-                            gp.particle.add(new Particle(gp.level.checkpoints.get(l).rect.x+40, gp.level.checkpoints.get(l).rect.y+50, 75,150,gp.ss.getSprite(4, 0, 1, 2)));
-                            gp.level.checkpoints.get(l).tick();
-                        }
+                    while(gp.level.checkpoints.get(l).getTick() < 20){
+                        int i = (int)(Math.random() * 3);
+                        gp.particle.add(new Particle(gp.level.checkpoints.get(l).rect.x+40, gp.level.checkpoints.get(l).rect.y+50, 80,80,gp.ss.getSprite(13, 1+i, 1, 1)));
+                        gp.level.checkpoints.get(l).tick();
                     }
                 }
+            }
             if(gp.coll.isIntersect(gp.player.rect, gp.level.goal.rect)){
                 gp.currentLevel++;
                 gp.loadLevel();
@@ -246,39 +248,27 @@ gp.set.get(1).rect.x += 1;
             }
 
 
-            if(MouseInfo.getPointerInfo().getLocation().x  > (Tempo.width/2 + gp.player.rect.width/2)){
-            gp.player.currentHand = gp.player.rect.width - 15;
-            }
-            else{
+            if (MouseInfo.getPointerInfo().getLocation().x  > (Tempo.width/2 + gp.player.rect.width/2)) {
+                gp.player.currentHand = gp.player.rect.width - 15;
+            } else {
                 gp.player.currentHand = gp.player.rect.width - 85;
             }
-        }
-        /*
-        public void checkClouds(){
-            for(int i = 0; i < gp.clouds.size(); i++){
-                gp.clouds.get(i).rect.x += gp.clouds.get(i).SpeedX;
-                if(gp.clouds.get(i).rect.x > Tempo.width + 100){
-                    gp.clouds.remove(i);
-gp.clouds.add(new Block(-100, gp.blockSize+(int)(Math.random()*5*(gp.clouds.size()-i)*21), gp.blockSize*2, gp.blockSize, gp.ss.cloudRandomizer(), false)); 
-                    gp.clouds.get(gp.clouds.size()-1).SpeedX = 1;
-                }
-                if(gp.clouds.get(i).rect.x < -100){
-                    gp.clouds.remove(i);
-gp.clouds.add(new Block(Tempo.width +100, gp.blockSize+(int)(Math.random()*5*(gp.clouds.size()-i)*21), gp.blockSize*2, gp.blockSize, gp.ss.cloudRandomizer(), false)); 
-                    gp.clouds.get(gp.clouds.size()-1).SpeedX = 1;
-                }
+            
+            if ((!gp.movingLeft && !gp.movingRight) || (gp.movingLeft && gp.movingRight)) {
+                gp.player.animation.setCurrentAnimation(gp.ss.getSprite(4, 0, 1, 2));
             }
-        }*/
+        }
+
         public void checkMovement(){
-           // gp.player.x += gp.player.xSpeed;
-gp.player.rect.y += gp.player.ySpeed;  
+            // gp.player.x += gp.player.xSpeed;
+            gp.player.rect.y += gp.player.ySpeed;  
             for(int i = 0; i < gp.units.size(); i++){
                 gp.units.get(i).rect.x += gp.units.get(i).xSpeed;
                 if(gp.units.get(i).getIsHostile()){
-                        for(int j = 0;j<gp.units.get(i).getHealth().size();j++){
-                            gp.units.get(i).getHealth().get(j).rect.x = gp.units.get(i).rect.x;
-                        }
+                    for(int j = 0;j<gp.units.get(i).getHealth().size();j++){
+                        gp.units.get(i).getHealth().get(j).rect.x = gp.units.get(i).rect.x;
                     }
+                }
             }
             gp.player.ySpeed += gp.player.gravity;
             if(gp.movingLeft){
