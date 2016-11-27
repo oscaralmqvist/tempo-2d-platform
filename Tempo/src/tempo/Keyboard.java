@@ -51,15 +51,11 @@ public class Keyboard implements KeyListener {
                         gp.player.flipped = true;
                         gp.player.getAnimation().setCurrentAnimation(gp.ss.getSprite(5, 0, 1, 2), gp.ss.getSprite(6, 0, 1, 2), gp.ss.getSprite(7, 0, 1, 2), gp.ss.getSprite(8, 0, 1, 2), gp.ss.getSprite(9, 0, 1, 2), gp.ss.getSprite(10, 0, 1, 2));
                     gp.movingRight = true;
-                    
-                  //  if(!movingRight)
-                //        movingRight = true;
                     break;
                 case KeyEvent.VK_ESCAPE:
                     gp.isPaused = !gp.isPaused;
                     break;
                 case KeyEvent.VK_Z:
-
                     gp.dialogue.add(new Dialogue(gp.ss.getSprite(7, 0, 1, 2).getSubimage(0, 0, 32, 32), gp.ss.getSprite(5, 0, 1, 2).getSubimage(0, 0, 32, 32),
                             "får MASSVIS med random invites :S",
                             "lyssnar på muSIK",

@@ -24,6 +24,7 @@ public class Player extends Sprites {
     public int maxNuts = 5;
     public boolean reloading, charging, player, flipped;
     public int currentHand, reloadTick, chargeTick, chargeSpeed, lives;
+    public BufferedImage icon;
     public ArrayList<Health> health = new ArrayList<Health>();
     public ArrayList<Health> reload = new ArrayList<Health>();
     public ArrayList<Health> charge = new ArrayList<Health>();
@@ -41,6 +42,7 @@ public class Player extends Sprites {
         
         this.lives = lives;
         this.player = player;
+        this.icon = image.getSubimage(0, 0, 32, 20);
     }
 
     @Override
@@ -55,7 +57,7 @@ public class Player extends Sprites {
         g.setFont(new Font("TimesRoman", Font.PLAIN, 25));
         g.setColor(Color.BLACK);
         g.drawString("x " + Integer.toString(lives), 90, 50);
-        g.drawImage((super.image.getSubimage(0, 0, 32, 20)), 15, 17, 72, 45, null);
+        g.drawImage(icon, 15, 17, 72, 45, null);
     }
 
         public void reload(){
