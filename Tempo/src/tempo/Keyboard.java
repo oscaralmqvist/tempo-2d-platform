@@ -17,7 +17,6 @@ import tempo.sprites.Dialogue;
  */
 public class Keyboard implements KeyListener {
     GamePanel gp;
-   // public boolean movingRight, movingLeft, movingUp, movingDown, isPaused;
     public Keyboard(GamePanel gp){
         this.gp = gp;
         
@@ -28,11 +27,11 @@ public class Keyboard implements KeyListener {
 
     @Override
     public void keyPressed(KeyEvent e) {
-        gp.sound.playSound("die");
         switch(e.getKeyCode()){
                 case KeyEvent.VK_SPACE:
                 case KeyEvent.VK_W:
                     if (gp.player.jumps < 2) {
+                        gp.sound.playSound("jump");
                         for(int i = 0;i<gp.level.blocks.size();i++){
                             gp.player.ySpeed = -22.5f;
                             break;
@@ -81,54 +80,10 @@ public class Keyboard implements KeyListener {
                     break;
                 case KeyEvent.VK_D:
                     gp.movingRight = false;
-                  //  if(!movingRight)
-                //        movingRight = true;
                     break;
                 case KeyEvent.VK_R:
                         gp.player.reloading = true;
                     break;
                 }
-        /*
-        if(e.getKeyCode() == KeyEvent.VK_D){
-            movingRight = false;
-            gp.enemy.xSpeed = 0;
-            for(int i = 0;i<gp.blocks.size();i++){
-                gp.blocks.get(i).SpeedX = 0;
-            }
-            if(movingLeft){
-                if(gp.enemy.x < 400){
-                    for(int i = 0;i<gp.blocks.size();i++){
-                        gp.blocks.get(i).SpeedX = +10;
-                    }
-                }else{
-                    for(int i = 0;i<gp.blocks.size();i++){
-                        gp.blocks.get(i).SpeedX = 0;
-                    }
-                gp.enemy.xSpeed -= 10.0;
-                }
-                movingLeft = true;
-            }
-        }
-        if(e.getKeyCode() == KeyEvent.VK_A){
-            movingLeft = false;
-            gp.enemy.xSpeed = 0;
-            for(int i = 0;i<gp.blocks.size();i++){
-                gp.blocks.get(i).SpeedX = 0;
-            }
-            if(movingRight){
-                if(gp.enemy.x > 800){
-                    for(int i = 0;i<gp.blocks.size();i++){
-                        gp.blocks.get(i).SpeedX = -10;
-                    }
-                }else{
-                    for(int i = 0;i<gp.blocks.size();i++){
-                        gp.blocks.get(i).SpeedX = 0;
-                    }
-                gp.enemy.xSpeed += 10.0;
-                }
-                movingRight = true;
-            }
-        }        
-        */
     }
 }

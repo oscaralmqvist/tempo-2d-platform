@@ -9,35 +9,29 @@ import javax.sound.sampled.Clip;
 
 public class Sound {
     
-    private ArrayList<Clip> sounds = new ArrayList<Clip>();
-    
-    public Sound() {
-        loadSound("neeeej");
-    }
+    private Clip music = loadSound("music");
    
-    
-    public void loadSound(String name) {
+    public Clip loadSound(String name) {
+        Clip c = null;
         try {
-            Clip c = AudioSystem.getClip();
+            c = AudioSystem.getClip();
             AudioInputStream inputStream = AudioSystem.getAudioInputStream(
             new File("src/resources/sounds/" + name + ".wav"));
             c.open(inputStream);
-            sounds.add(c);
         } catch (Exception e) {
             System.err.println(e.getMessage());
         }
-    }
-    
-    public void playSound(int i) {
-        sounds.get(i).start();
+        return c;
     }
     
     public void playSound(String name) {
-        switch(name) {
-            case "die":
-                sounds.get(0).start();
-            break;
-        }
+        Clip c = loadSound(name);
+        c.setFramePosition(0);
+        c.start();
+    }
+    
+    public void playMusic() {
+        music.loop(Clip.LOOP_CONTINUOUSLY);
     }
     
 

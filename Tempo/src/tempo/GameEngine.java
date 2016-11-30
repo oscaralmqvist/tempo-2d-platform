@@ -25,8 +25,7 @@ public class GameEngine implements Runnable {
     }
 
     public synchronized void start() {
-        //unning = true;
-      new Thread(this).start();
+        new Thread(this).start();
     }
     
     public void run() {
@@ -39,29 +38,7 @@ public class GameEngine implements Runnable {
              e.printStackTrace();
          }
     }
-    
-    /*
-    public void run() {
-        long lastTime = System.nanoTime();
-        double nsPerTick = 1000000000D/60D;
 
-        int ticks = 0;
-        int frames = 0;
-
-        double delta = 0;
-
-        while(running) {
-            long now = System.nanoTime();
-            delta += (now - lastTime) / nsPerTick;
-            lastTime = now;
-
-            while (delta >= 1) {
-                tick();
-                delta -= 1;
-}  
-        }
-    }
-*/
         public synchronized void tick() {
             ticks++;
             if(!gp.isPaused){         
@@ -70,7 +47,6 @@ public class GameEngine implements Runnable {
                 }
                 checkMovement();
                 checkCollision();
-               // checkClouds();
                 checkWeapon();
                 checkDialogue();
                 checkPlayer();
@@ -174,6 +150,7 @@ public class GameEngine implements Runnable {
                         if(((gp.units.get(q).image != null && gp.coll.isIntersect(gp.bullets.get(j).rect,gp.units.get(q).rect))) || gp.coll.isIntersect(gp.bullets.get(j).rect, gp.level.blocks.get(i).rect))
                         {
                             boolean test = gp.coll.isIntersect(gp.bullets.get(j).rect,gp.units.get(q).rect);
+                            gp.sound.playSound("splat");
                             for(int l = 0;l<25;l++){
                                 gp.particle.add(new Particle(gp.bullets.get(j).rect.x, gp.bullets.get(j).rect.y, 25,25,gp.ss.getSprite(14, 0, 1, 1)));
                             }
@@ -192,12 +169,12 @@ public class GameEngine implements Runnable {
                     gp.player.setCheckpoint(gp.level.checkpoints.get(l));
                     gp.level.checkpoints.get(l).checked();
                     gp.level.checkpoints.get(l).image = gp.ss.getSprite(2, 7, 2, 2);
-
                     while(gp.level.checkpoints.get(l).getTick() < 20){
                         int i = (int)(Math.random() * 3);
-                        gp.particle.add(new Particle(gp.level.checkpoints.get(l).rect.x+40, gp.level.checkpoints.get(l).rect.y+50, 80,80,gp.ss.getSprite(13, 1+i, 1, 1)));
+                        gp.particle.add(new Particle(gp.level.checkpoints.get(l).rect.x+30, gp.level.checkpoints.get(l).rect.y+30, 80,80,gp.ss.getSprite(13, 1+i, 1, 1)));
                         gp.level.checkpoints.get(l).tick();
                     }
+                    gp.sound.playMusic();
                 }
             }
             if(gp.coll.isIntersect(gp.player.rect, gp.level.goal.rect)){
@@ -210,6 +187,7 @@ public class GameEngine implements Runnable {
         public void checkPlayer(){
             if (gp.player.rect.y > Tempo.height) {
                 gp.player.die();
+                gp.sound.playSound("neeeej");
             }
         }
 
@@ -260,7 +238,6 @@ public class GameEngine implements Runnable {
         }
 
         public void checkMovement(){
-            // gp.player.x += gp.player.xSpeed;
             gp.player.rect.y += gp.player.ySpeed;  
             for(int i = 0; i < gp.units.size(); i++){
                 gp.units.get(i).rect.x += gp.units.get(i).xSpeed;
@@ -296,7 +273,6 @@ public class GameEngine implements Runnable {
                             for(int i = 0; i< gp.level.checkpoints.size(); i++){
                                 gp.level.checkpoints.get(i).rect.x+= gp.player.xSpeed;
                             }
-                           // gp.enemy.x += 10;
                             for(int i = 0; i < gp.units.size(); i++){
                                 gp.units.get(i).rect.x += gp.player.xSpeed;
                             }
@@ -320,10 +296,6 @@ public class GameEngine implements Runnable {
                             for(int i = 0;i<gp.level.blocks.size();i++){
                                 gp.level.blocks.get(i).rect.x -= gp.player.xSpeed;
                             }
-                            /*
-                            for(int i = 0;i<gp.clouds.size();i++){
-                                gp.clouds.get(i).x += -1;
-                            }*/
                             for(int i = 0;i<gp.bullets.size();i++){
                                 gp.bullets.get(i).rect.x -= gp.player.xSpeed;
                             }
