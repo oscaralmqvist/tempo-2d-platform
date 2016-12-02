@@ -8,12 +8,23 @@ public class StateManager {
     private Stack<State> states = new Stack<State>();
     
     public void startGame() {
-        states.empty();
-        states.add(new GameState());
+        if(!states.isEmpty()) {
+            if(states.peek().getClass() == PauseState.class)
+                states.pop();
+        }
+        else {
+            states.empty();
+            states.add(new GameState());
+        }
     }
     
     public void pauseGame() {
-        
+        synchronized(this) {
+            if(states.peek().getClass() == GameState.class) {
+                disableAllStatesKeyboard();
+                states.add(new PauseState());
+            }
+        }
     }
     
     

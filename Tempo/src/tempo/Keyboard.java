@@ -10,6 +10,7 @@ import java.awt.event.KeyListener;
 import java.awt.event.KeyAdapter;
 import java.util.ArrayList;
 import states.GameState;
+import states.PauseState;
 import states.State;
 import tempo.sprites.Dialogue;
 
@@ -31,9 +32,15 @@ public class Keyboard implements KeyListener {
 
     @Override
     public void keyPressed(KeyEvent e) {
-        for(State s : gp.getStateManager().getStates()) {
-            if(s.getClass() == GameState.class) {
-                gs = (GameState) s;
+        /* 
+        Kan ej loop:a igenom detta med en foreach, då den uppdaterar
+        spelet under körning.
+        */
+       
+        int const_l = gp.getStateManager().getStates().size();
+        for(int j = 0; j < const_l; j++) {
+            if(gp.getStateManager().getStates().get(j).getClass() == GameState.class) {
+                gs =  (GameState) gp.getStateManager().getStates().get(j);
                 switch(e.getKeyCode()){
                         case KeyEvent.VK_SPACE:
                         case KeyEvent.VK_W:
@@ -59,7 +66,11 @@ public class Keyboard implements KeyListener {
                             gs.movingRight = true;
                             break;
                         case KeyEvent.VK_ESCAPE:
-                            gs.isPaused = !gs.isPaused;
+                            if(gp.getStateManager().getStates().peek().getClass() == GameState.class)
+                                gp.getStateManager().pauseGame();
+                            else if(gp.getStateManager().getStates().peek().getClass() == PauseState.class)
+                                gp.getStateManager().startGame();
+                            
                             break;
                         case KeyEvent.VK_Z:
                             gs.dialogue.add(new Dialogue(gs.ss.getSprite(7, 0, 1, 2).getSubimage(0, 0, 32, 32), gs.ss.getSprite(5, 0, 1, 2).getSubimage(0, 0, 32, 32),
@@ -80,7 +91,9 @@ public class Keyboard implements KeyListener {
             } else {
                 System.out.println("asdas");
             }
+        
         }
+
 
     }
 

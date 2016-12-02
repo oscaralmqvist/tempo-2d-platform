@@ -43,6 +43,7 @@ public class GameEngine implements Runnable {
     }
 
         public synchronized void tick() {
+            if(gp.getStateManager().getStates().peek().getClass() == GameState.class) {
             for(State s : gp.getStateManager().getStates()) {
                 if(s.getClass() == GameState.class) {
                     gs = (GameState) s;
@@ -66,6 +67,7 @@ public class GameEngine implements Runnable {
                 } else {
                     gs = null;
                 }
+            }
             }
         }
 
