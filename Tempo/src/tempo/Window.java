@@ -13,11 +13,13 @@ import java.awt.event.*;
  * @author Elev
  */
 public class Window extends JFrame{
-    public GamePanel panel = new GamePanel();
-    public GameEngine ge = new GameEngine(panel);
+    public GamePanel panel;
+    public GameEngine ge;
     
     
     public Window(){
+        panel = new GamePanel();
+        ge = new GameEngine(panel);
         add(panel);
         setTitle("Tempo");
         setVisible(true);
@@ -45,12 +47,12 @@ public class Window extends JFrame{
       }
 
       public void windowActivated(WindowEvent e) {
-        panel.isPaused = false;
+        //panel.isPaused = false;
 
       }
 
       public void windowDeactivated(WindowEvent e) {
-        panel.isPaused = true;
+        //panel.isPaused = true;
 
       }
 

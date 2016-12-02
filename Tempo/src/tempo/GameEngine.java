@@ -4,6 +4,8 @@ import java.awt.MouseInfo;
 import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
 import javax.swing.*;
+import states.GameState;
+import states.State;
 import tempo.sprites.Block;
 import tempo.sprites.Bullet;
 import tempo.sprites.Npc;
@@ -13,14 +15,15 @@ import tempo.sprites.Particle;
 * @author Oscar Almqvist
 */
 public class GameEngine implements Runnable {
-    GamePanel gp;
+    
+    private GameState gs;
+    public GamePanel gp;
     public double gravity;
     int ticks;
     public boolean running = false;
 
     public GameEngine(GamePanel gp){
         this.gp = gp;
-        
         start();
     }
 
@@ -40,283 +43,290 @@ public class GameEngine implements Runnable {
     }
 
         public synchronized void tick() {
-            ticks++;
-            if(!gp.isPaused){         
-                if(ticks % 4 == 2){
-                    gp.set.get(1).rect.x += 1;            
+            for(State s : gp.getStateManager().getStates()) {
+                if(s.getClass() == GameState.class) {
+                    gs = (GameState) s;
+                    ticks++;
+                    if(!gs.isPaused){         
+                        if(ticks % 4 == 2){
+                            gs.set.get(1).rect.x += 1;            
+                        }
+                        checkMovement();
+                        checkCollision();
+                        checkWeapon();
+                        checkDialogue();
+                        checkPlayer();
+                        resetScreen();
+                        gs.player.getAnimation().tick();
+                    }
+                    gp.repaint();
+                    if(ticks == 60){
+                        ticks = 0;
+                    }
+                } else {
+                    gs = null;
                 }
-                checkMovement();
-                checkCollision();
-                checkWeapon();
-                checkDialogue();
-                checkPlayer();
-                resetScreen();
-                gp.player.getAnimation().tick();
-            }
-            gp.repaint();
-            if(ticks == 60){
-                ticks = 0;
             }
         }
 
         public void resetScreen(){
-            if(gp.player.resetScreen){
-                gp.player.resetScreen = false;
+            if(gs.player.resetScreen){
+                gs.player.resetScreen = false;
                 
-                for(int l = 0;l<gp.particle.size();l++){
-                    gp.particle.get(l).rect.x += gp.player.spawnDiff;
+                for(int l = 0;l<gs.particle.size();l++){
+                    gs.particle.get(l).rect.x += gs.player.spawnDiff;
                 }
-                for(int i = 0;i<gp.level.blocks.size();i++){
-                    gp.level.blocks.get(i).rect.x += gp.player.spawnDiff;
+                for(int i = 0;i<gs.level.blocks.size();i++){
+                    gs.level.blocks.get(i).rect.x += gs.player.spawnDiff;
                 }
-                for(int i = 0;i<gp.clouds.size();i++){
-                    gp.clouds.get(i).rect.x += gp.player.spawnDiff;
-                        gp.clouds.get(i).rect.x += gp.player.spawnDiff;
+                for(int i = 0;i<gs.clouds.size();i++){
+                    gs.clouds.get(i).rect.x += gs.player.spawnDiff;
+                        gs.clouds.get(i).rect.x += gs.player.spawnDiff;
                 }
-                for(int i = 0;i<gp.bullets.size();i++){
-                    gp.bullets.get(i).rect.x +=gp.player.spawnDiff;
+                for(int i = 0;i<gs.bullets.size();i++){
+                    gs.bullets.get(i).rect.x +=gs.player.spawnDiff;
                 }
-                for(int i = 0; i < gp.units.size(); i++){
-                    for(int j = 0;j<gp.units.get(i).getHealth().size();j++){
-                        gp.units.get(i).getHealth().get(j).rect.x += gp.player.spawnDiff + 8;
+                for(int i = 0; i < gs.units.size(); i++){
+                    for(int j = 0;j<gs.units.get(i).getHealth().size();j++){
+                        gs.units.get(i).getHealth().get(j).rect.x += gs.player.spawnDiff + 8;
                     }
                 }
-                for(int i = 0; i < gp.units.size(); i++){
-                    gp.units.get(i).rect.x += gp.player.spawnDiff;
+                for(int i = 0; i < gs.units.size(); i++){
+                    gs.units.get(i).rect.x += gs.player.spawnDiff;
                 }
-                for(int i = 0; i < gp.level.checkpoints.size(); i++){
-                    gp.level.checkpoints.get(i).rect.x +=gp.player.spawnDiff;
+                for(int i = 0; i < gs.level.checkpoints.size(); i++){
+                    gs.level.checkpoints.get(i).rect.x +=gs.player.spawnDiff;
                 }
                 
-                gp.level.spawn.rect.x +=gp.player.spawnDiff;
-                gp.level.goal.rect.x  += gp.player.spawnDiff;
-                gp.player.rect.x+=gp.player.spawnDiff;
+                gs.level.spawn.rect.x +=gs.player.spawnDiff;
+                gs.level.goal.rect.x  += gs.player.spawnDiff;
+                gs.player.rect.x+=gs.player.spawnDiff;
 
             }
         }
         public void checkCollision(){
-            for(int i = 0;i<gp.level.blocks.size();i++){
-                if(gp.level.blocks.get(i).collision){
-                    for(int j = 0; j < gp.units.size(); j++){
-                        if(((gp.units.get(j).image != null && gp.coll.getTopCollision(gp.player.rect ,gp.units.get(j).rect)) || gp.coll.getTopCollision(gp.player.rect,gp.level.blocks.get(i).rect)) && gp.player.ySpeed > 0){
-                            gp.player.gravity = 0;
-                            gp.player.ySpeed = 0;
-                            gp.player.jumps = 0;
+            for(int i = 0;i<gs.level.blocks.size();i++){
+                if(gs.level.blocks.get(i).collision){
+                    for(int j = 0; j < gs.units.size(); j++){
+                        if(((gs.units.get(j).image != null && gs.coll.getTopCollision(gs.player.rect ,gs.units.get(j).rect)) || gs.coll.getTopCollision(gs.player.rect,gs.level.blocks.get(i).rect)) && gs.player.ySpeed > 0){
+                            gs.player.gravity = 0;
+                            gs.player.ySpeed = 0;
+                            gs.player.jumps = 0;
                             break;
-                        } else if(((gp.units.get(j).image != null && gp.coll.getTopCollision(gp.player.rect ,gp.units.get(j).rect)) || gp.coll.getTopCollision(gp.player.rect,gp.level.blocks.get(i).rect)) && gp.player.ySpeed < 0){
-                            gp.player.gravity = 0;
-                            gp.player.ySpeed = 0;
+                        } else if(((gs.units.get(j).image != null && gs.coll.getTopCollision(gs.player.rect ,gs.units.get(j).rect)) || gs.coll.getTopCollision(gs.player.rect,gs.level.blocks.get(i).rect)) && gs.player.ySpeed < 0){
+                            gs.player.gravity = 0;
+                            gs.player.ySpeed = 0;
                         } else { 
-                            gp.player.gravity = 2f;
+                            gs.player.gravity = 2f;
                         }
                     }
                 }
             }
-            for(int i = 0; i < gp.level.blocks.size();i++){
-                if(gp.level.blocks.get(i).collision){
-                    for(int u = 0; u < gp.units.size(); u++){
-                        Rectangle u_temp = gp.coll.getCollision(gp.units.get(u).rect, gp.level.blocks.get(i).rect);
-                        if(gp.coll.isIntersect(gp.units.get(u).rect, gp.level.blocks.get(i).rect)){
-                            gp.units.get(u).xSpeed = -gp.units.get(u).xSpeed;
+            for(int i = 0; i < gs.level.blocks.size();i++){
+                if(gs.level.blocks.get(i).collision){
+                    for(int u = 0; u < gs.units.size(); u++){
+                        Rectangle u_temp = gs.coll.getCollision(gs.units.get(u).rect, gs.level.blocks.get(i).rect);
+                        if(gs.coll.isIntersect(gs.units.get(u).rect, gs.level.blocks.get(i).rect)){
+                            gs.units.get(u).xSpeed = -gs.units.get(u).xSpeed;
                         }
-                        gp.units.get(u).rect.x = u_temp.x;
+                        gs.units.get(u).rect.x = u_temp.x;
                     }
                 }
             }
 
-            for(int u = 0; u < gp.units.size(); u++){
-                Rectangle u_temp = gp.coll.getCollision(gp.units.get(u).rect, gp.player.rect);
-                if(gp.coll.isIntersect(gp.units.get(u).rect, gp.player.rect)){
-                    gp.units.get(u).xSpeed = -gp.units.get(u).xSpeed;
+            for(int u = 0; u < gs.units.size(); u++){
+                Rectangle u_temp = gs.coll.getCollision(gs.units.get(u).rect, gs.player.rect);
+                if(gs.coll.isIntersect(gs.units.get(u).rect, gs.player.rect)){
+                    gs.units.get(u).xSpeed = -gs.units.get(u).xSpeed;
                 }
             }
 
-            for(int i = 0;i<gp.level.blocks.size();i++){
-                gp.level.blocks.get(i).rect.x += gp.level.blocks.get(i).SpeedX;
-                gp.level.blocks.get(i).rect.y += gp.level.blocks.get(i).SpeedY;
-                if(gp.level.blocks.get(i).collision){
-                    for(int q = 0; q < gp.units.size(); q++){
-                    Rectangle temp = gp.coll.getCollision(gp.player.rect, gp.level.blocks.get(i).rect);
-                    gp.player.rect.x = temp.x;
-                    gp.player.rect.y = temp.y;
+            for(int i = 0;i<gs.level.blocks.size();i++){
+                gs.level.blocks.get(i).rect.x += gs.level.blocks.get(i).SpeedX;
+                gs.level.blocks.get(i).rect.y += gs.level.blocks.get(i).SpeedY;
+                if(gs.level.blocks.get(i).collision){
+                    for(int q = 0; q < gs.units.size(); q++){
+                    Rectangle temp = gs.coll.getCollision(gs.player.rect, gs.level.blocks.get(i).rect);
+                    gs.player.rect.x = temp.x;
+                    gs.player.rect.y = temp.y;
 
-                    if(gp.units.get(q).image != null){
-                        temp = gp.coll.getCollision(gp.player.rect, gp.units.get(q).rect);                    
-                        gp.player.rect.x = temp.x;
-                        gp.player.rect.y = temp.y;
+                    if(gs.units.get(q).image != null){
+                        temp = gs.coll.getCollision(gs.player.rect, gs.units.get(q).rect);                    
+                        gs.player.rect.x = temp.x;
+                        gs.player.rect.y = temp.y;
                     }
 
-                    for(int j = 0;j<gp.bullets.size();j++){
-                        if(((gp.units.get(q).image != null && gp.coll.isIntersect(gp.bullets.get(j).rect,gp.units.get(q).rect))) || gp.coll.isIntersect(gp.bullets.get(j).rect, gp.level.blocks.get(i).rect))
+                    for(int j = 0;j<gs.bullets.size();j++){
+                        if(((gs.units.get(q).image != null && gs.coll.isIntersect(gs.bullets.get(j).rect,gs.units.get(q).rect))) || gs.coll.isIntersect(gs.bullets.get(j).rect, gs.level.blocks.get(i).rect))
                         {
-                            boolean test = gp.coll.isIntersect(gp.bullets.get(j).rect,gp.units.get(q).rect);
-                            gp.sound.playSound("splat");
+                            boolean test = gs.coll.isIntersect(gs.bullets.get(j).rect,gs.units.get(q).rect);
+                            gs.sound.playSound("splat");
                             for(int l = 0;l<25;l++){
-                                gp.particle.add(new Particle(gp.bullets.get(j).rect.x, gp.bullets.get(j).rect.y, 25,25,gp.ss.getSprite(14, 0, 1, 1)));
+                                gs.particle.add(new Particle(gs.bullets.get(j).rect.x, gs.bullets.get(j).rect.y, 25,25,gs.ss.getSprite(14, 0, 1, 1)));
                             }
-                            if(test && gp.units.get(q).getIsHostile()){
-                                gp.units.get(q).loseHealth(Math.round(gp.bullets.get(j).xSpeed/5));
+                            if(test && gs.units.get(q).getIsHostile()){
+                                gs.units.get(q).loseHealth(Math.round(gs.bullets.get(j).xSpeed/5));
                             }
-                            gp.bullets.remove(j);
+                            gs.bullets.remove(j);
                         }
                     }
                     }
                 }
             }
 
-            for(int l=0; l < gp.level.checkpoints.size();l++){
-                if(gp.coll.isIntersect(gp.player.rect,gp.level.checkpoints.get(l).rect) && !gp.level.checkpoints.get(l).getChecked()){
-                    gp.player.setCheckpoint(gp.level.checkpoints.get(l));
-                    gp.level.checkpoints.get(l).checked();
-                    gp.level.checkpoints.get(l).image = gp.ss.getSprite(2, 7, 2, 2);
-                    while(gp.level.checkpoints.get(l).getTick() < 20){
+            for(int l=0; l < gs.level.checkpoints.size();l++){
+                if(gs.coll.isIntersect(gs.player.rect,gs.level.checkpoints.get(l).rect) && !gs.level.checkpoints.get(l).getChecked()){
+                    gs.player.setCheckpoint(gs.level.checkpoints.get(l));
+                    gs.level.checkpoints.get(l).checked();
+                    gs.level.checkpoints.get(l).image = gs.ss.getSprite(2, 7, 2, 2);
+                    while(gs.level.checkpoints.get(l).getTick() < 20){
                         int i = (int)(Math.random() * 3);
-                        gp.particle.add(new Particle(gp.level.checkpoints.get(l).rect.x+30, gp.level.checkpoints.get(l).rect.y+30, 80,80,gp.ss.getSprite(13, 1+i, 1, 1)));
-                        gp.level.checkpoints.get(l).tick();
+                        gs.particle.add(new Particle(gs.level.checkpoints.get(l).rect.x+30, gs.level.checkpoints.get(l).rect.y+30, 80,80,gs.ss.getSprite(13, 1+i, 1, 1)));
+                        gs.level.checkpoints.get(l).tick();
                     }
-                    gp.sound.playMusic();
+                    gs.sound.playMusic();
                 }
             }
-            if(gp.coll.isIntersect(gp.player.rect, gp.level.goal.rect)){
-                gp.currentLevel++;
-                gp.loadLevel();
+            if(gs.coll.isIntersect(gs.player.rect, gs.level.goal.rect)){
+                gs.currentLevel++;
+                gs.loadLevel();
             }
         }
 
 
         public void checkPlayer(){
-            if (gp.player.rect.y > Tempo.height) {
-                gp.player.die();
-                gp.sound.playSound("neeeej");
+            if (gs.player.rect.y > Tempo.height) {
+                gs.player.die();
+                gs.sound.playSound("neeeej");
             }
         }
 
         public void checkDialogue(){
-            for(int i = 0; i < gp.dialogue.size(); i++) {
-               if(gp.dialogue.get(i).isDone()) {
-                   gp.dialogue.remove(i);
+            for(int i = 0; i < gs.dialogue.size(); i++) {
+               if(gs.dialogue.get(i).isDone()) {
+                   gs.dialogue.remove(i);
                } else {
-                   gp.dialogue.get(i).printDialogue();
+                   gs.dialogue.get(i).printDialogue();
                }
             }
         }
 
         public void checkWeapon(){
-            if(gp.player.reloading){
-                gp.player.reload();
+            if(gs.player.reloading){
+                gs.player.reload();
             }
-            if(gp.player.charging){
-                gp.player.charge();
+            if(gs.player.charging){
+                gs.player.charge();
             }
 
 
-            for(int l = 0;l<gp.particle.size();l++){
-                gp.particle.get(l).Update();
-                if (gp.particle.get(l).killParticle) {
-                    gp.particle.remove(l);
+            for(int l = 0;l<gs.particle.size();l++){
+                gs.particle.get(l).Update();
+                if (gs.particle.get(l).killParticle) {
+                    gs.particle.remove(l);
                 }
             }
-            for(int i = 0; i < gp.bullets.size(); i++) {
-                gp.bullets.get(i).shoot();
-                gp.bullets.get(i).rect.y += gp.bullets.get(i).ySpeed;
-                gp.bullets.get(i).ySpeed += gp.bullets.get(i).gravity;
-                if(gp.bullets.get(i).killBullet) {
-                    gp.bullets.remove(i);
+            for(int i = 0; i < gs.bullets.size(); i++) {
+                gs.bullets.get(i).shoot();
+                gs.bullets.get(i).rect.y += gs.bullets.get(i).ySpeed;
+                gs.bullets.get(i).ySpeed += gs.bullets.get(i).gravity;
+                if(gs.bullets.get(i).killBullet) {
+                    gs.bullets.remove(i);
                 }
             }
 
 
-            if (MouseInfo.getPointerInfo().getLocation().x  > (Tempo.width/2 + gp.player.rect.width/2)) {
-                gp.player.currentHand = gp.player.rect.width - 15;
+            if (MouseInfo.getPointerInfo().getLocation().x  > (Tempo.width/2 + gs.player.rect.width/2)) {
+                gs.player.currentHand = gs.player.rect.width - 15;
             } else {
-                gp.player.currentHand = gp.player.rect.width - 85;
+                gs.player.currentHand = gs.player.rect.width - 85;
             }
             
-            if ((!gp.movingLeft && !gp.movingRight) || (gp.movingLeft && gp.movingRight)) {
-                gp.player.animation.setCurrentAnimation(gp.ss.getSprite(4, 0, 1, 2));
+            if ((!gs.movingLeft && !gs.movingRight) || (gs.movingLeft && gs.movingRight)) {
+                gs.player.animation.setCurrentAnimation(gs.ss.getSprite(4, 0, 1, 2));
             }
         }
 
         public void checkMovement(){
-            gp.player.rect.y += gp.player.ySpeed;  
-            for(int i = 0; i < gp.units.size(); i++){
-                gp.units.get(i).rect.x += gp.units.get(i).xSpeed;
-                if(gp.units.get(i).getIsHostile()){
-                    for(int j = 0;j<gp.units.get(i).getHealth().size();j++){
-                        gp.units.get(i).getHealth().get(j).rect.x = gp.units.get(i).rect.x;
+            gs.player.rect.y += gs.player.ySpeed;  
+            for(int i = 0; i < gs.units.size(); i++){
+                gs.units.get(i).rect.x += gs.units.get(i).xSpeed;
+                if(gs.units.get(i).getIsHostile()){
+                    for(int j = 0;j<gs.units.get(i).getHealth().size();j++){
+                        gs.units.get(i).getHealth().get(j).rect.x = gs.units.get(i).rect.x;
                     }
                 }
             }
-            gp.player.ySpeed += gp.player.gravity;
-            if(gp.movingLeft){
-                if(gp.player.rect.x <= (Tempo.width/2)){
-                            for(int l = 0;l<gp.set.size();l++){
-                                gp.set.get(l).moveLeft();
+            gs.player.ySpeed += gs.player.gravity;
+            if(gs.movingLeft){
+                if(gs.player.rect.x <= (Tempo.width/2)){
+                            for(int l = 0;l<gs.set.size();l++){
+                                gs.set.get(l).moveLeft();
                             }
-                            for(int l = 0;l<gp.particle.size();l++){
-                                gp.particle.get(l).rect.x += gp.player.xSpeed;
+                            for(int l = 0;l<gs.particle.size();l++){
+                                gs.particle.get(l).rect.x += gs.player.xSpeed;
                             }
-                            for(int i = 0;i<gp.level.blocks.size();i++){
-                                gp.level.blocks.get(i).rect.x += gp.player.xSpeed;
+                            for(int i = 0;i<gs.level.blocks.size();i++){
+                                gs.level.blocks.get(i).rect.x += gs.player.xSpeed;
                             }
-                            for(int i = 0;i<gp.clouds.size();i++){
-                                gp.clouds.get(i).rect.x += 1;
+                            for(int i = 0;i<gs.clouds.size();i++){
+                                gs.clouds.get(i).rect.x += 1;
                             }
-                            for(int i = 0;i<gp.bullets.size();i++){
-                                gp.bullets.get(i).rect.x += gp.player.xSpeed;
+                            for(int i = 0;i<gs.bullets.size();i++){
+                                gs.bullets.get(i).rect.x += gs.player.xSpeed;
                             }
-                            for(int i = 0; i < gp.units.size(); i++){
-                                for(int j = 0;j<gp.units.get(i).getHealth().size();j++){
-                                    gp.units.get(i).getHealth().get(j).rect.x += gp.player.xSpeed;
+                            for(int i = 0; i < gs.units.size(); i++){
+                                for(int j = 0;j<gs.units.get(i).getHealth().size();j++){
+                                    gs.units.get(i).getHealth().get(j).rect.x += gs.player.xSpeed;
                                 }
                             }
-                            for(int i = 0; i< gp.level.checkpoints.size(); i++){
-                                gp.level.checkpoints.get(i).rect.x+= gp.player.xSpeed;
+                            for(int i = 0; i< gs.level.checkpoints.size(); i++){
+                                gs.level.checkpoints.get(i).rect.x+= gs.player.xSpeed;
                             }
-                            for(int i = 0; i < gp.units.size(); i++){
-                                gp.units.get(i).rect.x += gp.player.xSpeed;
+                            for(int i = 0; i < gs.units.size(); i++){
+                                gs.units.get(i).rect.x += gs.player.xSpeed;
                             }
-                            gp.level.spawn.rect.x+=gp.player.xSpeed;
-                            gp.level.goal.rect.x+=gp.player.xSpeed;
+                            gs.level.spawn.rect.x+=gs.player.xSpeed;
+                            gs.level.goal.rect.x+=gs.player.xSpeed;
                         }else{
-                            for(int i = 0;i<gp.level.blocks.size();i++){
-                                gp.level.blocks.get(i).SpeedX = 0;
+                            for(int i = 0;i<gs.level.blocks.size();i++){
+                                gs.level.blocks.get(i).SpeedX = 0;
                             }
-                            gp.player.rect.x -= gp.player.xSpeed;
+                            gs.player.rect.x -= gs.player.xSpeed;
 }               
         }
-        if(gp.movingRight){
-                if(gp.player.rect.x >= (Tempo.width/2)){
-                            for(int l = 0;l<gp.set.size();l++){
-                                gp.set.get(l).moveRight();
+        if(gs.movingRight){
+                if(gs.player.rect.x >= (Tempo.width/2)){
+                            for(int l = 0;l<gs.set.size();l++){
+                                gs.set.get(l).moveRight();
                             }
-                            for(int l = 0;l<gp.particle.size();l++){
-                                gp.particle.get(l).rect.x -= gp.player.xSpeed;
+                            for(int l = 0;l<gs.particle.size();l++){
+                                gs.particle.get(l).rect.x -= gs.player.xSpeed;
                             }
-                            for(int i = 0;i<gp.level.blocks.size();i++){
-                                gp.level.blocks.get(i).rect.x -= gp.player.xSpeed;
+                            for(int i = 0;i<gs.level.blocks.size();i++){
+                                gs.level.blocks.get(i).rect.x -= gs.player.xSpeed;
                             }
-                            for(int i = 0;i<gp.bullets.size();i++){
-                                gp.bullets.get(i).rect.x -= gp.player.xSpeed;
+                            for(int i = 0;i<gs.bullets.size();i++){
+                                gs.bullets.get(i).rect.x -= gs.player.xSpeed;
                             }
-                            for(int i = 0; i< gp.level.checkpoints.size(); i++){
-                                gp.level.checkpoints.get(i).rect.x -= gp.player.xSpeed;
+                            for(int i = 0; i< gs.level.checkpoints.size(); i++){
+                                gs.level.checkpoints.get(i).rect.x -= gs.player.xSpeed;
                             }
-                            for(int i = 0; i < gp.units.size(); i++){
-                                for(int j = 0;j<gp.units.get(i).getHealth().size();j++){
-                                    gp.units.get(i).getHealth().get(j).rect.x -= gp.player.xSpeed;
+                            for(int i = 0; i < gs.units.size(); i++){
+                                for(int j = 0;j<gs.units.get(i).getHealth().size();j++){
+                                    gs.units.get(i).getHealth().get(j).rect.x -= gs.player.xSpeed;
                                 }
                             }
-                            for(int i = 0; i < gp.units.size(); i++){
-                                gp.units.get(i).rect.x -= gp.player.xSpeed;
+                            for(int i = 0; i < gs.units.size(); i++){
+                                gs.units.get(i).rect.x -= gs.player.xSpeed;
                             }
-                            gp.level.spawn.rect.x -= gp.player.xSpeed;
-                            gp.level.goal.rect.x -= gp.player.xSpeed;
+                            gs.level.spawn.rect.x -= gs.player.xSpeed;
+                            gs.level.goal.rect.x -= gs.player.xSpeed;
                         }else{
-                            for(int i = 0;i<gp.level.blocks.size();i++){
-                                gp.level.blocks.get(i).SpeedX = 0;
+                            for(int i = 0;i<gs.level.blocks.size();i++){
+                                gs.level.blocks.get(i).SpeedX = 0;
                             }
-                        gp.player.rect.x += gp.player.xSpeed;
+                        gs.player.rect.x += gs.player.xSpeed;
                         }
 }  
         }

@@ -9,6 +9,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import states.GameState;
+import states.State;
 import tempo.sprites.Bullet;
 
 /**
@@ -18,6 +20,7 @@ import tempo.sprites.Bullet;
 public class Mouse implements MouseListener {
     
     GamePanel gp;
+    GameState gs;
     
     public Mouse(GamePanel gp) {
         this.gp = gp;
@@ -30,34 +33,44 @@ public class Mouse implements MouseListener {
 
     @Override
     public void mousePressed(MouseEvent e) {
-        if(gp.player.nuts > 0){
-            gp.player.reload.clear();
-            gp.player.reloading = false;   
-            gp.player.charging = true;
+        for(State s : gp.getStateManager().getStates()) {
+            if(s.getClass() == GameState.class) {
+                gs = (GameState) s;
+                if(gs.player.nuts > 0){
+                    gs.player.reload.clear();
+                    gs.player.reloading = false;   
+                    gs.player.charging = true;
 
+                }
+            }
         }
     }
 
     @Override
     public void mouseReleased(MouseEvent e) {
-        if(gp.player.nuts > 0){
-            gp.sound.playSound("swoosh");
-            int speed = gp.player.charge.size();
+        for(State s : gp.getStateManager().getStates()) {
+            if(s.getClass() == GameState.class) {
+                gs = (GameState) s;
+                if(gs.player.nuts > 0){
+                    gs.sound.playSound("swoosh");
+                    int speed = gs.player.charge.size();
 
-            if(speed < 5){
-                speed = 5;
-            }
-            gp.player.charging = false;
-            
-                float angle = (float) Math.toDegrees(Math.atan2(e.getY() - (gp.player.rect.y + gp.player.rect.height/2), e.getX() - (gp.player.rect.x + gp.player.currentHand)));
-                int i = (int)(Math.random() * 4 + 30);
-                gp.bullets.add(new Bullet(gp.player.rect.x + gp.player.currentHand, gp.player.rect.y + gp.player.rect.height/2, i, i, angle, gp.ss.getSprite(13, 0, 1, 1), gp, e.getX(),speed));
-                
-                gp.player.nuts--;
-                if(gp.player.nuts == 0){
-                    gp.player.reloading = true;
+                    if(speed < 5){
+                        speed = 5;
+                    }
+                    gs.player.charging = false;
+
+                        float angle = (float) Math.toDegrees(Math.atan2(e.getY() - (gs.player.rect.y + gs.player.rect.height/2), e.getX() - (gs.player.rect.x + gs.player.currentHand)));
+                        int i = (int)(Math.random() * 4 + 30);
+                        gs.bullets.add(new Bullet(gs.player.rect.x + gs.player.currentHand, gs.player.rect.y + gs.player.rect.height/2, i, i, angle, gs.ss.getSprite(13, 0, 1, 1), gs, e.getX(),speed));
+
+                        gs.player.nuts--;
+                        if(gs.player.nuts == 0){
+                            gs.player.reloading = true;
+                        }
+                gs.player.charge.clear();
                 }
-        gp.player.charge.clear();
+            }
         }
     }
 
