@@ -47,12 +47,9 @@ public class Player extends Sprites {
 
     @Override
     public void paint(Graphics g) {
-       // g.drawRect(super.x, super.y, super.width, super.height);
-        if (flipped) {
-            g.drawImage(super.image, super.rect.width + super.rect.x, super.rect.y,-super.rect.width, super.rect.height, null);
-        } else {
-            g.drawImage(super.image, super.rect.x, super.rect.y, super.rect.width, super.rect.height, null);
-        }
+        if (flipped) g.drawImage(super.image, super.rect.width + super.rect.x, super.rect.y,-super.rect.width, super.rect.height, null);
+        else g.drawImage(super.image, super.rect.x, super.rect.y, super.rect.width, super.rect.height, null);
+        
         
         g.setFont(new Font("TimesRoman", Font.PLAIN, 25));
         g.setColor(Color.BLACK);

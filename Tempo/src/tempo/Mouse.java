@@ -30,7 +30,7 @@ public class Mouse implements MouseListener {
 
     @Override
     public void mousePressed(MouseEvent e) {
-        if((gp.player.nuts >0) /*&& (e.getX() < gp.player.x || e.getX() > gp.player.x + gp.player.width)*/){
+        if(gp.player.nuts > 0){
             gp.player.reload.clear();
             gp.player.reloading = false;   
             gp.player.charging = true;
@@ -41,6 +41,7 @@ public class Mouse implements MouseListener {
     @Override
     public void mouseReleased(MouseEvent e) {
         if(gp.player.nuts > 0){
+            gp.sound.playSound("swoosh");
             int speed = gp.player.charge.size();
 
             if(speed < 5){

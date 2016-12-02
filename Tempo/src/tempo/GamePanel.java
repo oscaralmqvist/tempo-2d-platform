@@ -61,12 +61,6 @@ public class GamePanel extends JPanel{
         set.add(new SetBackground(1.2f,0,-20,Tempo.width, Tempo.height,ss.getImage("src/resources/pics/bushes.png"), player));
         units.add(enemy);
         units.add(enemy_test);
-        /*
-        for(int i = 0; i < 4; i++){        
-            clouds.add(new Block(64+blockSize+(int)(Math.random()*20*i*64), blockSize+(int)(Math.random()*5*i*32), blockSize*2, blockSize, ss.cloudRandomizer(), false)); 
-            clouds.get(i).SpeedX = 1;
-        }
-        */
         for(int i = 0; i < 2; i++){
             units.add(new Npc(blockSize*i*3+250, blockSize*7, blockSize, blockSize*2, ss.getSprite(4, 4, 1, 2), 5, 1, true));
         }
@@ -84,8 +78,6 @@ public class GamePanel extends JPanel{
     
     public void paintAllSprites(Graphics g){
         sprites = new ArrayList<Sprites>();
-       // sprites.addAll(sky);
-       // sprites.addAll(clouds);
         sprites.add(set.get(0));
         sprites.add(set.get(1));
         sprites.add(set.get(2));
@@ -116,6 +108,7 @@ public class GamePanel extends JPanel{
     public void paintPlayerData(Graphics g){
         //Behöver byta till hp och hit() i Player;
         if(enemy.getHealth().isEmpty()){
+            sound.playSound("die");
             enemy.die();
         }
         //Behöver byta till hp och hit() i Player;
