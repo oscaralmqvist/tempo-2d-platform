@@ -40,31 +40,16 @@ public class Level{
                 String tempStr = line;
                 for(int j = 0;j<tempStr.length();j++){
                     String tempSubStr = tempStr.substring(j, j+1);
-                    if(tempSubStr.equals("-")){
-
-                    }else if(tempSubStr.equals("l")){
-                        addBlock(true,collumn,row,0,0,1,1);
-                    }else if (tempSubStr.equals("d")) {
-                        addBlock(true,collumn,row,1,0,1,1);
-                    }else if(tempSubStr.equals("i")){
-                        if (Math.random() > 0.5) {
-                            addBlock(false,collumn,row,0,4,1,1);
-                        } else {
-                            addBlock(false,collumn,row,1,4,1,1);
-                        }
-                    }else if(tempSubStr.equals("t")){
-                        addBlock(false,collumn,row,0,5,1,2);
+                    switch(tempSubStr){
+                        case "-":break;
+                        case "l":addBlock(true,collumn,row,0,0,1,1);break;
+                        case "d":addBlock(true,collumn,row,1,0,1,1);break;
+                        case "i":if(Math.random() > 0.5){addBlock(false,collumn,row,0,4,1,1);}else{addBlock(false,collumn,row,1,4,1,1);}break;
+                        case "t":addBlock(false,collumn,row,0,5,1,2);break;
+                        case "c":addCheckpoint(collumn,row,0,7,2,2);break;
+                        case "s":spawn = new Block(collumn * 75, row * 75,75, 75,null, false);break;
+                        case "g":goal = new Goal(collumn * 75,row * 75,75,75*4,ss.getSprite(5, 0, 1, 4));break;
                     }
-                    else if(tempSubStr.equals("c")){
-                        addCheckpoint(collumn,row,0,7,2,2);
-                    }
-                    else if(tempSubStr.equals("s")){
-                        spawn = new Block(collumn * 75, row * 75,75, 75,null, false);
-                    }
-                    else if(tempSubStr.equals("g")){
-                        goal = new Goal(collumn * 75,row * 75,75,75*4,ss.getSprite(5, 0, 1, 4));
-                    }
-
                     collumn++;
                     if(j == tempStr.length()-1){
                         collumn = 0;
