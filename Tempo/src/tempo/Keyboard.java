@@ -37,10 +37,16 @@ public class Keyboard implements KeyListener {
         spelet under körning.
         */
        
-        int const_l = gp.getStateManager().getStates().size();
-        for(int j = 0; j < const_l; j++) {
-            if(gp.getStateManager().getStates().get(j).getClass() == GameState.class) {
-                gs =  (GameState) gp.getStateManager().getStates().get(j);
+                   if(gp.getStateManager().getStates().peek().getClass() == PauseState.class) {
+                if(e.getKeyCode() == KeyEvent.VK_ESCAPE) {
+                    gp.getStateManager().startGame();
+                    return;
+                }
+            }
+
+            if(gp.getStateManager().getStates().peek().getClass() == GameState.class) {
+                gs =  (GameState) gp.getStateManager().getStates().peek();
+
                 switch(e.getKeyCode()){
                         case KeyEvent.VK_SPACE:
                         case KeyEvent.VK_W:
@@ -66,10 +72,10 @@ public class Keyboard implements KeyListener {
                             gs.movingRight = true;
                             break;
                         case KeyEvent.VK_ESCAPE:
-                            if(gp.getStateManager().getStates().peek().getClass() == GameState.class)
+                            if(gp.getStateManager().getStates().peek().getClass() == GameState.class) {
                                 gp.getStateManager().pauseGame();
-                            else if(gp.getStateManager().getStates().peek().getClass() == PauseState.class)
-                                gp.getStateManager().startGame();
+                                gp.repaint();
+                            }
                             
                             break;
                         case KeyEvent.VK_Z:
@@ -91,8 +97,9 @@ public class Keyboard implements KeyListener {
             } else {
                 System.out.println("asdas");
             }
+
         
-        }
+   
 
 
     }
