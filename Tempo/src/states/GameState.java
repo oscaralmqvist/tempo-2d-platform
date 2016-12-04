@@ -37,7 +37,6 @@ public class GameState extends State {
     public ArrayList<Bullet> bullets = new ArrayList<Bullet>();
     public ArrayList<Particle> particle = new ArrayList<Particle>();
     public ArrayList<Dialogue> dialogue = new ArrayList<Dialogue>(); 
-    public ArrayList<Sprites> sprites;
     
     public Sound sound = new Sound();
     
@@ -79,32 +78,27 @@ public class GameState extends State {
     }
     
     public void paintAllSprites(Graphics g){
-        sprites = new ArrayList<Sprites>();
-        sprites.add(set.get(0));
-        sprites.add(set.get(1));
-        sprites.add(set.get(2));
-        sprites.add(set.get(3));
-        sprites.add(set.get(4));
-        sprites.add(set.get(5));
-        sprites.addAll(level.blocks);
-        sprites.addAll(level.checkpoints);
-        sprites.add(level.goal);
-        sprites.add(player);
+    
+        for(Sprites s : set) { s.paint(g); }
+        for(Sprites s : level.blocks) { s.paint(g); }
+        for(Sprites s : level.checkpoints) { s.paint(g); }
+        level.goal.paint(g);
+        player.paint(g);
         for(int i = 0; i < units.size(); i++){
-            sprites.add(units.get(i));
-            sprites.addAll(units.get(i).getHealth());
+           units.get(i).paint(g);
+            for(Sprites s : units.get(i).getHealth()) { s.paint(g); }
         }
-        sprites.add(enemy);
-        sprites.add(enemy_test);
-        sprites.addAll(bullets);
-        sprites.addAll(particle);
-        sprites.addAll(enemy.getHealth());
-        sprites.addAll(player.health);
-        sprites.addAll(dialogue);
-        sprites.add(set.get(6));
-        sprites.addAll(player.reload);
-        sprites.addAll(player.charge);
-        for(Sprites sprite : sprites) {sprite.paint(g);}
+        enemy.paint(g);
+        enemy_test.paint(g);
+        for(Sprites s : bullets) { s.paint(g); }
+        for(Sprites s : particle) { s.paint(g); }
+        for(Sprites s : enemy.getHealth()) { s.paint(g); }
+        for(Sprites s : player.health) { s.paint(g); }
+        for(Sprites s : dialogue) { s.paint(g); }
+        set.get(6).paint(g);
+        for(Sprites s : player.reload) { s.paint(g); }
+        for(Sprites s : player.charge) { s.paint(g); }
+        
     }
     
     public void paintPlayerData(Graphics g){
@@ -130,9 +124,7 @@ public class GameState extends State {
     }
      public void loadLevel(){
          
-        if(sprites !=null){
-            sprites.clear();
-        }
+
         try{
             level = new Level(ss,"level"+currentLevel);
             player = new Player(Tempo.width/2,Tempo.height/2,blockSize, blockSize*2, ss.getSprite(4, 0, 1, 2), 10, 3, true);
