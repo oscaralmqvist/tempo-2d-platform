@@ -116,10 +116,10 @@ public class GameState extends State {
             player.health.get(i).rect.x = player.rect.x + i * 10;
         }
         for(int i = 0; i < player.nuts ; i++){
-            //g.drawImage(ss.getSprite(13, 0, 1, 1), 100+38*i, 680, this);
+            g.drawImage(ss.getSprite(13, 0, 1, 1), 100+38*i, 680, null);
         }
         if(player.nuts > 0){
-            //g.drawImage(ss.getSprite(13, 0, 1, 1),player.rect.x + player.currentHand,player.rect.y + player.rect.height/2,this);
+            g.drawImage(ss.getSprite(13, 0, 1, 1),player.rect.x + player.currentHand,player.rect.y + player.rect.height/2,null);
         }
     }
      public void loadLevel(){
