@@ -15,10 +15,6 @@ import tempo.Health;
 
 
 public class Player extends Sprites {
-    
-    public float xSpeed = 13; 
-    public float ySpeed = 0;
-    public float gravity = 0;
     public int jumps = 0;
     public int nuts = 5;
     public int maxNuts = 5;
@@ -33,8 +29,8 @@ public class Player extends Sprites {
     public boolean resetScreen = false;
     public int spawnDiff =0;
     
-    public Player(int x , int y, int width, int height, BufferedImage image, int hp, int lives, boolean player) {
-        super(new Rectangle(x,y,width,height), image);
+    public Player(int x , int y, int width, int height, BufferedImage image, int hp, int lives, boolean player, float dx, float dy, float gravity) {
+        super(new Rectangle(x,y,width,height), image, dx, dy, gravity);
         
         for(int i = 0; i < hp; i++){
             health.add(new Health(x + 10*i, (y-10), 8, 8, null));

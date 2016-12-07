@@ -7,8 +7,6 @@ package tempo;
 
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
-import java.awt.event.KeyAdapter;
-import java.util.ArrayList;
 import states.GameState;
 import states.PauseState;
 import states.State;
@@ -53,7 +51,7 @@ public class Keyboard implements KeyListener {
                             if (gs.player.jumps < 2) {
                                 gs.sound.playSound("jump");
                                 for(int i = 0;i<gs.level.blocks.size();i++){
-                                    gs.player.ySpeed = -22.5f;
+                                    gs.player.setVelocityY(-22.5f);
                                     break;
                                 }
                                 gs.player.jumps++;

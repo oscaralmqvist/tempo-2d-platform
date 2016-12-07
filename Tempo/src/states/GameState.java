@@ -41,8 +41,8 @@ public class GameState extends State {
     public Sound sound = new Sound();
     
     public Player player;
-    public Npc enemy = new Npc(blockSize, blockSize * 7, blockSize, blockSize*2, ss.getSprite(4, 2, 1, 2), 5, 1, false);
-    public Npc enemy_test = new Npc(blockSize*19, blockSize*7, blockSize, blockSize*2, ss.getSprite(4, 4, 1, 2), 5, 1, true);
+    public Npc enemy = new Npc(blockSize, blockSize * 7, blockSize, blockSize*2, ss.getSprite(4, 2, 1, 2), 5, 1, false, 0);
+    public Npc enemy_test = new Npc(blockSize*19, blockSize*7, blockSize, blockSize*2, ss.getSprite(4, 4, 1, 2), 5, 1, true, 0);
     
 
     public Collision coll = new Collision();
@@ -64,7 +64,7 @@ public class GameState extends State {
         units.add(enemy);
         units.add(enemy_test);
         for(int i = 0; i < 2; i++){
-            units.add(new Npc(blockSize*i*3+250, blockSize*7, blockSize, blockSize*2, ss.getSprite(4, 4, 1, 2), 5, 1, true));
+            units.add(new Npc(blockSize*i*3+250, blockSize*7, blockSize, blockSize*2, ss.getSprite(4, 4, 1, 2), 5, 1, true, 1));
         }
     }
     public void paint(Graphics g){
@@ -122,12 +122,13 @@ public class GameState extends State {
             g.drawImage(ss.getSprite(13, 0, 1, 1),player.rect.x + player.currentHand,player.rect.y + player.rect.height/2,null);
         }
     }
-     public void loadLevel(){
+     
+    public void loadLevel(){
          
 
         try{
             level = new Level(ss,"level"+currentLevel);
-            player = new Player(Tempo.width/2,Tempo.height/2,blockSize, blockSize*2, ss.getSprite(4, 0, 1, 2), 10, 3, true);
+            player = new Player(Tempo.width/2,Tempo.height/2,blockSize, blockSize*2, ss.getSprite(4, 0, 1, 2), 10, 3, true, 13, 0, 0);
             player.createAnimation();
             player.getAnimation().setCurrentAnimation(ss.getSprite(4, 0, 1, 2));
             player.setCheckpoint(level.spawn);

@@ -19,7 +19,7 @@ public class Dialogue extends Sprites {
     public int ticks;
     
     public Dialogue(BufferedImage p1, BufferedImage p2, String... args) {
-        super(new Rectangle(0,0,0,0), null);
+        super(new Rectangle(0,0,0,0), null, 0, 0, 0);
         dialogue = new ArrayList<String>();
         for(String arg : args) {
             dialogue.add(arg);

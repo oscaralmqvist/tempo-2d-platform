@@ -8,8 +8,6 @@ package tempo.sprites;
 import java.awt.Graphics;
 import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
-import tempo.Collision;
-import tempo.Spritesheet;
 
 /**
  *
@@ -18,13 +16,11 @@ import tempo.Spritesheet;
 public class Block extends Sprites{
     
     public boolean collision;
-    public double SpeedX;
-    public double SpeedY;
     public boolean killBlock = false;
     
     
     public Block(int x, int y, int width, int height, BufferedImage image, boolean collision){
-        super(new Rectangle(x,y,width,height), image);
+        super(new Rectangle(x,y,width,height), image, 0, 0, 0);
         this.collision = collision;
     }
 

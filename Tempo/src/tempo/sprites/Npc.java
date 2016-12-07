@@ -19,13 +19,12 @@ public class Npc extends Sprites{
     private boolean movingRight, movingLeft;
     private ArrayList<Health> health = new ArrayList<Health>();
     
-    public Npc(int x, int y, int width, int height, BufferedImage image, int hp, int lives, boolean isHostile) {
-        super(new Rectangle(x,y,width,height), image);
+    public Npc(int x, int y, int width, int height, BufferedImage image, int hp, int lives, boolean isHostile, float gravity) {
+        super(new Rectangle(x,y,width,height), image, 0, 0, gravity);
         this.lives = lives;
         this.isHostile = isHostile;
-        this.movingRight = movingRight;
         if(isHostile == true){
-            xSpeed = 1;
+            super.setVelocityX(1);
         }
         for(int i = 0; i < hp; i++){
             health.add(new Health(x + 10*i, (y-10), 8, 8, null));
