@@ -8,7 +8,7 @@ public class StateManager {
     private Stack<State> states = new Stack<State>();
     
     public void startGame() {
-        if(!states.isEmpty()) {
+        if(!states.isEmpty() && states.peek().getClass() != MenuState.class) {
             if(states.peek().getClass() == PauseState.class)
                 states.pop();
         }
@@ -16,6 +16,14 @@ public class StateManager {
             states.empty();
             states.add(new GameState());
         }
+    }
+    
+    public void loadGame() {
+        states.add(new MenuState());
+    }
+    
+    public GameState getGameState() {
+        return (GameState) states.peek();
     }
     
     public void pauseGame() {

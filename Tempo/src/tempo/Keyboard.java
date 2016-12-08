@@ -8,6 +8,7 @@ package tempo;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import states.GameState;
+import states.MenuState;
 import states.PauseState;
 import states.State;
 import tempo.sprites.Dialogue;
@@ -35,7 +36,11 @@ public class Keyboard implements KeyListener {
         spelet under körning.
         */
        
-                   if(gp.getStateManager().getStates().peek().getClass() == PauseState.class) {
+            if(gp.getStateManager().getStates().peek().getClass() == MenuState.class) {
+                gp.getStateManager().startGame();
+            }
+        
+            if(gp.getStateManager().getStates().peek().getClass() == PauseState.class) {
                 if(e.getKeyCode() == KeyEvent.VK_ESCAPE) {
                     gp.getStateManager().startGame();
                     return;
@@ -92,9 +97,7 @@ public class Keyboard implements KeyListener {
                             ));
                             break;
                         }
-            } else {
-                System.out.println("asdas");
-            }
+            } 
 
         
    
@@ -104,9 +107,8 @@ public class Keyboard implements KeyListener {
 
     @Override
     public void keyReleased(KeyEvent e) {
-        for(State s : gp.getStateManager().getStates()) {
-            if(s.getClass() == GameState.class) {
-                gs = (GameState) s;
+
+            if(gp.getStateManager().getStates().peek().getClass() == GameState.class) {
                 switch(e.getKeyCode()){
                 case KeyEvent.VK_A:
                      gs.movingLeft = false;
@@ -118,9 +120,7 @@ public class Keyboard implements KeyListener {
                         gs.player.reloading = true;
                     break;
                 }
-            } else {
-                System.out.println("as");
-            }
-    } 
+            } 
+    
     }
 }

@@ -23,7 +23,7 @@ public class GamePanel extends JPanel {
     
     public GamePanel() {
         sm = new StateManager();  
-        sm.startGame();
+        sm.loadGame();
     }
     
     
