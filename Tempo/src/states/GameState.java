@@ -4,19 +4,8 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.util.ArrayList;
-import tempo.Collision;
-import tempo.Sound;
-import tempo.Spritesheet;
-import tempo.Tempo;
-import tempo.sprites.Block;
-import tempo.sprites.Bullet;
-import tempo.sprites.Dialogue;
-import tempo.sprites.Level;
-import tempo.sprites.Npc;
-import tempo.sprites.Particle;
-import tempo.sprites.Player;
-import tempo.sprites.SetBackground;
-import tempo.sprites.Sprites;
+import tempo.*;
+import tempo.sprites.*;
 
 public class GameState extends State {
 
@@ -27,7 +16,11 @@ public class GameState extends State {
     private boolean movingUp;
     // Karaktärer skapas och placeras
     //public Player player = new Player((Tempo.width/2), 420, blockSize, blockSize*2, ss.getSprite(4, 0, 1, 2), 10, 3, true);
-    
+
+    private ArrayList<SetBackground> set = new ArrayList<SetBackground>();
+    private ArrayList<Sprites> bullets = new ArrayList<Sprites>();
+    private ArrayList<Sprites> particle = new ArrayList<Sprites>();
+    private ArrayList<Sprites> dialogue = new ArrayList<Sprites>();
     
     private int currentLevel = 1;
     private int blockSize = 75;
@@ -36,13 +29,7 @@ public class GameState extends State {
     private Level level;
     private ArrayList<Block> sky = new ArrayList<Block>();
     private ArrayList<Block> clouds = new ArrayList<Block>(); 
-    
-    private ArrayList<SetBackground> set = new ArrayList<SetBackground>();
-    
-    private ArrayList<Bullet> bullets = new ArrayList<Bullet>();
-    private ArrayList<Particle> particle = new ArrayList<Particle>();
-    private ArrayList<Dialogue> dialogue = new ArrayList<Dialogue>();
-    
+
 
     private Sound sound = new Sound();
     private Player player;
@@ -53,8 +40,6 @@ public class GameState extends State {
 
     public GameState(){
         loadLevel();
-        int row = 0;
-        int collumn = 0;
        // sky.add(new Block(0, 0, Tempo.width, Tempo.height, ss.getSprite(0, 3, 1, 1), false));     
         set.add(new SetBackground(0,0,-200,Tempo.width, Tempo.height,getSs().getImage("src/resources/pics/sky.png"), getPlayer()));  
         //speed proBlEm
@@ -318,42 +303,42 @@ public class GameState extends State {
     /**
      * @return the bullets
      */
-    public ArrayList<Bullet> getBullets() {
+    public ArrayList<Sprites> getBullets() {
         return bullets;
     }
 
     /**
      * @param bullets the bullets to set
      */
-    public void setBullets(ArrayList<Bullet> bullets) {
+    public void setBullets(ArrayList<Sprites> bullets) {
         this.bullets = bullets;
     }
 
     /**
      * @return the particle
      */
-    public ArrayList<Particle> getParticle() {
+    public ArrayList<Sprites> getParticle() {
         return particle;
     }
 
     /**
      * @param particle the particle to set
      */
-    public void setParticle(ArrayList<Particle> particle) {
+    public void setParticle(ArrayList<Sprites> particle) {
         this.particle = particle;
     }
 
     /**
      * @return the dialogue
      */
-    public ArrayList<Dialogue> getDialogue() {
+    public ArrayList<Sprites> getDialogue() {
         return dialogue;
     }
 
     /**
      * @param dialogue the dialogue to set
      */
-    public void setDialogue(ArrayList<Dialogue> dialogue) {
+    public void setDialogue(ArrayList<Sprites> dialogue) {
         this.dialogue = dialogue;
     }
 

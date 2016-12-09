@@ -4,6 +4,7 @@ import java.awt.MouseInfo;
 import java.awt.Rectangle;
 import states.GameState;
 import states.State;
+import tempo.sprites.Bullet;
 import tempo.sprites.Particle;
 /**
 *
@@ -50,7 +51,7 @@ public class GameEngine implements Runnable {
                         checkMovement();
                         checkCollision();
                         checkWeapon();
-                        checkDialogue();
+                        //checkDialogue();
                         checkPlayer();
                         resetScreen();
                         gs.getPlayer().getAnimation().tick();
@@ -204,6 +205,7 @@ public class GameEngine implements Runnable {
             }
         }
 
+        /*
         public void checkDialogue(){
             for(int i = 0; i < gs.getDialogue().size(); i++) {
                if(gs.getDialogue().get(i).isDone()) {
@@ -214,6 +216,7 @@ public class GameEngine implements Runnable {
             }
         }
 
+*/
         public void checkWeapon(){
             if(gs.getPlayer().isReloading()){
                 gs.getPlayer().reload();
@@ -224,16 +227,18 @@ public class GameEngine implements Runnable {
 
 
             for(int l = 0;l<gs.getParticle().size();l++){
-                gs.getParticle().get(l).Update();
-                if (gs.getParticle().get(l).getKillParticle()) {
+                Particle p = (Particle) gs.getParticle().get(l);
+                p.Update();
+                if (p.getKillParticle()) {
                     gs.getParticle().remove(l);
                 }
             }
             for(int i = 0; i < gs.getBullets().size(); i++) {
-                gs.getBullets().get(i).shoot();
-                gs.getBullets().get(i).rect.y += gs.getBullets().get(i).getVelocityY();
-                gs.getBullets().get(i).addVelocityY((float)gs.getBullets().get(i).gravity);
-                if(gs.getBullets().get(i).killBullet) {
+                Bullet b = (Bullet) gs.getBullets().get(i);
+                b.shoot();
+                b.rect.y += b.getVelocityY();
+                b.addVelocityY((float) b.gravity);
+                if(b.killBullet) {
                     gs.getBullets().remove(i);
                 }
             }
