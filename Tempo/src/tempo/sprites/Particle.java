@@ -20,7 +20,7 @@ public class Particle extends Sprites{
     float speed = 0.5f;
     static Random random = new Random();
     float opacity = 1f;
-    public boolean killParticle = false;
+    private boolean killParticle = false;
     
     public Particle(int x, int y,int width, int height, BufferedImage image){
         super(new Rectangle(x,y,width,height),image, (float)((random.nextDouble()*(20)) + 1), -(float)((random.nextDouble()*(20)) + 1), 4f);
@@ -49,4 +49,9 @@ public class Particle extends Sprites{
         g.drawImage(super.image, super.rect.x, super.rect.y,super.rect.width, super.rect.height, null);
     }
     
+
+
+    public boolean getKillParticle(){
+        return killParticle;
+    }
 }

@@ -21,10 +21,10 @@ import tempo.Spritesheet;
  * @author Elev
  */
 public class Level{
-    public ArrayList<Block> blocks = new ArrayList<Block>();
-    public ArrayList<Checkpoint> checkpoints  = new ArrayList<Checkpoint>();
-    public Goal goal;
-    public Block spawn;
+    private ArrayList<Block> blocks = new ArrayList<Block>();
+    private ArrayList<Checkpoint> checkpoints  = new ArrayList<Checkpoint>();
+    private Goal goal;
+    private Block spawn;
     FileReader fr;
     BufferedReader out;
     Spritesheet ss;
@@ -64,19 +64,34 @@ public class Level{
     }
 
     public void addBlock(boolean coll, int x, int y, int x2, int y2, int width, int height){  
-        blocks.add(new Block(x * 75,y * 75,75 * width,75 * height,ss.getSprite(x2, y2, width, height), coll));
+        getBlocks().add(new Block(x * 75,y * 75,75 * width,75 * height,ss.getSprite(x2, y2, width, height), coll));
     }
     public void addCheckpoint(int x, int y, int x2, int y2, int width, int height){
-        checkpoints.add(new Checkpoint(x*75, y*75, 75*width, 75*height,ss.getSprite(x2,y2,width,height)));
+        getCheckpoints().add(new Checkpoint(x*75, y*75, 75*width, 75*height,ss.getSprite(x2,y2,width,height)));
     }
     
     public void paint(Graphics g) {
-        for(Block b : blocks){
+        for(Block b : getBlocks()){
             b.paint(g);
         }
     }
     public Block getSpawn(){
         return spawn;
+    }
+
+
+    public ArrayList<Block> getBlocks() {
+        return blocks;
+    }
+
+
+    public ArrayList<Checkpoint> getCheckpoints() {
+        return checkpoints;
+    }
+
+
+    public Goal getGoal() {
+        return goal;
     }
     
 }

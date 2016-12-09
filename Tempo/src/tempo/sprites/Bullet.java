@@ -20,9 +20,9 @@ public class Bullet extends Sprites {
         
         super.setVelocityY( (float)(Math.sin(rads) * super.getVelocityY()));
         
-        if(gs.movingRight && xmouse > Tempo.width/2)
+        if(gs.isMovingRight() && xmouse > Tempo.width/2)
             super.setVelocityX(speed*2+10);
-        else if(gs.movingLeft && xmouse < Tempo.width/2)
+        else if(gs.isMovingLeft() && xmouse < Tempo.width/2)
             super.setVelocityX(speed*2+10);
   
     }

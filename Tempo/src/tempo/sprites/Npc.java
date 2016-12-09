@@ -14,8 +14,8 @@ import tempo.Health;
 public class Npc extends Sprites{
     private boolean isHostile;
     private int lives;
-    public double xSpeed = 0; 
-    public float ySpeed = 0;
+    private double xSpeed = 0; 
+    private float ySpeed = 0;
     private boolean movingRight, movingLeft;
     private ArrayList<Health> health = new ArrayList<Health>();
     

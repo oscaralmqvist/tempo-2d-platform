@@ -53,26 +53,26 @@ public class Keyboard implements KeyListener {
                 switch(e.getKeyCode()){
                         case KeyEvent.VK_SPACE:
                         case KeyEvent.VK_W:
-                            if (gs.player.jumps < 2) {
-                                gs.sound.playSound("jump");
-                                for(int i = 0;i<gs.level.blocks.size();i++){
-                                    gs.player.setVelocityY(-22.5f);
+                            if (gs.getPlayer().getJumps() < 2) {
+                                gs.getSound().playSound("jump");
+                                for(int i = 0;i<gs.getLevel().getBlocks().size();i++){
+                                    gs.getPlayer().setVelocityY(-22.5f);
                                     break;
                                 }
-                                gs.player.jumps++;
+                                gs.getPlayer().setJumps(gs.getPlayer().getJumps() + 1);
                             }
                             break;
                         case KeyEvent.VK_A:
-                            if(!gs.movingLeft)
-                                gs.player.flipped = false;
-                                gs.player.getAnimation().setCurrentAnimation(gs.ss.getSprite(5, 0, 1, 2), gs.ss.getSprite(6, 0, 1, 2), gs.ss.getSprite(7, 0, 1, 2), gs.ss.getSprite(8, 0, 1, 2), gs.ss.getSprite(9, 0, 1, 2), gs.ss.getSprite(10, 0, 1, 2));
-                             gs.movingLeft = true;
+                            if(!gs.isMovingLeft())
+                                gs.getPlayer().setFlipped(false);
+                                gs.getPlayer().getAnimation().setCurrentAnimation(gs.getSs().getSprite(5, 0, 1, 2), gs.getSs().getSprite(6, 0, 1, 2), gs.getSs().getSprite(7, 0, 1, 2), gs.getSs().getSprite(8, 0, 1, 2), gs.getSs().getSprite(9, 0, 1, 2), gs.getSs().getSprite(10, 0, 1, 2));
+                             gs.setMovingLeft(true);
                             break;
                         case KeyEvent.VK_D:
-                            if(!gs.movingRight)
-                                gs.player.flipped = true;
-                                gs.player.getAnimation().setCurrentAnimation(gs.ss.getSprite(5, 0, 1, 2), gs.ss.getSprite(6, 0, 1, 2), gs.ss.getSprite(7, 0, 1, 2), gs.ss.getSprite(8, 0, 1, 2), gs.ss.getSprite(9, 0, 1, 2), gs.ss.getSprite(10, 0, 1, 2));
-                            gs.movingRight = true;
+                            if(!gs.isMovingRight())
+                                gs.getPlayer().setFlipped(true);
+                                gs.getPlayer().getAnimation().setCurrentAnimation(gs.getSs().getSprite(5, 0, 1, 2), gs.getSs().getSprite(6, 0, 1, 2), gs.getSs().getSprite(7, 0, 1, 2), gs.getSs().getSprite(8, 0, 1, 2), gs.getSs().getSprite(9, 0, 1, 2), gs.getSs().getSprite(10, 0, 1, 2));
+                            gs.setMovingRight(true);
                             break;
                         case KeyEvent.VK_ESCAPE:
                             if(gp.getStateManager().getStates().peek().getClass() == GameState.class) {
@@ -82,7 +82,7 @@ public class Keyboard implements KeyListener {
                             
                             break;
                         case KeyEvent.VK_Z:
-                            gs.dialogue.add(new Dialogue(gs.ss.getSprite(7, 0, 1, 2).getSubimage(0, 0, 32, 32), gs.ss.getSprite(5, 0, 1, 2).getSubimage(0, 0, 32, 32),
+                            gs.getDialogue().add(new Dialogue(gs.getSs().getSprite(7, 0, 1, 2).getSubimage(0, 0, 32, 32), gs.getSs().getSprite(5, 0, 1, 2).getSubimage(0, 0, 32, 32),
                                     "får MASSVIS med random invites :S",
                                     "lyssnar på muSIK",
                                     "fryser",
@@ -111,13 +111,13 @@ public class Keyboard implements KeyListener {
             if(gp.getStateManager().getStates().peek().getClass() == GameState.class) {
                 switch(e.getKeyCode()){
                 case KeyEvent.VK_A:
-                     gs.movingLeft = false;
+                     gs.setMovingLeft(false);
                     break;
                 case KeyEvent.VK_D:
-                    gs.movingRight = false;
+                    gs.setMovingRight(false);
                     break;
                 case KeyEvent.VK_R:
-                        gs.player.reloading = true;
+                        gs.getPlayer().setReloading(true);
                     break;
                 }
             } 

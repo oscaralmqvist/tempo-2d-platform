@@ -19,7 +19,7 @@ public class Health extends Sprites{
     private int red = 255;
     private int green = 0;
     private int blue = 0;
-    public double xSpeed = 0;
+    private double xSpeed = 0;
     
     public Health(int x, int y, int width, int height, BufferedImage image){
         super(new Rectangle(x, y, width, height), image, 0, 0, 0);

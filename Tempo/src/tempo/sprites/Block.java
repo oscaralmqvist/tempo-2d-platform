@@ -15,8 +15,8 @@ import java.awt.image.BufferedImage;
  */
 public class Block extends Sprites{
     
-    public boolean collision;
-    public boolean killBlock = false;
+    private boolean collision;
+    private boolean killBlock = false;
     
     
     public Block(int x, int y, int width, int height, BufferedImage image, boolean collision){
@@ -27,6 +27,12 @@ public class Block extends Sprites{
     @Override
     public void paint(Graphics g) {
         g.drawImage(super.image, super.rect.x, super.rect.y,super.rect.width, super.rect.height, null);
+    }
+    public boolean getCollision(){
+        return collision;   
+    }
+    public boolean getKillBlock(){
+        return killBlock;
     }
     
 }

@@ -18,6 +18,9 @@ public class Window extends JFrame{
     
     
     public Window(){
+        //setExtendedState(JFrame.MAXIMIZED_BOTH); 
+        //setUndecorated(true);
+        //setVisible(true);
         panel = new GamePanel();
         ge = new GameEngine(panel);
         add(panel);
