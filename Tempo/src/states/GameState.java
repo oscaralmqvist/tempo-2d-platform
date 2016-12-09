@@ -4,19 +4,8 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.util.ArrayList;
-import tempo.Collision;
-import tempo.Sound;
-import tempo.Spritesheet;
-import tempo.Tempo;
-import tempo.sprites.Block;
-import tempo.sprites.Bullet;
-import tempo.sprites.Dialogue;
-import tempo.sprites.Level;
-import tempo.sprites.Npc;
-import tempo.sprites.Particle;
-import tempo.sprites.Player;
-import tempo.sprites.SetBackground;
-import tempo.sprites.Sprites;
+import tempo.*;
+import tempo.sprites.*;
 
 public class GameState extends State {
 
@@ -31,8 +20,6 @@ public class GameState extends State {
     //public Player player = new Player((Tempo.width/2), 420, blockSize, blockSize*2, ss.getSprite(4, 0, 1, 2), 10, 3, true);
     
     public Level level;
-    public ArrayList<Block> sky = new ArrayList<Block>();
-    public ArrayList<Block> clouds = new ArrayList<Block>();
     public ArrayList<SetBackground> set = new ArrayList<SetBackground>();
     public ArrayList<Sprites> bullets = new ArrayList<Sprites>();
     public ArrayList<Sprites> particle = new ArrayList<Sprites>();
@@ -50,8 +37,6 @@ public class GameState extends State {
 
     public GameState(){
         loadLevel();
-        int row = 0;
-        int collumn = 0;
        // sky.add(new Block(0, 0, Tempo.width, Tempo.height, ss.getSprite(0, 3, 1, 1), false));     
         set.add(new SetBackground(0,0,-200,Tempo.width, Tempo.height,ss.getImage("src/resources/pics/sky.png"), player));  
         //speed proBlEm
