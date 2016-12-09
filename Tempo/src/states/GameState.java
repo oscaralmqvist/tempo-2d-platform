@@ -34,9 +34,9 @@ public class GameState extends State {
     public ArrayList<Block> sky = new ArrayList<Block>();
     public ArrayList<Block> clouds = new ArrayList<Block>();
     public ArrayList<SetBackground> set = new ArrayList<SetBackground>();
-    public ArrayList<Bullet> bullets = new ArrayList<Bullet>();
-    public ArrayList<Particle> particle = new ArrayList<Particle>();
-    public ArrayList<Dialogue> dialogue = new ArrayList<Dialogue>(); 
+    public ArrayList<Sprites> bullets = new ArrayList<Sprites>();
+    public ArrayList<Sprites> particle = new ArrayList<Sprites>();
+    public ArrayList<Sprites> dialogue = new ArrayList<Sprites>();
     
     public Sound sound = new Sound();
     

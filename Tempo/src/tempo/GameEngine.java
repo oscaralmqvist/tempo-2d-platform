@@ -4,6 +4,7 @@ import java.awt.MouseInfo;
 import java.awt.Rectangle;
 import states.GameState;
 import states.State;
+import tempo.sprites.Bullet;
 import tempo.sprites.Particle;
 /**
 *
@@ -49,7 +50,7 @@ public class GameEngine implements Runnable {
                         checkMovement();
                         checkCollision();
                         checkWeapon();
-                        checkDialogue();
+                        //checkDialogue();
                         checkPlayer();
                         resetScreen();
                         gs.player.getAnimation().tick();
@@ -203,6 +204,7 @@ public class GameEngine implements Runnable {
             }
         }
 
+        /*
         public void checkDialogue(){
             for(int i = 0; i < gs.dialogue.size(); i++) {
                if(gs.dialogue.get(i).isDone()) {
@@ -213,6 +215,7 @@ public class GameEngine implements Runnable {
             }
         }
 
+*/
         public void checkWeapon(){
             if(gs.player.reloading){
                 gs.player.reload();
@@ -223,16 +226,18 @@ public class GameEngine implements Runnable {
 
 
             for(int l = 0;l<gs.particle.size();l++){
-                gs.particle.get(l).Update();
-                if (gs.particle.get(l).killParticle) {
+                Particle p = (Particle) gs.particle.get(l);
+                p.Update();
+                if (p.killParticle) {
                     gs.particle.remove(l);
                 }
             }
             for(int i = 0; i < gs.bullets.size(); i++) {
-                gs.bullets.get(i).shoot();
-                gs.bullets.get(i).rect.y += gs.bullets.get(i).getVelocityY();
-                gs.bullets.get(i).addVelocityY((float)gs.bullets.get(i).gravity);
-                if(gs.bullets.get(i).killBullet) {
+                Bullet b = (Bullet) gs.bullets.get(i);
+                b.shoot();
+                b.rect.y += b.getVelocityY();
+                b.addVelocityY((float) b.gravity);
+                if(b.killBullet) {
                     gs.bullets.remove(i);
                 }
             }
