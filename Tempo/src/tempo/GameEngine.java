@@ -124,19 +124,22 @@ public class GameEngine implements Runnable {
             for(int i = 0; i < gs.level.blocks.size();i++){
                 if(gs.level.blocks.get(i).collision){
                     for(int u = 0; u < gs.units.size(); u++){
-                        Rectangle u_temp = gs.coll.getCollision(gs.units.get(u).rect, gs.level.blocks.get(i).rect);
-                        if(gs.coll.isIntersect(gs.units.get(u).rect, gs.level.blocks.get(i).rect)){
-                            gs.units.get(u).xSpeed = -gs.units.get(u).xSpeed;
+                        if(gs.coll.isIntersect( gs.level.blocks.get(i).rect,gs.units.get(u).rect)){
+                            //gs.units.get(u).xSpeed = -gs.units.get(u).xSpeed;
+                            Rectangle u_temp = gs.coll.getCollision(gs.units.get(u).rect, gs.level.blocks.get(i).rect);
+                            gs.units.get(u).setVelocityX(-gs.units.get(u).getVelocityX());
+                            gs.units.get(u).rect.x = u_temp.x;
                         }
-                        gs.units.get(u).rect.x = u_temp.x;
+                        //gs.units.get(u).rect.x = u_temp.x;
                     }
                 }
             }
 
+
             for(int u = 0; u < gs.units.size(); u++){
-                Rectangle u_temp = gs.coll.getCollision(gs.units.get(u).rect, gs.player.rect);
+               // Rectangle u_temp = gs.coll.getCollision(gs.units.get(u).rect, gs.player.rect);
                 if(gs.coll.isIntersect(gs.units.get(u).rect, gs.player.rect)){
-                    gs.units.get(u).xSpeed = -gs.units.get(u).xSpeed;
+                    gs.units.get(u).setVelocityX(-gs.units.get(u).getVelocityX());
                 }
             }
 
@@ -249,7 +252,7 @@ public class GameEngine implements Runnable {
         public void checkMovement(){
             gs.player.rect.y += gs.player.getVelocityY();  
             for(int i = 0; i < gs.units.size(); i++){
-                gs.units.get(i).rect.x += gs.units.get(i).xSpeed;
+                gs.units.get(i).rect.x += gs.units.get(i).getVelocityX();
                 if(gs.units.get(i).getIsHostile()){
                     for(int j = 0;j<gs.units.get(i).getHealth().size();j++){
                         gs.units.get(i).getHealth().get(j).rect.x = gs.units.get(i).rect.x;
