@@ -95,13 +95,13 @@ public class Player extends Sprites {
             
         }
         
-    public void die() {
+    public boolean respawn() {
         if (--lives > 0) {
             resetScreen();
             setNuts(getMaxNuts());
-        } else {
-            super.image = null;
+            return true;
         }
+        return false;
     }
     public void setCheckpoint(Block block){
         if(checkpoint != block){

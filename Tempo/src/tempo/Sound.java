@@ -33,7 +33,5 @@ public class Sound {
     public void playMusic() {
         music.loop(Clip.LOOP_CONTINUOUSLY);
     }
-    
-
-    
+ 
 }

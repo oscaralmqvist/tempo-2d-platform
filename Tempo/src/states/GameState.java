@@ -45,10 +45,10 @@ public class GameState extends State {
         //speed proBlEm
         set.add(new SetBackground(0.01f,0,100,Tempo.width, Tempo.height+100,getSs().getImage("src/resources/pics/clouds.png"), getPlayer()));   
         set.add(new SetBackground(0.08f,0,200,Tempo.width, Tempo.height-100,getSs().getImage("src/resources/pics/mountains_final1.png"), getPlayer()));
-        set.add(new SetBackground(0.5f,0,300,Tempo.width, Tempo.height-300,getSs().getImage("src/resources/pics/trees.png"), getPlayer()));
-        set.add(new SetBackground(0.7f,0,200,Tempo.width, Tempo.height-200,getSs().getImage("src/resources/pics/trees.png"), getPlayer()));
-        set.add(new SetBackground(0.8f,0,-20,Tempo.width, Tempo.height,getSs().getImage("src/resources/pics/bushes.png"), getPlayer()));
-        set.add(new SetBackground(1.2f,0,-20,Tempo.width, Tempo.height,getSs().getImage("src/resources/pics/bushes.png"), getPlayer()));
+        set.add(new SetBackground(0.5f,0,300,Tempo.width, Tempo.height-350,getSs().getImage("src/resources/pics/trees.png"), getPlayer()));
+        set.add(new SetBackground(0.7f,0,200,Tempo.width, Tempo.height-250,getSs().getImage("src/resources/pics/trees.png"), getPlayer()));
+        set.add(new SetBackground(0.8f,0,-20,Tempo.width, Tempo.height-50,getSs().getImage("src/resources/pics/bushes.png"), getPlayer()));
+        set.add(new SetBackground(1.2f,0,-20,Tempo.width, Tempo.height,getSs().getImage("src/resources/pics/grass.png"), getPlayer()));
         units.add(enemy);
         units.add(enemy_test);
         for(int i = 0; i < 2; i++){
@@ -58,11 +58,6 @@ public class GameState extends State {
     public void paint(Graphics g){
         paintAllSprites(g);
         paintPlayerData(g);
-        if(isIsPaused()){
-            g.setColor(Color.black);
-            g.setFont(new Font("TimesRoman", Font.PLAIN, 78));
-            g.drawString("PAUSED", Tempo.width/2-105, Tempo.height/2);
-        }
     }
     
     public void paintAllSprites(Graphics g){
@@ -99,7 +94,7 @@ public class GameState extends State {
         }
         //Behöver byta till hp och hit() i Player;
         if (getPlayer().getHealth().isEmpty()) {
-            getPlayer().die();
+            getPlayer().respawn();
         }    
         for(int i = 0; i < getPlayer().getHealth().size(); i++){
             player.getHealth().get(i).rect.y = getPlayer().rect.y;

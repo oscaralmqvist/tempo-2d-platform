@@ -200,7 +200,10 @@ public class GameEngine implements Runnable {
 
         public void checkPlayer(){
             if (gs.getPlayer().rect.y > Tempo.height) {
-                gs.getPlayer().die();
+                if (!gs.getPlayer().respawn()) {
+                    gp.getStateManager().pauseGame();
+                    gp.repaint();
+                }
                 gs.getSound().playSound("neeeej");
             }
         }
