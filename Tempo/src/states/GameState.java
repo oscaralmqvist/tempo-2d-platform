@@ -48,7 +48,7 @@ public class GameState extends State {
         set.add(new SetBackground(0.5f,0,300,Tempo.width, Tempo.height-350,getSs().getImage("src/resources/pics/trees.png"), getPlayer()));
         set.add(new SetBackground(0.7f,0,200,Tempo.width, Tempo.height-250,getSs().getImage("src/resources/pics/trees.png"), getPlayer()));
         set.add(new SetBackground(0.8f,0,-20,Tempo.width, Tempo.height-50,getSs().getImage("src/resources/pics/bushes.png"), getPlayer()));
-        set.add(new SetBackground(1.2f,0,-20,Tempo.width, Tempo.height,getSs().getImage("src/resources/pics/grass.png"), getPlayer()));
+        set.add(new SetBackground(1.2f,0,-20,Tempo.width, Tempo.height,getSs().getImage("src/resources/pics/bushes.png"), getPlayer()));
         units.add(enemy);
         units.add(enemy_test);
         for(int i = 0; i < 2; i++){
