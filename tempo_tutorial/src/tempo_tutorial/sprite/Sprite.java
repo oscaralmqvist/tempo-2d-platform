@@ -2,15 +2,16 @@
 package tempo_tutorial.sprite;
 
 import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
 import tempo_tutorial.Animation;
 
 public abstract class Sprite {
 
-    public Rectangle rect;
-    public BufferedImage image;
-    public Animation animation;
+    private Rectangle rect;
+    private BufferedImage image;
+    private Animation animation;
     private float dx, dy, gravity;
     
     public Sprite(Rectangle rect, BufferedImage image, float dx, float dy, float gravity) {
@@ -19,6 +20,14 @@ public abstract class Sprite {
         this.dx = dx;
         this.dy = dy;
         this.gravity = gravity;
+    }
+    
+    public Rectangle getRectangle() {
+        return rect;
+    }
+    
+    public BufferedImage getImage() {
+        return image;
     }
     
     public float getVelocityX(){
@@ -53,7 +62,7 @@ public abstract class Sprite {
         this.dy += dy;
     }
         
-    public abstract void paint(Graphics g);
+    public abstract void paint(Graphics2D g);
     
     public void setImage(BufferedImage image) {
         this.image = image;

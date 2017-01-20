@@ -1,19 +1,12 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package tempo_tutorial;
 
 import java.awt.image.*;
 import java.io.File;
 import javax.imageio.ImageIO;
 
-/**
- *
- * @author Elev
- */
 public class Texture {
+    
     BufferedImage sheet = null;
     
     public Texture(){
