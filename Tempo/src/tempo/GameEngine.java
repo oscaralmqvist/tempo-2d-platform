@@ -166,7 +166,7 @@ public class GameEngine implements Runnable {
                             boolean test = gs.getColl().isIntersect(gs.getBullets().get(j).rect,gs.getUnits().get(q).rect);
                             gs.getSound().playSound("splat");
                             for(int l = 0;l<25;l++){
-                                gs.getParticle().add(new Particle(gs.getBullets().get(j).rect.x, gs.getBullets().get(j).rect.y, 25,25,gs.getSs().getSprite(14, 0, 1, 1)));
+                                gs.getParticle().add(new Particle(gs.getBullets().get(j).rect.x, gs.getBullets().get(j).rect.y, 25,25,gs.getTexture().getSprite(14, 0, 1, 1)));
                             }
                             if(test && gs.getUnits().get(q).getIsHostile()){
                                 gs.getUnits().get(q).loseHealth(Math.round(gs.getBullets().get(j).getVelocityX()/5));
@@ -182,10 +182,10 @@ public class GameEngine implements Runnable {
                 if(gs.getColl().isIntersect(gs.getPlayer().rect,gs.getLevel().getCheckpoints().get(l).rect) && !gs.getLevel().getCheckpoints().get(l).getChecked()){
                     gs.getPlayer().setCheckpoint(gs.getLevel().getCheckpoints().get(l));
                     gs.getLevel().getCheckpoints().get(l).checked();
-                    gs.getLevel().getCheckpoints().get(l).image = gs.getSs().getSprite(2, 7, 2, 2);
+                    gs.getLevel().getCheckpoints().get(l).image = gs.getTexture().getSprite(2, 7, 2, 2);
                     while(gs.getLevel().getCheckpoints().get(l).getTick() < 20){
                         int i = (int)(Math.random() * 3);
-                        gs.getParticle().add(new Particle(gs.getLevel().getCheckpoints().get(l).rect.x+30, gs.getLevel().getCheckpoints().get(l).rect.y+30, 80,80,gs.getSs().getSprite(13, 1+i, 1, 1)));
+                        gs.getParticle().add(new Particle(gs.getLevel().getCheckpoints().get(l).rect.x+30, gs.getLevel().getCheckpoints().get(l).rect.y+30, 80,80,gs.getTexture().getSprite(13, 1+i, 1, 1)));
                         gs.getLevel().getCheckpoints().get(l).tick();
                     }
                     gs.getSound().playMusic();
@@ -254,7 +254,7 @@ public class GameEngine implements Runnable {
             }
             
             if ((!gs.isMovingLeft() && !gs.isMovingRight()) || (gs.isMovingLeft() && gs.isMovingRight())) {
-                gs.getPlayer().animation.setCurrentAnimation(gs.getSs().getSprite(4, 0, 1, 2));
+                gs.getPlayer().animation.setCurrentAnimation(gs.getTexture().getSprite(4, 0, 1, 2));
             }
         }
 

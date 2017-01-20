@@ -24,7 +24,7 @@ public class GameState extends State {
     
     private int currentLevel = 1;
     private int blockSize = 75;
-    private Spritesheet ss = new Spritesheet();
+    private Texture ss = new Texture();
     private ArrayList<Npc> units = new ArrayList<Npc>();
     private Level level;
     private ArrayList<Block> sky = new ArrayList<Block>();
@@ -41,18 +41,18 @@ public class GameState extends State {
     public GameState(){
         loadLevel();
        // sky.add(new Block(0, 0, Tempo.width, Tempo.height, ss.getSprite(0, 3, 1, 1), false));     
-        set.add(new SetBackground(0,0,-200,Tempo.width, Tempo.height,getSs().getImage("src/resources/pics/sky.png"), getPlayer()));  
+        set.add(new SetBackground(0,0,-200,Tempo.width, Tempo.height,getTexture().getImage("src/resources/pics/sky.png"), getPlayer()));  
         //speed proBlEm
-        set.add(new SetBackground(0.01f,0,100,Tempo.width, Tempo.height+100,getSs().getImage("src/resources/pics/clouds.png"), getPlayer()));   
-        set.add(new SetBackground(0.08f,0,200,Tempo.width, Tempo.height-100,getSs().getImage("src/resources/pics/mountains_final1.png"), getPlayer()));
-        set.add(new SetBackground(0.5f,0,300,Tempo.width, Tempo.height-350,getSs().getImage("src/resources/pics/trees.png"), getPlayer()));
-        set.add(new SetBackground(0.7f,0,200,Tempo.width, Tempo.height-250,getSs().getImage("src/resources/pics/trees.png"), getPlayer()));
-        set.add(new SetBackground(0.8f,0,-20,Tempo.width, Tempo.height-50,getSs().getImage("src/resources/pics/bushes.png"), getPlayer()));
-        set.add(new SetBackground(1.2f,0,-20,Tempo.width, Tempo.height,getSs().getImage("src/resources/pics/bushes.png"), getPlayer()));
+        set.add(new SetBackground(0.01f,0,100,Tempo.width, Tempo.height+100,getTexture().getImage("src/resources/pics/clouds.png"), getPlayer()));   
+        set.add(new SetBackground(0.08f,0,200,Tempo.width, Tempo.height-100,getTexture().getImage("src/resources/pics/mountains_final1.png"), getPlayer()));
+        set.add(new SetBackground(0.5f,0,300,Tempo.width, Tempo.height-350,getTexture().getImage("src/resources/pics/trees.png"), getPlayer()));
+        set.add(new SetBackground(0.7f,0,200,Tempo.width, Tempo.height-250,getTexture().getImage("src/resources/pics/trees.png"), getPlayer()));
+        set.add(new SetBackground(0.8f,0,-20,Tempo.width, Tempo.height-50,getTexture().getImage("src/resources/pics/bushes.png"), getPlayer()));
+        set.add(new SetBackground(1.2f,0,-20,Tempo.width, Tempo.height,getTexture().getImage("src/resources/pics/bushes.png"), getPlayer()));
         units.add(enemy);
         units.add(enemy_test);
         for(int i = 0; i < 2; i++){
-            units.add(new Npc(getBlockSize()*i*3+250, getBlockSize()*7, getBlockSize(), getBlockSize()*2, getSs().getSprite(4, 4, 1, 2), 5, 1, true, 1, 1));
+            units.add(new Npc(getBlockSize()*i*3+250, getBlockSize()*7, getBlockSize(), getBlockSize()*2, getTexture().getSprite(4, 4, 1, 2), 5, 1, true, 1, 1));
         }
     }
     public void paint(Graphics g){
@@ -101,10 +101,10 @@ public class GameState extends State {
             player.getHealth().get(i).rect.x = getPlayer().rect.x + i * 10;
         }
         for(int i = 0; i < getPlayer().getNuts() ; i++){
-            g.drawImage(getSs().getSprite(13, 0, 1, 1), 100+38*i, 680, null);
+            g.drawImage(getTexture().getSprite(13, 0, 1, 1), 100+38*i, 680, null);
         }
         if(getPlayer().getNuts() > 0){
-            g.drawImage(getSs().getSprite(13, 0, 1, 1),getPlayer().rect.x + getPlayer().currentHand,getPlayer().rect.y + getPlayer().rect.height/2,null);
+            g.drawImage(getTexture().getSprite(13, 0, 1, 1),getPlayer().rect.x + getPlayer().currentHand,getPlayer().rect.y + getPlayer().rect.height/2,null);
         }
     }
      
@@ -112,10 +112,10 @@ public class GameState extends State {
          
 
         try{
-            setLevel(new Level(getSs(), "level" + getCurrentLevel()));
-            setPlayer(new Player(Tempo.width/2, Tempo.height/2, getBlockSize(), getBlockSize() * 2, getSs().getSprite(4, 0, 1, 2), 10, 3, true, 13, 0, 0));
+            setLevel(new Level(getTexture(), "level" + getCurrentLevel()));
+            setPlayer(new Player(Tempo.width/2, Tempo.height/2, getBlockSize(), getBlockSize() * 2, getTexture().getSprite(4, 0, 1, 2), 10, 3, true, 13, 0, 0));
             getPlayer().createAnimation();
-            getPlayer().getAnimation().setCurrentAnimation(getSs().getSprite(4, 0, 1, 2));
+            getPlayer().getAnimation().setCurrentAnimation(getTexture().getSprite(4, 0, 1, 2));
             getPlayer().setCheckpoint(getLevel().getSpawn());
             getPlayer().resetScreen();
            
@@ -214,14 +214,14 @@ public class GameState extends State {
     /**
      * @return the ss
      */
-    public Spritesheet getSs() {
+    public Texture getTexture() {
         return ss;
     }
 
     /**
      * @param ss the ss to set
      */
-    public void setSs(Spritesheet ss) {
+    public void setSs(Texture ss) {
         this.ss = ss;
     }
 

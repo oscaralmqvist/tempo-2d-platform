@@ -14,7 +14,7 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.util.ArrayList;
 import javax.imageio.ImageIO;
-import tempo.Spritesheet;
+import tempo.Texture;
 
 /**
  *
@@ -27,9 +27,9 @@ public class Level{
     private Block spawn;
     FileReader fr;
     BufferedReader out;
-    Spritesheet ss;
+    Texture ss;
     
-    public Level(Spritesheet ss, String level){
+    public Level(Texture ss, String level){
         this.ss = ss;
         int row = 0;
         int collumn = 0;

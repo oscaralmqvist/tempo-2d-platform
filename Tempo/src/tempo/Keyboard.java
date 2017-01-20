@@ -65,13 +65,13 @@ public class Keyboard implements KeyListener {
                         case KeyEvent.VK_A:
                             if(!gs.isMovingLeft())
                                 gs.getPlayer().setFlipped(false);
-                                gs.getPlayer().getAnimation().setCurrentAnimation(gs.getSs().getSprite(5, 0, 1, 2), gs.getSs().getSprite(6, 0, 1, 2), gs.getSs().getSprite(7, 0, 1, 2), gs.getSs().getSprite(8, 0, 1, 2), gs.getSs().getSprite(9, 0, 1, 2), gs.getSs().getSprite(10, 0, 1, 2));
+                                gs.getPlayer().getAnimation().setCurrentAnimation(gs.getTexture().getSprite(5, 0, 1, 2), gs.getTexture().getSprite(6, 0, 1, 2), gs.getTexture().getSprite(7, 0, 1, 2), gs.getTexture().getSprite(8, 0, 1, 2), gs.getTexture().getSprite(9, 0, 1, 2), gs.getTexture().getSprite(10, 0, 1, 2));
                              gs.setMovingLeft(true);
                             break;
                         case KeyEvent.VK_D:
                             if(!gs.isMovingRight())
                                 gs.getPlayer().setFlipped(true);
-                                gs.getPlayer().getAnimation().setCurrentAnimation(gs.getSs().getSprite(5, 0, 1, 2), gs.getSs().getSprite(6, 0, 1, 2), gs.getSs().getSprite(7, 0, 1, 2), gs.getSs().getSprite(8, 0, 1, 2), gs.getSs().getSprite(9, 0, 1, 2), gs.getSs().getSprite(10, 0, 1, 2));
+                                gs.getPlayer().getAnimation().setCurrentAnimation(gs.getTexture().getSprite(5, 0, 1, 2), gs.getTexture().getSprite(6, 0, 1, 2), gs.getTexture().getSprite(7, 0, 1, 2), gs.getTexture().getSprite(8, 0, 1, 2), gs.getTexture().getSprite(9, 0, 1, 2), gs.getTexture().getSprite(10, 0, 1, 2));
                             gs.setMovingRight(true);
                             break;
                         case KeyEvent.VK_ESCAPE:
@@ -82,7 +82,7 @@ public class Keyboard implements KeyListener {
                             
                             break;
                         case KeyEvent.VK_Z:
-                            gs.getDialogue().add(new Dialogue(gs.getSs().getSprite(7, 0, 1, 2).getSubimage(0, 0, 32, 32), gs.getSs().getSprite(5, 0, 1, 2).getSubimage(0, 0, 32, 32),
+                            gs.getDialogue().add(new Dialogue(gs.getTexture().getSprite(7, 0, 1, 2).getSubimage(0, 0, 32, 32), gs.getTexture().getSprite(5, 0, 1, 2).getSubimage(0, 0, 32, 32),
                                     "får MASSVIS med random invites :S",
                                     "lyssnar på muSIK",
                                     "fryser",
