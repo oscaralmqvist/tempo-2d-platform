@@ -8,14 +8,14 @@ import java.awt.image.BufferedImage;
 import tempo_tutorial.Animation;
 
 public abstract class Sprite {
-
+    
     private Rectangle rect;
     private BufferedImage image;
     private Animation animation;
     private float dx, dy, gravity;
     
-    public Sprite(Rectangle rect, BufferedImage image, float dx, float dy, float gravity) {
-        this.rect = rect;
+    public Sprite(int x, int y, int width, int height, BufferedImage image, float dx, float dy, float gravity) {
+        this.rect = new Rectangle(x, y, width, height);
         this.image = image;
         this.dx = dx;
         this.dy = dy;

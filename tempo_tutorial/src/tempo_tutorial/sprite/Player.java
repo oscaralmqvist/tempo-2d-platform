@@ -8,8 +8,8 @@ import java.awt.image.BufferedImage;
 
 public class Player extends Sprite {
     
-    public Player(Rectangle rect, BufferedImage image, float dx, float dy, float gravity) {
-        super(rect, image, dx, dy, gravity);
+    public Player(int x, int y, int width, int height, BufferedImage image, float dx, float dy, float gravity) {
+        super(x, y, width, height, image, dx, dy, gravity);
     }
 
     @Override
