@@ -34,7 +34,7 @@ public class Texture {
     
     public BufferedImage getImage(String content){
         BufferedImage tempImage = null;
-        try{
+        try {
             tempImage = ImageIO.read(new File(content));
         } catch(Exception e) {
             System.out.println(content + "-filen kunde inte hittas");
