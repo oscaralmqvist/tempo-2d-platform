@@ -26,7 +26,7 @@ public class Texture {
      * @param column antal kolumner
      * @param height höjd i kolumner
      * @param width höjd i rader
-     * @return Sprite (bild)
+     * @return Sprite (BufferedImage)
      */
     
     public BufferedImage getSprite(int row, int column, int height, int width){
@@ -44,7 +44,7 @@ public class Texture {
     /**
      * Läser in en bild baserat på sökväg
      * @param content sökväg
-     * @return Bild
+     * @return Bild (BufferedImage)
      */
     
     public BufferedImage getImage(String content){
