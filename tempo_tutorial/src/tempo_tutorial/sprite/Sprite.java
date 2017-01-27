@@ -22,6 +22,7 @@ public abstract class Sprite {
         this.gravity = gravity;
     }
     
+    
     public Rectangle getRectangle() {
         return rect;
     }
@@ -51,7 +52,7 @@ public abstract class Sprite {
     }
     
     public void setGravity(float gravity){
-       this. gravity = gravity;
+       this.gravity = gravity;
     }
     
     public void addVelocityX(float dx){

@@ -18,4 +18,9 @@ public class Player extends Sprite {
         g.drawImage(super.getImage(), r.x, r.y, r.width, r.height, null);
     }
     
+    public void tick() {
+        super.getRectangle().y += super.getVelocityY();
+        super.addVelocityY(super.getGravity());
+    }
+    
 }

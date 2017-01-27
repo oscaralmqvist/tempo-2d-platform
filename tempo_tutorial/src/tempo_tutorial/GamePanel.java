@@ -23,5 +23,9 @@ public class GamePanel extends JPanel {
         player.paint(g2);
         
     }
+    
+    public Player getPlayer() {
+        return player;
+    }
 
 }
