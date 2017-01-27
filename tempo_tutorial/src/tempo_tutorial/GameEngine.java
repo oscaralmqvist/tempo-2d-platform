@@ -65,7 +65,11 @@ public class GameEngine implements Runnable{
     }
     
     public void tick() {
-        
+        movement();
+    }
+    
+    public void movement() {
+       gp.getPlayer().tick();
     }
         
     public void render() {
