@@ -1,6 +1,8 @@
 
 package tempo_tutorial;
 
+import tempo_tutorial.sprite.Background;
+
 public class GameEngine implements Runnable{
     
     GamePanel gp;
@@ -66,6 +68,7 @@ public class GameEngine implements Runnable{
     }
     
     public void tick() {
+        moveBackground();
         movement();
         checkCollision();
     }
@@ -88,6 +91,17 @@ public class GameEngine implements Runnable{
                 }
         }
     } 
+    public void moveBackground(){
+        if(gp.getPlayer().getMovingRight()){
+            for(Background b : gp.getBack()){
+                b.moveLeft();
+            }
+        }else if(gp.getPlayer().getMovingLeft()){
+            for(Background b : gp.getBack()){
+                b.moveRight();
+            }
+        }
+    }
     public void render() {
         gp.repaint();
     }
