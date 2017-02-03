@@ -78,6 +78,7 @@ public class GameEngine implements Runnable{
     }
     public void checkCollision(){
         for(int i = 0;i<gp.getLevel().getBlocks().size();i++){
+                
                 if(coll.getTopCollision(gp.getPlayer().getRectangle(),gp.getLevel().getBlocks().get(i).getRectangle()) && gp.getPlayer().getVelocityY() > 0){
                     gp.getPlayer().setGravity(0);
                     gp.getPlayer().setVelocityY(0);
@@ -89,14 +90,15 @@ public class GameEngine implements Runnable{
                 } else { 
                     gp.getPlayer().setGravity(2f);
                 }
+                gp.getPlayer().setRectangle(coll.getCollision(gp.getPlayer().getRectangle(), gp.getLevel().getBlocks().get(i).getRectangle()));
         }
     } 
     public void moveBackground(){
-        if(gp.getPlayer().getMovingRight()){
+        if(gp.getPlayer().getMovingRight() && !gp.getPlayer().getMovingLeft()){
             for(Background b : gp.getBack()){
                 b.moveLeft();
             }
-        }else if(gp.getPlayer().getMovingLeft()){
+        }else if(gp.getPlayer().getMovingLeft() && !gp.getPlayer().getMovingRight()){
             for(Background b : gp.getBack()){
                 b.moveRight();
             }
