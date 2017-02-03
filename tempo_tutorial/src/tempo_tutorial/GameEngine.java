@@ -71,7 +71,7 @@ public class GameEngine implements Runnable{
     }
     
     public void movement() {
-       gp.getPlayer().tick();
+        gp.getPlayer().tick();
     }
     public void checkCollision(){
         for(int i = 0;i<gp.getLevel().getBlocks().size();i++){

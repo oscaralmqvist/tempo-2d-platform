@@ -3,7 +3,6 @@ package tempo;
 import java.awt.MouseInfo;
 import java.awt.Rectangle;
 import states.GameState;
-import states.State;
 import tempo.sprites.Bullet;
 import tempo.sprites.Particle;
 /**
@@ -270,76 +269,12 @@ public class GameEngine implements Runnable {
             }
             gs.getPlayer().addVelocityY(gs.getPlayer().getGravity());
             if(gs.isMovingLeft()){
-                if(gs.getPlayer().rect.x <= (Tempo.width/2)){
-                            for(int l = 0;l<gs.getSet().size();l++){
-                                gs.getSet().get(l).moveLeft();
-                            }
-                            for(int l = 0;l<gs.getParticle().size();l++){
-                                gs.getParticle().get(l).rect.x += gs.getPlayer().getVelocityX();
-                            }
-                            for(int i = 0;i<gs.getLevel().getBlocks().size();i++){
-                                gs.getLevel().getBlocks().get(i).rect.x += gs.getPlayer().getVelocityX();
-                            }
-                            for(int i = 0;i<gs.getClouds().size();i++){
-                                gs.getClouds().get(i).rect.x += 1;
-                            }
-                            for(int i = 0;i<gs.getBullets().size();i++){
-                                gs.getBullets().get(i).rect.x += gs.getPlayer().getVelocityX();
-                            }
-                            for(int i = 0; i < gs.getUnits().size(); i++){
-                                for(int j = 0;j<gs.getUnits().get(i).getHealth().size();j++){
-                                    gs.getUnits().get(i).getHealth().get(j).rect.x += gs.getPlayer().getVelocityX();
-                                }
-                            }
-                            for(int i = 0; i< gs.getLevel().getCheckpoints().size(); i++){
-                                gs.getLevel().getCheckpoints().get(i).rect.x+= gs.getPlayer().getVelocityX();
-                            }
-                            for(int i = 0; i < gs.getUnits().size(); i++){
-                                gs.getUnits().get(i).rect.x += gs.getPlayer().getVelocityX();
-                            }
-                            gs.getLevel().getSpawn().rect.x+=gs.getPlayer().getVelocityX();
-                            gs.getLevel().getGoal().rect.x+=gs.getPlayer().getVelocityX();
-                        }else{
-                            for(int i = 0;i<gs.getLevel().getBlocks().size();i++){
-                                gs.getLevel().getBlocks().get(i).setVelocityX(0);
-                            }
-                            gs.getPlayer().rect.x -= gs.getPlayer().getVelocityX();
-}               
-        }
-        if( gs.isMovingRight()){
-                if(gs.getPlayer().rect.x >= (Tempo.width/2)){
-                            for(int l = 0;l<gs.getSet().size();l++){
-                                gs.getSet().get(l).moveRight();
-                            }
-                            for(int l = 0;l<gs.getParticle().size();l++){
-                                gs.getParticle().get(l).rect.x -= gs.getPlayer().getVelocityX();
-                            }
-                            for(int i = 0;i<gs.getLevel().getBlocks().size();i++){
-                                gs.getLevel().getBlocks().get(i).rect.x -= gs.getPlayer().getVelocityX();
-                            }
-                            for(int i = 0;i<gs.getBullets().size();i++){
-                                gs.getBullets().get(i).rect.x -= gs.getPlayer().getVelocityX();
-                            }
-                            for(int i = 0; i< gs.getLevel().getCheckpoints().size(); i++){
-                                gs.getLevel().getCheckpoints().get(i).rect.x -= gs.getPlayer().getVelocityX();
-                            }
-                            for(int i = 0; i < gs.getUnits().size(); i++){
-                                for(int j = 0;j<gs.getUnits().get(i).getHealth().size();j++){
-                                    gs.getUnits().get(i).getHealth().get(j).rect.x -= gs.getPlayer().getVelocityX();
-                                }
-                            }
-                            for(int i = 0; i < gs.getUnits().size(); i++){
-                                gs.getUnits().get(i).rect.x -= gs.getPlayer().getVelocityX();
-                            }
-                            gs.getLevel().getSpawn().rect.x -= gs.getPlayer().getVelocityX();
-                            gs.getLevel().getGoal().rect.x -= gs.getPlayer().getVelocityX();
-                        }else{
-                            for(int i = 0;i<gs.getLevel().getBlocks().size();i++){
-                                gs.getLevel().getBlocks().get(i).setVelocityX(0);
-                            }
-                        gs.getPlayer().rect.x += gs.getPlayer().getVelocityX();
-                        }
-}  
+                gs.getPlayer().rect.x -= 20;          
+            }
+            if( gs.isMovingRight()){
+                gs.getPlayer().rect.x += 20;
+            }
+            System.out.println(-gs.getPlayer().rect.x);
         }
 
 

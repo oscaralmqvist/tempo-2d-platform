@@ -34,7 +34,10 @@ public class GamePanel extends JPanel {
     
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
+        
         for(State s : sm.getStates()) {
+            g.translate(-sm.getGameState().getPlayer().rect.x + 1000,-sm.getGameState().getPlayer().rect.y + 500);
+            System.out.println(-sm.getGameState().getPlayer().rect.x);
             s.paint(g);
         }
     }

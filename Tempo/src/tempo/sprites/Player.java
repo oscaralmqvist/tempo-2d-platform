@@ -56,7 +56,7 @@ public class Player extends Sprites {
         
         g.setFont(new Font("TimesRoman", Font.PLAIN, 25));
         g.setColor(Color.BLACK);
-        g.drawString("x " + Integer.toString(getLives()), 90, 50);
+        g.drawString(rect.y+"", 90, 50);
         g.drawImage(getIcon(), 15, 17, 72, 45, null);
     }
 
