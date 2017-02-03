@@ -17,6 +17,7 @@ public class GamePanel extends JPanel {
     public GamePanel() {
         ss = new Spritesheet();
         player = new Player(Tempo_tutorial.WIDTH/2, Tempo_tutorial.HEIGHT/2, BLOCK_SIZE, BLOCK_SIZE * 2, ss.getSprite(4, 0, 1, 2), 10, 3, 10);
+        player.createAnimation();
         level = new Level(ss,"level",BLOCK_SIZE);
     }
     

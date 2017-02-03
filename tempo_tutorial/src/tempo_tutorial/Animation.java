@@ -19,10 +19,11 @@ public class Animation {
     
     public Animation(Sprite sprite) {
         this.sprite = sprite;
+        images = new ArrayList<BufferedImage>();
     }
     
     /**
-     * Skapar animation
+     * Sätter animation
      * @param images bilder som skapar animation
      */
     
@@ -41,6 +42,8 @@ public class Animation {
     }
     
     public void tick() {
+        if(images.isEmpty())
+            return;
         ticks++;
         
         //Var sjätte tick ska animationen gå till nästa bild i arrayen

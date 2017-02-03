@@ -17,7 +17,8 @@ public class Player extends Sprite {
     @Override
     public void paint(Graphics2D g) {
         Rectangle r = super.getRectangle();
-        g.drawImage(super.getImage(), r.x, r.y, r.width, r.height, null);
+        if (flipped) g.drawImage(super.getImage(), r.width + r.x, r.y, -r.width, r.height, null);
+        else g.drawImage(super.getImage(), r.x, r.y, r.width, r.height, null);
     }
 
     
@@ -44,9 +45,6 @@ public class Player extends Sprite {
     }
     public void setMovingRight(boolean b){
         movingRight = b;
-    }
-    public boolean isFlipped() {
-        return flipped;
     }
     public void setFlipped(boolean flipped) {
         this.flipped = flipped;

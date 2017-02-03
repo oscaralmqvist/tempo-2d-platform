@@ -19,7 +19,6 @@ public class Keyboard implements KeyListener{
     public void keyPressed(KeyEvent e) {
         switch(e.getKeyCode()){
             case KeyEvent.VK_D:
-                //gp.getPlayer().getRectangle().x = (int)(gp.getPlayer().getRectangle().x+gp.getPlayer().getVelocityX());
                 if(!gp.getPlayer().getMovingLeft()){
                     gp.getPlayer().setMovingLeft(true);
                     gp.getPlayer().setFlipped(true);
@@ -28,7 +27,6 @@ public class Keyboard implements KeyListener{
             break;
                 
             case KeyEvent.VK_A:
-               //gp.getPlayer().getRectangle().x = (int)(gp.getPlayer().getRectangle().x-gp.getPlayer().getVelocityX());
                 if(!gp.getPlayer().getMovingRight()){
                     gp.getPlayer().setMovingRight(true);
                     gp.getPlayer().setFlipped(false);
