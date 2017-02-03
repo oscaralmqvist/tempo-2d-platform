@@ -23,7 +23,7 @@ public class Keyboard implements KeyListener{
                 if(!gp.getPlayer().getMovingLeft()){
                     gp.getPlayer().setMovingLeft(true);
                     gp.getPlayer().setFlipped(true);
-                    gp.getPlayer().getAnimation().setCurrentAnimation(gp.getTexture().getSprite(5, 0, 1, 2), gp.getTexture().getSprite(6, 0, 1, 2), gp.getTexture().getSprite(7, 0, 1, 2), gp.getTexture().getSprite(8, 0, 1, 2), gp.getTexture().getSprite(9, 0, 1, 2), gp.getTexture().getSprite(10, 0, 1, 2));
+                    gp.getPlayer().getAnimation().setCurrentAnimation(gp.getSpritesheet().getSprite(5, 0, 1, 2), gp.getSpritesheet().getSprite(6, 0, 1, 2), gp.getSpritesheet().getSprite(7, 0, 1, 2), gp.getSpritesheet().getSprite(8, 0, 1, 2), gp.getSpritesheet().getSprite(9, 0, 1, 2), gp.getSpritesheet().getSprite(10, 0, 1, 2));
                 }
             break;
                 
@@ -32,7 +32,7 @@ public class Keyboard implements KeyListener{
                 if(!gp.getPlayer().getMovingRight()){
                     gp.getPlayer().setMovingRight(true);
                     gp.getPlayer().setFlipped(false);
-                    gp.getPlayer().getAnimation().setCurrentAnimation(gp.getTexture().getSprite(5, 0, 1, 2), gp.getTexture().getSprite(6, 0, 1, 2), gp.getTexture().getSprite(7, 0, 1, 2), gp.getTexture().getSprite(8, 0, 1, 2), gp.getTexture().getSprite(9, 0, 1, 2), gp.getTexture().getSprite(10, 0, 1, 2));
+                    gp.getPlayer().getAnimation().setCurrentAnimation(gp.getSpritesheet().getSprite(5, 0, 1, 2), gp.getSpritesheet().getSprite(6, 0, 1, 2), gp.getSpritesheet().getSprite(7, 0, 1, 2), gp.getSpritesheet().getSprite(8, 0, 1, 2), gp.getSpritesheet().getSprite(9, 0, 1, 2), gp.getSpritesheet().getSprite(10, 0, 1, 2));
                 }
             break;
      

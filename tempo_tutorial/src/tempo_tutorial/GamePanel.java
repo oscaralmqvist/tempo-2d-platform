@@ -10,14 +10,14 @@ import tempo_tutorial.sprite.Player;
 public class GamePanel extends JPanel {
     
     private final int BLOCK_SIZE = 75;
-    private Texture texture;
+    private Spritesheet ss;
     private Player player;
     private Level level;
     
     public GamePanel() {
-        texture = new Texture();
-        player = new Player(Tempo_tutorial.WIDTH/2, Tempo_tutorial.HEIGHT/2, BLOCK_SIZE, BLOCK_SIZE * 2, texture.getSprite(4, 0, 1, 2), 10, 3, 10);
-        level = new Level(texture,"level",BLOCK_SIZE);
+        ss = new Spritesheet();
+        player = new Player(Tempo_tutorial.WIDTH/2, Tempo_tutorial.HEIGHT/2, BLOCK_SIZE, BLOCK_SIZE * 2, ss.getSprite(4, 0, 1, 2), 10, 3, 10);
+        level = new Level(ss,"level",BLOCK_SIZE);
     }
     
     @Override
@@ -32,8 +32,8 @@ public class GamePanel extends JPanel {
         return player;
     }
     
-    public Texture getTexture() {
-        return texture;
+    public Spritesheet getSpritesheet() {
+        return ss;
     }
 
 }

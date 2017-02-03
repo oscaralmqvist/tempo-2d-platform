@@ -11,7 +11,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.logging.Logger;
-import tempo_tutorial.Texture;
+import tempo_tutorial.Spritesheet;
 
 /**
  *
@@ -19,12 +19,12 @@ import tempo_tutorial.Texture;
  */
 public class Level {
     private ArrayList<Block> level = new ArrayList<Block>();
-    private Texture texture;
+    private Spritesheet ss;
     private String levelName;
     private int blockSize;
     
-    public Level(Texture texture, String level, int blockSize){
-        this.texture  = texture;
+    public Level(Spritesheet texture, String level, int blockSize){
+        this.ss  = texture;
         this.levelName = level;
         int row = 0;
         int collumn = 0;
@@ -59,7 +59,7 @@ public class Level {
     
     }
     public void addBlock(boolean coll, int x, int y, int imgX, int imgY, int width,int height){
-        level.add(new Block(x*blockSize,y*blockSize,width*blockSize,height*blockSize,texture.getSprite(imgX, imgY, width, height),coll));
+        level.add(new Block(x*blockSize,y*blockSize,width*blockSize,height*blockSize,ss.getSprite(imgX, imgY, width, height),coll));
     }
       public void paint(Graphics2D g) {
         for(Block b : level){

@@ -5,7 +5,7 @@ import java.awt.image.*;
 import java.io.File;
 import javax.imageio.ImageIO;
 
-public class Texture {
+public class Spritesheet {
     
     //Variabeln "sheet" kommer vara bilden vi hämtar alla sprites ifrån
     BufferedImage sheet = null;
@@ -14,7 +14,7 @@ public class Texture {
      * Läser in spritesheet
      */
     
-    public Texture(){
+    public Spritesheet(){
         try {
             sheet = ImageIO.read(new File("src/resources/pics/sheet_new.png"));
         } catch(Exception e) {}
