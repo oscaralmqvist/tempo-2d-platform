@@ -1,6 +1,8 @@
 
 package tempo_tutorial;
 
+import tempo_tutorial.sprite.Background;
+
 public class GameEngine implements Runnable{
     
     GamePanel gp;
@@ -66,6 +68,7 @@ public class GameEngine implements Runnable{
     }
     
     public void tick() {
+        moveBackground();
         movement();
         checkCollision();
     }
@@ -76,19 +79,32 @@ public class GameEngine implements Runnable{
     }
     public void checkCollision(){
         for(int i = 0;i<gp.getLevel().getBlocks().size();i++){
+                
                 if(coll.getTopCollision(gp.getPlayer().getRectangle(),gp.getLevel().getBlocks().get(i).getRectangle()) && gp.getPlayer().getVelocityY() > 0){
                     gp.getPlayer().setGravity(0);
                     gp.getPlayer().setVelocityY(0);
                     gp.getPlayer().setJumps(2);
                     break;
-                } else if(coll.getTopCollision(gp.getPlayer().getRectangle(),gp.getLevel().getBlocks().get(i).getRectangle()) && gp.getPlayer().getVelocityY() < 0){
+                } else if(coll.getBottomCollision(gp.getPlayer().getRectangle(),gp.getLevel().getBlocks().get(i).getRectangle()) && gp.getPlayer().getVelocityY() < 0){
                     gp.getPlayer().setGravity(0);
                     gp.getPlayer().setVelocityY(0);
                 } else { 
                     gp.getPlayer().setGravity(2f);
                 }
+                gp.getPlayer().setRectangle(coll.getCollision(gp.getPlayer().getRectangle(), gp.getLevel().getBlocks().get(i).getRectangle()));
         }
     } 
+    public void moveBackground(){
+        if(gp.getPlayer().getMovingRight() && !gp.getPlayer().getMovingLeft()){
+            for(Background b : gp.getBack()){
+                b.moveLeft();
+            }
+        }else if(gp.getPlayer().getMovingLeft() && !gp.getPlayer().getMovingRight()){
+            for(Background b : gp.getBack()){
+                b.moveRight();
+            }
+        }
+    }
     public void render() {
         gp.repaint();
     }

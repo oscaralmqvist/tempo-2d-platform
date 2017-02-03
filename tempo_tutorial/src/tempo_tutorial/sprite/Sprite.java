@@ -26,6 +26,9 @@ public abstract class Sprite {
     public Rectangle getRectangle() {
         return rect;
     }
+    public void setRectangle(Rectangle newRect) {
+        rect = newRect;
+    }
     
     public BufferedImage getImage() {
         return image;
