@@ -7,6 +7,7 @@ import java.awt.image.BufferedImage;
 
 public class Player extends Sprite {
     private boolean movingLeft, movingRight, flipped;
+    private int jumps = 2;
 
     
     public Player(int x, int y, int width, int height, BufferedImage image, float dx, float dy, float gravity) {
@@ -49,6 +50,12 @@ public class Player extends Sprite {
     }
     public void setFlipped(boolean flipped) {
         this.flipped = flipped;
+    }
+    public int getJumps(){
+        return jumps;
+    }
+    public void setJumps(int i){
+        jumps = i;
     }
         
 }

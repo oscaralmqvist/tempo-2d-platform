@@ -35,6 +35,13 @@ public class Keyboard implements KeyListener{
                     gp.getPlayer().getAnimation().setCurrentAnimation(gp.getSpritesheet().getSprite(5, 0, 1, 2), gp.getSpritesheet().getSprite(6, 0, 1, 2), gp.getSpritesheet().getSprite(7, 0, 1, 2), gp.getSpritesheet().getSprite(8, 0, 1, 2), gp.getSpritesheet().getSprite(9, 0, 1, 2), gp.getSpritesheet().getSprite(10, 0, 1, 2));
                 }
             break;
+            
+            case KeyEvent.VK_W:
+            case KeyEvent.VK_SPACE:
+                if(gp.getPlayer().getJumps() > 0 ){
+                    gp.getPlayer().setVelocityY(-22f);
+                    gp.getPlayer().setJumps(gp.getPlayer().getJumps()-1);
+                }
      
         }
     }

@@ -20,14 +20,11 @@ import tempo_tutorial.Spritesheet;
 public class Level {
     private ArrayList<Block> level = new ArrayList<Block>();
     private Spritesheet ss;
-    private String levelName;
     private int blockSize;
     
     public Level(Spritesheet texture, String level, int blockSize){
         this.ss  = texture;
-        this.levelName = level;
         int row = 0;
-        int collumn = 0;
         this.blockSize = blockSize;
         
         
@@ -40,12 +37,10 @@ public class Level {
                     char symbol = tempStr.charAt(j);
                     switch(symbol){
                         case '-':break;
-                        case 'g':addBlock(true,collumn,row,0,0,1,1); break;
-                        case 'd':addBlock(true,collumn,row,1,0,1,1); break;
+                        case 'g':addBlock(true,j,row,0,0,1,1); break;
+                        case 'd':addBlock(true,j,row,1,0,1,1); break;
                     }
-                    collumn++;
                         if(j == tempStr.length()-1){
-                            collumn = 0;
                             row++;
                         }
                     
