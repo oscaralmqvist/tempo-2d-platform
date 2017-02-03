@@ -1,13 +1,12 @@
 
 package tempo_tutorial.sprite;
 
-import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
 
 public class Player extends Sprite {
-        private boolean movingLeft, movingRight;
+    private boolean movingLeft, movingRight, flipped;
 
     
     public Player(int x, int y, int width, int height, BufferedImage image, float dx, float dy, float gravity) {
@@ -44,6 +43,12 @@ public class Player extends Sprite {
     }
     public void setMovingRight(boolean b){
         movingRight = b;
+    }
+    public boolean isFlipped() {
+        return flipped;
+    }
+    public void setFlipped(boolean flipped) {
+        this.flipped = flipped;
     }
         
 }

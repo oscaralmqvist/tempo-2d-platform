@@ -36,10 +36,6 @@ public class Animation {
             this.images.add(image);
         }
         
-        /**
-         * TA BORT MELLANSTEG???
-         */
-        
         //lägger till class-variabeln på sprite
         sprite.setImage(this.images.get(currentImage));
     }

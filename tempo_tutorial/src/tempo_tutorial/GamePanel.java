@@ -27,5 +27,9 @@ public class GamePanel extends JPanel {
     public Player getPlayer() {
         return player;
     }
+    
+    public Texture getTexture() {
+        return texture;
+    }
 
 }
