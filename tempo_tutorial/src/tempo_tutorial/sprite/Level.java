@@ -61,6 +61,9 @@ public class Level {
     public void addBlock(boolean coll, int x, int y, int imgX, int imgY, int width,int height){
         level.add(new Block(x*blockSize,y*blockSize,width*blockSize,height*blockSize,texture.getSprite(imgX, imgY, width, height),coll));
     }
+    public ArrayList<Block> getBlocks(){
+        return level;
+    }
       public void paint(Graphics2D g) {
         for(Block b : level){
             b.paint(g);
