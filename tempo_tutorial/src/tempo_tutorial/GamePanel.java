@@ -3,6 +3,8 @@ package tempo_tutorial;
 
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.Rectangle;
+import java.awt.Color;
 import java.util.ArrayList;
 import javax.swing.JPanel;
 import tempo_tutorial.sprite.Background;
@@ -23,16 +25,23 @@ public class GamePanel extends JPanel {
         player.createAnimation();
         level = new Level(ss,"level",BLOCK_SIZE);
         background.add(new Background(0.1f,200,230,Tempo_tutorial.WIDTH,Tempo_tutorial.HEIGHT,ss.getImage("src/resources/pics/mountains_final1.png"),player));
+        background.add(new Background(0.2f,200,230,Tempo_tutorial.WIDTH,Tempo_tutorial.HEIGHT,ss.getImage("src/resources/pics/clouds.png"),player));
+        background.add(new Background(0.8f,200,230,Tempo_tutorial.WIDTH,Tempo_tutorial.HEIGHT,ss.getImage("src/resources/pics/trees.png"),player));
+        background.add(new Background(1f,200,230,Tempo_tutorial.WIDTH,Tempo_tutorial.HEIGHT,ss.getImage("src/resources/pics/bushes.png"),player));
     }
     
     @Override
     public void paintComponent(Graphics g) {
         Graphics2D g2 = (Graphics2D) g;
         for(Background b : background){
+            g2.translate(0, -(float)player.getRectangle().y+(360-75) * b.getVelocityX() - (float)b.getRectangle().height*b.getVelocityX()*0.5);
             b.paint(g2);
+            resetTranslate(g2);
         }
         g2.translate(-player.getRectangle().x + (640-32), -player.getRectangle().y+(360-75));
+        
         player.paint(g2);
+        g2.shear(0, 0);
         level.paint(g2);
         
     }
@@ -51,6 +60,10 @@ public class GamePanel extends JPanel {
     
     public ArrayList<Background> getBack(){
         return background;
+    }
+    private void resetTranslate(Graphics2D g2){  
+        Rectangle r = g2.getClipBounds();
+        g2.translate(r.x, r.y);
     }
 
 }

@@ -6,6 +6,7 @@
 package tempo_tutorial.sprite;
 
 import java.awt.Graphics2D;
+import java.awt.Shape;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
