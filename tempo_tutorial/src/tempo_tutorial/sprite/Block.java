@@ -6,9 +6,11 @@ import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
 
 public class Block extends Sprite {
+    private boolean col;
     
     public Block(int x, int y, int width, int height, BufferedImage image, boolean collision) {
         super(x, y, width, height, image, 0, 0, 0);
+        col = collision;
     }
 
     @Override
@@ -16,6 +18,9 @@ public class Block extends Sprite {
         Rectangle r = super.getRectangle();
         g.drawImage(super.getImage(), r.x, r.y, r.width, r.height, null);
     }
-    
+
+    public boolean  getCollision(){
+        return col;
+    }
     
 }

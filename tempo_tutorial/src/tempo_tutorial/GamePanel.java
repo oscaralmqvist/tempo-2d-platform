@@ -1,6 +1,7 @@
 
 package tempo_tutorial;
 
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
@@ -20,6 +21,7 @@ public class GamePanel extends JPanel {
     private ArrayList<Background> background = new ArrayList();
     
     public GamePanel() {
+        setFont(new Font("Serif", Font.BOLD, 32));
         ss = new Spritesheet();
         player = new Player(Tempo_tutorial.WIDTH/2, Tempo_tutorial.HEIGHT/2, BLOCK_SIZE, BLOCK_SIZE * 2, ss.getSprite(4, 0, 1, 2), 10, 3, 10);
         player.createAnimation();
@@ -44,7 +46,13 @@ public class GamePanel extends JPanel {
         g2.shear(0, 0);
         level.paint(g2);
         
-    }
+        if(level.getPickup().size()>0){
+            g2.drawString(level.getPickup().size()+" Tacos kvar.", player.getRectangle().x-600, player.getRectangle().y-200);
+        }
+        else{
+            g2.drawString("Winner winner chicken dinner",player.getRectangle().x-180,player.getRectangle().y-50);
+        }
+}
     
     public Player getPlayer() {
         return player;
