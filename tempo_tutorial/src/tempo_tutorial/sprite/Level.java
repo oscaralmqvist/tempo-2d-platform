@@ -10,7 +10,6 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.logging.Logger;
 import tempo_tutorial.Spritesheet;
 
 /**
@@ -19,6 +18,7 @@ import tempo_tutorial.Spritesheet;
  */
 public class Level {
     private ArrayList<Block> level = new ArrayList<Block>();
+    private ArrayList<PickUp> pickup = new ArrayList<>();
     private Spritesheet ss;
     private int blockSize;
     
@@ -39,6 +39,7 @@ public class Level {
                         case '-':break;
                         case 'g':addBlock(true,j,row,0,0,1,1); break;
                         case 'd':addBlock(true,j,row,1,0,1,1); break;
+                        case 't':addPickup(false,j,row,13,1,1,1); break;
                     }
                         if(j == tempStr.length()-1){
                             row++;
@@ -56,6 +57,9 @@ public class Level {
     public void addBlock(boolean coll, int x, int y, int imgX, int imgY, int width,int height){
         level.add(new Block(x*blockSize,y*blockSize,width*blockSize,height*blockSize,ss.getSprite(imgX, imgY, width, height),coll));
     }
+    public void addPickup(boolean coll, int x, int y, int imgX, int imgY, int width,int height){
+        pickup.add(new PickUp(x*blockSize,y*blockSize,width*blockSize,height*blockSize,ss.getSprite(imgX, imgY, width, height),coll));
+    }
     public ArrayList<Block> getBlocks(){
         return level;
     }
@@ -63,5 +67,11 @@ public class Level {
         for(Block b : level){
             b.paint(g);
         }
+        for(PickUp p: pickup){
+            p.paint(g);
+        }
+    }
+    public ArrayList<PickUp> getPickup(){
+        return pickup; 
     }
 }

@@ -2,6 +2,7 @@
 package tempo_tutorial;
 
 import tempo_tutorial.sprite.Background;
+import tempo_tutorial.sprite.PickUp;
 
 public class GameEngine implements Runnable{
     
@@ -76,10 +77,15 @@ public class GameEngine implements Runnable{
     public void movement() {
         gp.getPlayer().tick();
         gp.getPlayer().getAnimation().tick();
+        
+        for(PickUp p :  gp.getLevel().getPickup()){
+            p.tick();
+        }
     }
     public void checkCollision(){
         for(int i = 0;i<gp.getLevel().getBlocks().size();i++){
-                
+            if(gp.getLevel().getBlocks().get(i).getCollision()){
+                    
                 if(coll.getTopCollision(gp.getPlayer().getRectangle(),gp.getLevel().getBlocks().get(i).getRectangle()) && gp.getPlayer().getVelocityY() > 0){
                     gp.getPlayer().setGravity(0);
                     gp.getPlayer().setVelocityY(0);
@@ -92,6 +98,13 @@ public class GameEngine implements Runnable{
                     gp.getPlayer().setGravity(2f);
                 }
                 gp.getPlayer().setRectangle(coll.getCollision(gp.getPlayer().getRectangle(), gp.getLevel().getBlocks().get(i).getRectangle()));
+            }
+        }
+        
+        for(int i = 0; i<gp.getLevel().getPickup().size();i++){
+            if(gp.getPlayer().getRectangle().intersects(gp.getLevel().getPickup().get(i).getRectangle())){
+                gp.getLevel().getPickup().remove(i);
+            }
         }
     } 
     public void moveBackground(){
