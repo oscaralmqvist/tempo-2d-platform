@@ -4,9 +4,11 @@ package tempo_tutorial.sprite;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
+import tempo_tutorial.Animation;
 
 public class Player extends Sprite {
-    private boolean movingLeft, movingRight, flipped;
+    private boolean movingLeft, movingRight, jumping, falling, flipped;
+    private Animation animation;
     private int jumps = 2;
 
     
@@ -27,11 +29,22 @@ public class Player extends Sprite {
         super.addVelocityY(super.getGravity());
         
         if(movingLeft){
-           getRectangle().x += getVelocityX();
-        }
-        if(movingRight){
            getRectangle().x -= getVelocityX();
         }
+        if(movingRight){
+           getRectangle().x += getVelocityX();
+        }
+        
+        //Om hastigheten är riktad uppåt, hoppar player
+        if(super.getVelocityY() < 0) {
+            jumping = true;
+        }
+        
+        //Om hastigheten är riktad mycket nedåt, faller player
+        if(super.getVelocityY() > 17.5) {
+            falling = true;
+        }
+        
     }
     
     public boolean getMovingLeft(){
@@ -40,11 +53,23 @@ public class Player extends Sprite {
     public boolean getMovingRight(){
         return movingRight;
     }
+    public boolean getJumping(){
+        return jumping;
+    }
+    public boolean getFalling(){
+        return falling;
+    }
     public void setMovingLeft(boolean b){
         movingLeft = b;
     }
     public void setMovingRight(boolean b){
         movingRight = b;
+    }
+    public void setJumping(boolean b){
+        jumping = b;
+    }
+    public void setFalling(boolean b){
+        falling = b;
     }
     public void setFlipped(boolean flipped) {
         this.flipped = flipped;
@@ -54,6 +79,13 @@ public class Player extends Sprite {
     }
     public void setJumps(int i){
         jumps = i;
+    }
+    public void createAnimation() {
+        animation = new Animation(this);
+    }
+    
+    public Animation getAnimation() {
+        return animation;
     }
         
 }

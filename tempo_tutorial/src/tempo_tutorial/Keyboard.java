@@ -19,19 +19,19 @@ public class Keyboard implements KeyListener{
     public void keyPressed(KeyEvent e) {
         switch(e.getKeyCode()){
             case KeyEvent.VK_D:
-                if(!gp.getPlayer().getMovingLeft()){
-                    gp.getPlayer().setMovingLeft(true);
-                    gp.getPlayer().setFlipped(true);
-                    gp.getPlayer().getAnimation().setCurrentAnimation(gp.getSpritesheet().getSprite(5, 0, 1, 2), gp.getSpritesheet().getSprite(6, 0, 1, 2), gp.getSpritesheet().getSprite(7, 0, 1, 2), gp.getSpritesheet().getSprite(8, 0, 1, 2), gp.getSpritesheet().getSprite(9, 0, 1, 2), gp.getSpritesheet().getSprite(10, 0, 1, 2));
+                if(gp.getPlayer().getMovingLeft()){
+                    gp.getPlayer().setMovingLeft(false);
                 }
+                gp.getPlayer().setMovingRight(true);
+                gp.getPlayer().setFlipped(true);
             break;
                 
             case KeyEvent.VK_A:
-                if(!gp.getPlayer().getMovingRight()){
-                    gp.getPlayer().setMovingRight(true);
-                    gp.getPlayer().setFlipped(false);
-                    gp.getPlayer().getAnimation().setCurrentAnimation(gp.getSpritesheet().getSprite(5, 0, 1, 2), gp.getSpritesheet().getSprite(6, 0, 1, 2), gp.getSpritesheet().getSprite(7, 0, 1, 2), gp.getSpritesheet().getSprite(8, 0, 1, 2), gp.getSpritesheet().getSprite(9, 0, 1, 2), gp.getSpritesheet().getSprite(10, 0, 1, 2));
+                if(gp.getPlayer().getMovingRight()){
+                    gp.getPlayer().setMovingRight(false);
                 }
+                gp.getPlayer().setMovingLeft(true);
+                gp.getPlayer().setFlipped(false);
             break;
             
             case KeyEvent.VK_W:
@@ -48,11 +48,11 @@ public class Keyboard implements KeyListener{
     public void keyReleased(KeyEvent e) {
         switch(e.getKeyCode()){
                 case KeyEvent.VK_A:
-                    gp.getPlayer().setMovingRight(false);
+                    gp.getPlayer().setMovingLeft(false);
                 break;
                 
                 case KeyEvent.VK_D:
-                    gp.getPlayer().setMovingLeft(false);
+                    gp.getPlayer().setMovingRight(false);
                 break;
         }
     }

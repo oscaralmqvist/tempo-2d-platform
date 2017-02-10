@@ -25,6 +25,7 @@ public class GamePanel extends JPanel {
         ss = new Spritesheet();
         player = new Player(Tempo_tutorial.WIDTH/2, Tempo_tutorial.HEIGHT/2, BLOCK_SIZE, BLOCK_SIZE * 2, ss.getSprite(4, 0, 1, 2), 10, 3, 10);
         player.createAnimation();
+        player.getAnimation().setCurrentAnimation(ss.getSprite(5, 0, 1, 2), ss.getSprite(6, 0, 1, 2), ss.getSprite(7, 0, 1, 2), ss.getSprite(8, 0, 1, 2), ss.getSprite(9, 0, 1, 2), ss.getSprite(10, 0, 1, 2), ss.getSprite(4, 0, 1, 2), ss.getSprite(11, 0, 1, 2), ss.getSprite(12, 0, 1, 2));
         level = new Level(ss,"level",BLOCK_SIZE);
         background.add(new Background(0.1f,200,230,Tempo_tutorial.WIDTH,Tempo_tutorial.HEIGHT,ss.getImage("src/resources/pics/mountains_final1.png"),player));
         background.add(new Background(0.2f,200,230,Tempo_tutorial.WIDTH,Tempo_tutorial.HEIGHT,ss.getImage("src/resources/pics/clouds.png"),player));
