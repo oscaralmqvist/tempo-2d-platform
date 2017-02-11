@@ -37,9 +37,15 @@ public class Keyboard implements KeyListener{
             case KeyEvent.VK_W:
             case KeyEvent.VK_SPACE:
                 if(gp.getPlayer().getJumps() > 0 ){
-                    gp.getPlayer().setVelocityY(-22f);
+                    gp.getPlayer().setVelocityY(-35f);
                     gp.getPlayer().setJumps(gp.getPlayer().getJumps()-1);
                 }
+            break;
+            
+            case KeyEvent.VK_P:
+                gp.getPlayer().getAnimation().setInterval(2);
+                gp.getPlayer().setVelocityX(20);
+            break;
      
         }
     }
@@ -47,13 +53,18 @@ public class Keyboard implements KeyListener{
     @Override
     public void keyReleased(KeyEvent e) {
         switch(e.getKeyCode()){
-                case KeyEvent.VK_A:
-                    gp.getPlayer().setMovingLeft(false);
-                break;
-                
-                case KeyEvent.VK_D:
-                    gp.getPlayer().setMovingRight(false);
-                break;
+            case KeyEvent.VK_A:
+                gp.getPlayer().setMovingLeft(false);
+            break;
+
+            case KeyEvent.VK_D:
+                gp.getPlayer().setMovingRight(false);
+            break;
+
+            case KeyEvent.VK_P:
+                gp.getPlayer().getAnimation().setInterval(6);
+                gp.getPlayer().setVelocityX(10);
+            break;
         }
     }
     

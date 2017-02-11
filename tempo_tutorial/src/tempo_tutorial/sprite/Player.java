@@ -9,7 +9,7 @@ import tempo_tutorial.Animation;
 public class Player extends Sprite {
     private boolean movingLeft, movingRight, jumping, falling, flipped;
     private Animation animation;
-    private int jumps = 2;
+    private int jumps = 1;
 
     
     public Player(int x, int y, int width, int height, BufferedImage image, float dx, float dy, float gravity) {
@@ -38,11 +38,13 @@ public class Player extends Sprite {
         //Om hastigheten är riktad uppåt, hoppar player
         if(super.getVelocityY() < 0) {
             jumping = true;
+            falling = false;
         }
         
         //Om hastigheten är riktad mycket nedåt, faller player
-        if(super.getVelocityY() > 17.5) {
+        if(super.getVelocityY() > 0) {
             falling = true;
+            jumping = false;
         }
         
     }

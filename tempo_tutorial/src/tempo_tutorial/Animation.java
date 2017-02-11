@@ -10,7 +10,8 @@ public class Animation {
     private Player player;
     private ArrayList<BufferedImage> images;
     private int ticks = 0;
-    private int currentImage;
+    private int interval = 6;
+    private int currentImage, startImage, endImage;
     
     /**
      * Deklarerar player
@@ -27,7 +28,7 @@ public class Animation {
      * @param images bilder som skapar animation
      */
     
-    public void setCurrentAnimation(BufferedImage ... images) {
+    public void setAnimation(BufferedImage ... images) {
         //Nollställer värden
         currentImage = 0;
         this.images.clear();
@@ -44,10 +45,10 @@ public class Animation {
     public void tick() {
         
         //Var sjätte tick ska animationen gå till nästa bild i arrayen
-        if(++ticks == 6)  {
+        if(++ticks >= interval)  {
             //Om vi är på sista bilden på spring-animationen, börja om
-            if (currentImage == images.size() - 3) {
-                currentImage = 0;
+            if (currentImage > endImage || currentImage <= startImage) {
+                currentImage = startImage;
             }
             
             //Byt till nästa bild på player
@@ -58,27 +59,32 @@ public class Animation {
             ticks = 0;
         }
         
+        startImage = 0;
+        endImage = 5;
+        interval = 6;
+        
         //Om player står still på marken, sätts inaktiv bild istället för spring-animation
         if (!player.getMovingLeft() && !player.getMovingRight()) {
-            if (ticks == 5) {
-                currentImage = 6;
-                player.setImage(this.images.get(currentImage));
-                currentImage = 0;
-                ticks = 0;
-            }
+            startImage = 6;
+            endImage = 8;
+            interval = 10;
         }
         
         //Om player är i luften, sätts hopp- eller fall-bild efter villkor istället för spring-animation
-        if (player.getJumps() < 2) {
-            if (player.getJumping()) currentImage = 7;
-            if (player.getFalling()) currentImage = 8;
-            
-            //Applicera image
-            player.setImage(this.images.get(currentImage));
-            
-            //Ställ om animation ifall spring-animation ska köras härnäst
-            currentImage = 0;
+        if (player.getJumps() < 1) {
+            if (player.getJumping()) {
+                startImage = 9;
+                endImage = 9;
+            } 
+            if (player.getFalling()) {
+                startImage = 10;
+                endImage = 10;
+            }
         }
     }
     
+    public void setInterval(int i) {
+        interval = i;
+        ticks = 0;
+    }
 }

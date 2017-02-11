@@ -6,6 +6,7 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
 import java.awt.Color;
+import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import javax.swing.JPanel;
 import tempo_tutorial.sprite.Background;
@@ -25,7 +26,7 @@ public class GamePanel extends JPanel {
         ss = new Spritesheet();
         player = new Player(Tempo_tutorial.WIDTH/2, Tempo_tutorial.HEIGHT/2, BLOCK_SIZE, BLOCK_SIZE * 2, ss.getSprite(4, 0, 1, 2), 10, 3, 10);
         player.createAnimation();
-        player.getAnimation().setCurrentAnimation(ss.getSprite(5, 0, 1, 2), ss.getSprite(6, 0, 1, 2), ss.getSprite(7, 0, 1, 2), ss.getSprite(8, 0, 1, 2), ss.getSprite(9, 0, 1, 2), ss.getSprite(10, 0, 1, 2), ss.getSprite(4, 0, 1, 2), ss.getSprite(11, 0, 1, 2), ss.getSprite(12, 0, 1, 2));
+        player.getAnimation().setAnimation(/*Running (0-5)*/ getPS(7,0), getPS(8,0), getPS(9,0), getPS(10,0), getPS(11,0), getPS(12,0), /*Idle (6-8)*/ getPS(4,0), getPS(5,0), getPS(6,0), /*Jumping (9)*/ getPS(4,2), /*Falling (10)*/ getPS(5,2));
         level = new Level(ss,"level",BLOCK_SIZE);
         background.add(new Background(0.1f,200,230,Tempo_tutorial.WIDTH,Tempo_tutorial.HEIGHT,ss.getImage("src/resources/pics/mountains_final1.png"),player));
         background.add(new Background(0.2f,200,230,Tempo_tutorial.WIDTH,Tempo_tutorial.HEIGHT,ss.getImage("src/resources/pics/clouds.png"),player));
@@ -73,6 +74,11 @@ public class GamePanel extends JPanel {
     private void resetTranslate(Graphics2D g2){  
         Rectangle r = g2.getClipBounds();
         g2.translate(r.x, r.y);
+    }
+    
+    //PS = Player-Sprite
+    private BufferedImage getPS(int x, int y) {
+        return ss.getSprite(x, y, 1, 2);
     }
 
 }

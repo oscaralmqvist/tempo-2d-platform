@@ -1,12 +1,12 @@
 ---------------------------------------------------------------
 ---------------------------------------------------------------
 ------------------t------------------------------t-------------
------------------dd-----------------------------gggg-----------
-----------t------------------------t-----g---------------------
+----------------ggg-----------------------------gggg-----------
+----------t------------------------t-----gg--------------------
 --------gggg---------------------gggg--------------------------
 ---------------------------------------------------------------
 ----t-------------------t-----------------------t--------------
-gggggggggggggdgggggggggggggggggggggggggggggggdggggggggggggggggg
+ggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggg
 ddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd
 ddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd
 ddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd

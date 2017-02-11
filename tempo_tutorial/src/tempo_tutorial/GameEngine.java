@@ -89,7 +89,7 @@ public class GameEngine implements Runnable{
                 if(coll.getTopCollision(gp.getPlayer().getRectangle(),gp.getLevel().getBlocks().get(i).getRectangle()) && gp.getPlayer().getVelocityY() > 0){
                     gp.getPlayer().setGravity(0);
                     gp.getPlayer().setVelocityY(0);
-                    gp.getPlayer().setJumps(2);
+                    gp.getPlayer().setJumps(1);
                     gp.getPlayer().setFalling(false);
                     break;
                 } else if(coll.getBottomCollision(gp.getPlayer().getRectangle(),gp.getLevel().getBlocks().get(i).getRectangle()) && gp.getPlayer().getVelocityY() < 0){
