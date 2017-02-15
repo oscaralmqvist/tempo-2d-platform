@@ -39,7 +39,10 @@ public class Level {
                     char symbol = tempStr.charAt(j);
                     switch(symbol){
                         case '-':break;
-                        case 'g':addBlock(true,j,row,0,0,1,1); break;
+                        case 'g':
+                            addBlock(true,j,row,0,0,1,1);double temp;
+                            if(Math.random() > 0.5){addBlock(false,j,row-1,1,4,1,1);
+                            }else{addBlock(false,j,row-1,0,4,1,1);} break;
                         case 'd':addBlock(true,j,row,1,0,1,1); break;
                         case 't':addPickup(false,j,row,13,1,1,1); break;
                     }
