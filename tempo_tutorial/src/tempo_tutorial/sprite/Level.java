@@ -5,6 +5,7 @@
  */
 package tempo_tutorial.sprite;
 
+import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.Shape;
 import java.io.BufferedReader;
@@ -65,7 +66,7 @@ public class Level {
         return level;
     }
       public void paint(Graphics2D g) {
-        for(Block b : level){
+        for(Block b: level){
             b.paint(g);
         }
         for(PickUp p: pickup){

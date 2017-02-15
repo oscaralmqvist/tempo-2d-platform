@@ -37,6 +37,7 @@ public class GamePanel extends JPanel {
     @Override
     public void paintComponent(Graphics g) {
         Graphics2D g2 = (Graphics2D) g;
+        g2.shear(0, 0);
         for(Background b : background){
             g2.translate(0, -(float)player.getRectangle().y+(360-75) * b.getVelocityX() - (float)b.getRectangle().height*b.getVelocityX()*0.5);
             b.paint(g2);
