@@ -9,6 +9,7 @@ public class GameEngine implements Runnable{
     GamePanel gp;
     Collision coll = new Collision();
     
+    private int prevX = 0;
     private boolean running = false;
     
     public GameEngine(GamePanel gp) {
@@ -110,15 +111,19 @@ public class GameEngine implements Runnable{
         }
     } 
     public void moveBackground(){
-        if(gp.getPlayer().getMovingLeft() && !gp.getPlayer().getMovingRight()){
+        
+        if(gp.getPlayer().getRectangle().x < prevX ){
             for(Background b : gp.getBack()){
                 b.moveLeft();
             }
-        }else if(gp.getPlayer().getMovingRight() && !gp.getPlayer().getMovingLeft()){
+        }else if(gp.getPlayer().getRectangle().x > prevX){
             for(Background b : gp.getBack()){
                 b.moveRight();
             }
         }
+        prevX = gp.getPlayer().getRectangle().x;
+    
+        
     }
     public void render() {
         gp.repaint();
