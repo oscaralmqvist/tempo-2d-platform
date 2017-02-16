@@ -41,12 +41,6 @@ public class Keyboard implements KeyListener{
                     gp.getPlayer().setJumps(gp.getPlayer().getJumps()-1);
                 }
             break;
-            
-            case KeyEvent.VK_P:
-                gp.getPlayer().getAnimation().setInterval(2);
-                gp.getPlayer().setVelocityX(20);
-            break;
-     
         }
     }
 
@@ -59,11 +53,6 @@ public class Keyboard implements KeyListener{
 
             case KeyEvent.VK_D:
                 gp.getPlayer().setMovingRight(false);
-            break;
-
-            case KeyEvent.VK_P:
-                gp.getPlayer().getAnimation().setInterval(6);
-                gp.getPlayer().setVelocityX(10);
             break;
         }
     }

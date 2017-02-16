@@ -44,47 +44,47 @@ public class Animation {
     
     public void tick() {
         
-        //Var sjätte tick ska animationen gå till nästa bild i arrayen
-        if(++ticks >= interval)  {
-            //Om vi är på sista bilden på spring-animationen, börja om
-            if (currentImage > endImage || currentImage <= startImage) {
-                currentImage = startImage;
-            }
-            
-            //Byt till nästa bild på player
-            player.setImage(this.images.get(currentImage));
-            currentImage++;
+        //SÄTTER NÄSTA BILD
+        
+            //Var sjätte tick ska animationen gå till nästa bild i arrayen
+            if(++ticks >= interval)  {
+                //Om vi är på sista bilden på animationen, börja om
+                if (currentImage > endImage || currentImage <= startImage) {
+                    currentImage = startImage;
+                }
 
-            //Nollställ ticks-variabel
-            ticks = 0;
-        }
-        
-        startImage = 0;
-        endImage = 5;
-        interval = 6;
-        
-        //Om player står still på marken, sätts inaktiv bild istället för spring-animation
-        if (!player.getMovingLeft() && !player.getMovingRight()) {
-            startImage = 6;
-            endImage = 8;
-            interval = 10;
-        }
-        
-        //Om player är i luften, sätts hopp- eller fall-bild efter villkor istället för spring-animation
-        if (player.getJumps() < 1) {
-            if (player.getJumping()) {
-                startImage = 9;
-                endImage = 9;
-            } 
-            if (player.getFalling()) {
-                startImage = 10;
-                endImage = 10;
+                //Byt till nästa bild på player
+                player.setImage(images.get(currentImage));
+                currentImage++;
+
+                //Nollställ ticks-variabel
+                ticks = 0;
             }
-        }
+        
+        
+        //BESTÄMMER NÄSTA BILD
+        
+            //Som standard, ska spring-animationen sättas
+            setImages(0,5);
+
+            //Om player står still på marken, sätts inaktiv animation
+            if (!player.getMovingLeft() && !player.getMovingRight()) {
+                setImages(6,8);
+            }
+
+            //Om player är i luften, sätts hopp- eller fall-bild efter villkor
+            if (player.getJumps() < 1) {
+                if (player.getJumping()) {
+                    setImages(9,9);
+                } 
+                if (player.getFalling()) {
+                    setImages(10,10);
+                }
+            }
     }
     
-    public void setInterval(int i) {
-        interval = i;
-        ticks = 0;
+    public void setImages(int start, int end) {
+        startImage = start;
+        endImage = end;
     }
 }
