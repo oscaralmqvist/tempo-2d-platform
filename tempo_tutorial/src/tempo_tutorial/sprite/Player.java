@@ -35,18 +35,11 @@ public class Player extends Sprite {
            getRectangle().x += getVelocityX();
         }
         
-        //Om hastigheten är riktad uppåt, hoppar player
-        if(super.getVelocityY() < 0) {
-            jumping = true;
-            falling = false;
-        }
+        //Om hastigheten är riktad uppåt, hoppar player.
+        jumping = super.getVelocityY() < 0;
         
-        //Om hastigheten är riktad mycket nedåt, faller player
-        if(super.getVelocityY() > 0) {
-            falling = true;
-            jumping = false;
-        }
-        
+        //Om hastigheten är riktad nedåt, faller player.
+        falling = super.getVelocityY() > 0;
     }
     
     public boolean getMovingLeft(){
