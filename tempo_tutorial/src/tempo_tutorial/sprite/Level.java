@@ -5,9 +5,7 @@
  */
 package tempo_tutorial.sprite;
 
-import java.awt.Color;
 import java.awt.Graphics2D;
-import java.awt.Shape;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
@@ -40,7 +38,7 @@ public class Level {
                     switch(symbol){
                         case '-':break;
                         case 'g':
-                            addBlock(true,j,row,0,0,1,1);double temp;
+                            addBlock(true,j,row,0,0,1,1);
                             if(Math.random() > 0.5){addBlock(false,j,row-1,1,4,1,1);
                             }else{addBlock(false,j,row-1,0,4,1,1);} break;
                         case 'd':addBlock(true,j,row,1,0,1,1); break;
