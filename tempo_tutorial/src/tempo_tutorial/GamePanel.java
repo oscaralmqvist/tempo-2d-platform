@@ -52,8 +52,12 @@ public class GamePanel extends JPanel {
         g2.shear(0, 0);
         level.paint(g2);
         
+        resetTranslate(g2);
         if(level.getPickup().size()>0){
-            g2.drawString(level.getPickup().size()+" Tacos kvar.", player.getRectangle().x-600, player.getRectangle().y-200);
+            for(int i = 0; i < level.getPickup().size(); i++) {
+                g2.drawImage(ss.getSprite(13, 1, 1, 1), i  * BLOCK_SIZE / 2, 0, 32, 32, this);
+            }
+            
         }
         else{
             g2.drawString("Winner winner chicken dinner",player.getRectangle().x-180,player.getRectangle().y-50);
