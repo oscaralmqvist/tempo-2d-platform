@@ -1,14 +1,8 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package tempo_tutorial.sprite;
-
 import java.awt.image.BufferedImage;
 
 /**
- *
+ * Gör att man kan ta upp objekt (t.ex. Taco)
  * @author Elev
  */
 public class PickUp extends Block {
