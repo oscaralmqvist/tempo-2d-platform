@@ -42,17 +42,28 @@ public class GamePanel extends JPanel {
     public void paintComponent(Graphics g) {
         Graphics2D g2 = (Graphics2D) g;
         for(Background b : background){
-            g2.translate(0, b.getVelocityX() > 0 ? -(float)player.getRectangle().y+(360-75) * b.getVelocityX() - (float)b.getRectangle().height*b.getVelocityX()*0.5 : 0);
+            g2.translate(0, b.getVelocityX() > 0 ? -(float)player.getRectangle().y+(460-75) * b.getVelocityX() - (float)b.getRectangle().height*b.getVelocityX()*0.5 : 0);
             b.paint(g2);
             resetTranslate(g2);
         }
-        g2.translate(-player.getRectangle().x + (640-32), -player.getRectangle().y+(360-75));
+        g2.translate(-player.getRectangle().x + (640-32), -player.getRectangle().y+(460-75));
         
         player.paint(g2);
         g2.shear(0, 0);
         level.paint(g2);
-        
         resetTranslate(g2);
+        
+        //MINIMAP
+        g2.drawImage(ss.getImage("src/resources/pics/sky.png"), 0, 0, 1280, 150, this);
+        g2.scale(0.29, 0.2);
+        
+        player.paint(g2);
+        level.paint(g2);
+        resetTranslate(g2);
+        g2.copyArea(0, 0, 20000, 1000, 0, 0);
+        
+        
+        g2.scale(1, 1);
         if(level.getPickup().size()>0){
             for(int i = 0; i < level.getPickup().size(); i++) {
                 g2.drawImage(ss.getSprite(13, 1, 1, 1), i  * BLOCK_SIZE / 2, 0, 32, 32, this);
