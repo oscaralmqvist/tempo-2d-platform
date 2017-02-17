@@ -16,7 +16,7 @@ public class Spritesheet {
     
     public Spritesheet(){
         try {
-            sheet = ImageIO.read(new File("src/resources/pics/sheet_new.png"));
+            sheet = ImageIO.read(new File("src/resources/pics/sheet.png"));
         } catch(Exception e) {}
     }
     

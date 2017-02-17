@@ -27,7 +27,7 @@ public class GamePanel extends JPanel {
         ss = new Spritesheet();
         player = new Player(Tempo_tutorial.WIDTH/2, Tempo_tutorial.HEIGHT/2, BLOCK_SIZE, BLOCK_SIZE * 2, ss.getSprite(4, 0, 1, 2), 10, 3, 10);
         player.createAnimation();
-        player.getAnimation().setAnimation(/*Running (0-5)*/ getPS(7,0), getPS(8,0), getPS(9,0), getPS(10,0), getPS(11,0), getPS(12,0), /*Idle (6-8)*/ getPS(4,0), getPS(5,0), getPS(6,0), /*Jumping (9)*/ getPS(4,2), /*Falling (10)*/ getPS(5,2));
+        player.getAnimation().setAnimation(/*Running (0-5)*/ getPS(0,3), getPS(1,3), getPS(2,3), getPS(3,3), getPS(4,3), getPS(5,3), /*Idle (6-8)*/ getPS(0,5), getPS(1,5), getPS(2,5), /*Jumping (9)*/ getPS(3,5), /*Falling (10)*/ getPS(4,5));
         level = new Level(ss,"level",BLOCK_SIZE);
         background.add(new Background(0f,0,0,Tempo_tutorial.WIDTH,Tempo_tutorial.HEIGHT,ss.getImage("src/resources/pics/sky.png"),player));
         background.add(new Background(0.1f,200,230,Tempo_tutorial.WIDTH,Tempo_tutorial.HEIGHT,ss.getImage("src/resources/pics/mountains_final1.png"),player));
@@ -55,7 +55,7 @@ public class GamePanel extends JPanel {
         resetTranslate(g2);
         if(level.getPickup().size()>0){
             for(int i = 0; i < level.getPickup().size(); i++) {
-                g2.drawImage(ss.getSprite(13, 1, 1, 1), i  * BLOCK_SIZE / 2, 0, 32, 32, this);
+                g2.drawImage(ss.getSprite(4, 1, 1, 1), i  * BLOCK_SIZE / 2, 0, 32, 32, this);
             }
             
         }

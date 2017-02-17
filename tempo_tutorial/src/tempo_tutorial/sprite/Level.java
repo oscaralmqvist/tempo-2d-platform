@@ -39,11 +39,11 @@ public class Level {
                     switch(symbol){
                         case '-':break;
                         case 'g':
-                            addBlock(true,j,row,0,0,1,1);
-                            if(Math.random() > 0.5){addBlock(false,j,row-1,1,4,1,1);
-                            }else{addBlock(false,j,row-1,0,4,1,1);} break;
-                        case 'd':addBlock(true,j,row,1,0,1,1); break;
-                        case 't':addPickup(false,j,row,13,1,1,1); break;
+                            addBlock(true,j,row,1,0,1,1);
+                            if(Math.random() > 0.5){addBlock(false,j,row-1,4,0,1,1);
+                            }else{addBlock(false,j,row-1,5,0,1,1);} break;
+                        case 'd':addBlock(true,j,row,2,0,1,1); break;
+                        case 't':addPickup(false,j,row,4,1,1,1); break;
                     }
                         if(j == tempStr.length()-1){
                             row++;
