@@ -40,23 +40,19 @@ public class GameEngine implements Runnable{
             lastTime = now;
             boolean shouldRender = true;
             
-            
-            try {
-                Thread.sleep(16);
-            } catch(InterruptedException e) {
-                e.printStackTrace();
-            }
-            
             while (delta >= 1) {
                 ticks++;
                 tick();
+                //if(ticks % 2 == 0){
+                    render();
+                //}
                 delta -= 1;
                 shouldRender = true;
             }
             
             if(shouldRender) {
                 frames++;
-                render();
+                
             }
             
             if(System.currentTimeMillis() - lastTimer >= 1000) {
